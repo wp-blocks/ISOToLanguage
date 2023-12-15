@@ -1,0 +1,7 @@
+# Project exclude paths
+/.idea/
+/docs/
+/test/
+/src/
+
+.github
