@@ -299,6 +299,7 @@ export default class ISOToLanguage {
      * Retrieves all language codes associated with the given array of ISO codes.
      *
      * @param {string[]} isos - An array of ISO codes.
+     * @param {string} type - Optional. Specify the type of key to generate. It Can be one of 'locale' or 'language-code'. Defaults to 'locale'.
      * @return {string[]} An array of all language codes associated with the given ISO codes.
      */
     getAllLanguageCodesByISO(isos: string[], type?: string): string[] {
@@ -321,12 +322,12 @@ export default class ISOToLanguage {
     /**
      * Retrieves all items of a specified type.
      *
-     * @param {string} type - Type of items to retrieve. Can be "iso", "languages",
-     * "names", "original", "language-codes", or "locales". If no type is provided, returns the isoList.
+     * @param {string} type - Type of items to retrieve. It Can be "iso", "languages",
+     * "names", "original", "language-codes", or "locales". If no type is provided, return the isoList.
      * @return Depending on the type parameter, either a list of ISOs, languages,
      * names, original names, or the isoList.
      */
-    getAll(type?: string): string[] | false {
+    getAll(type?: string): string[] | typeof isoList {
         switch (type) {
             case 'iso':
                 return this.getAllISO()
@@ -340,8 +341,9 @@ export default class ISOToLanguage {
                 return this.getAllLanguageCodes()
             case 'locales':
                 return this.getAllLocales()
+            case 'all':
             default:
-                return false
+                return isoList
         }
     }
 
@@ -355,14 +357,14 @@ export default class ISOToLanguage {
      */
     getBy(
         iso: string,
-        type?: 'languages' | 'names' | 'original' | 'language-code' | 'locales'
+        type?: 'languages' | 'names' | 'original' | 'language-code' | 'locale'
     ): string | string[] | Country | false {
         if (type === 'languages') {
             return this.getLanguages(iso)
         } else if (type === 'language-code') {
-            return this.getLanguages(iso, 'language-code')
-        } else if (type === 'locales') {
-            return this.getLanguages(iso, 'locale')
+            return this.getLanguages(iso, type)
+        } else if (type === 'locale') {
+            return this.getLanguages(iso, type)
         } else if (type === 'names') {
             return this.getNameByISO(iso)
         } else if (type === 'original') {
