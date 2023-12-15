@@ -2,7 +2,6 @@
   "name": "isotolanguage",
   "version": "1.0.0",
   "description": "light and fast module to convert iso country and languages codes into country names, there is no unnecessary stuff only the bare essentials",
-  "repository": "https://github.com/erikgolinelli/isotolanguage.git",
   "scripts": {
     "build": "webpack --mode production",
     "postbuild": "tsc -p tsconfig.json --emitDeclarationOnly --declaration --declarationDir ./lib/@types --skipLibCheck",
@@ -11,6 +10,8 @@
     "test": "jest --coverage",
     "prepare": "husky install"
   },
+  "license": "ISC",
+  "types": "lib/@types/",
   "main": "lib/index.js",
   "keywords": [
     "iso",
@@ -18,8 +19,23 @@
     "code",
     "language"
   ],
-  "author": "Erik Golinelli <erik@codekraft.it>",
-  "license": "ISC",
+  "files": [
+    "lib/",
+    "tests/",
+    "*.json",
+    ".gitignore",
+    ".eslintrc.js",
+    "LICENSE",
+    "README.md"
+  ],
+  "author": "Erik Golinelli <https://github.com/erikyo>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erikyo/isotolanguage.git"
+  },
+  "bugs": {
+    "url": "https://github.com/erikyo/isotolanguage/issues"
+  },
   "devDependencies": {
     "@babel/core": "^7.23.6",
     "@babel/preset-env": "^7.23.6",
