@@ -8,6 +8,7 @@
     "build": "webpack --mode production",
     "postbuild": "tsc -p tsconfig.json --emitDeclarationOnly --declaration --declarationDir ./lib/@types --skipLibCheck",
     "dev": "webpack --mode development --watch",
+    "lint": "eslint ./src --fix",
     "test": "jest --coverage",
     "prepare": "husky install"
   },
