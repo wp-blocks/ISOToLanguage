@@ -1,30 +1,83 @@
 import { isoList } from './iso'
-import {Country, CountryData, ISOCode, ISOData} from './type'
+import { Country, CountryData, ISOCode, ISOCountry } from './type'
 
 /**
  * An ISO-to-language converter.
  *
  * @class ISOToLanguage
  */
-export default class ISOToLanguage {
+class ISOToLanguage {
+    tryCountriesFallback(language: string) {
+        // Fallback for specific languages
+        const fallbackMap: { [key: string]: string } = {
+            en: 'US', // Fallback English to en_US - United States
+            zh: 'CN', // Fallback Chinese (Simplified) to zh_CN - China
+            ar: 'SA', // Fallback Arabic to ar_SA - Saudi Arabia
+            ja: 'JP', // Fallback Japanese to ja_JP - Japan
+            ko: 'KR', // Fallback Korean to ko_KR - South Korea
+            sv: 'SE', // Fallback Swedish to sv_SE - Sweden
+            hi: 'IN', // Fallback Hindi to hi_IN - India
+        }
+
+        // Check if there's a fallback for the given language
+        if (fallbackMap[language]) {
+            return fallbackMap[language]
+        }
+
+        return undefined
+    }
+
     /**
      * Formats the language and country into a single string.
      *
      * @param language - The language code.
-     * @param country - The country code. Defaults to the same value as `language`.
+     * @param country - The country code. Fallback to the same value as `language` if not provided but may fail or produce unexpected results.
      * @param options - Optional parameters.
      * @param options.separator - The separator used to join the language and country code. Defaults to '_'.
+     * @param options.type - The type of key to generate. It Can be one of 'locale' or 'language-code'. Defaults to 'locale'.
      * @returns The formatted string combining the language and country code.
      */
-    format(language: string, country?: string, { separator } : { separator?: string } = { separator: '_' }): string {
-        // fallback to language if country is not provided
-        if (!country) {
-            country = language
+    format(
+        language: string,
+        country?: string,
+        { separator, type }: { separator?: string; type?: 'locale' | 'language-code' } = {}
+    ): string | null {
+        // Step 1: Set separator based on type or use the default separator
+        if (!separator) {
+            separator = type ? this.getSeparator(type) : '_'
         }
-        return `${language.toLowerCase()}${separator}${country.toUpperCase()}`
+
+        // Step 2: Fallback to language if country is not provided
+        if (!country && this.isValidIso(language.toUpperCase())) {
+            country = language.toUpperCase()
+        }
+
+        // Step 3: Try a defined fallback if country is not provided
+        if (!country) {
+            country = this.tryCountriesFallback(language.toLowerCase())
+        }
+
+        // Step 4: Fallback to language if country is still not provided
+        if (!country) {
+            const countries = this.getCountriesByLanguage([language.toLowerCase()])
+            country = Object.keys(countries)[0]
+        }
+
+        // Return the formatted string if both language and country are found
+        if (country) {
+            return `${language.toLowerCase()}${separator}${country.toUpperCase()}`
+        }
+
+        return null
     }
 
-    getSeparator(type: 'locale' | 'language-code'): string {
+    /**
+     * Returns a separator based on the given type.
+     *
+     * @param {('locale' | 'language-code')} type - The type of separator to get.
+     * @return {string} - The separator.
+     */
+    private getSeparator(type: 'locale' | 'language-code'): string {
         return type === 'locale' ? '_' : '-'
     }
 
@@ -38,7 +91,7 @@ export default class ISOToLanguage {
      * @param {string} iso - ISO code to be validated
      * @return {boolean} True if the ISO code is valid, false otherwise
      */
-    isValidIso(iso: string): iso is ISOCode {
+    private isValidIso(iso: string): iso is ISOCode {
         return iso in isoList
     }
 
@@ -53,7 +106,7 @@ export default class ISOToLanguage {
      *
      * @return {string[]} An array of ISO codes.
      */
-    getAllISO(): string[] {
+    private getAllISO(): string[] {
         return Object.keys(isoList)
     }
 
@@ -62,7 +115,7 @@ export default class ISOToLanguage {
      *
      * @returns {string[]} An array of all available languages.
      */
-    getAllLanguages(): string[] {
+    private getAllLanguages(): string[] {
         const languages: Record<string, boolean> = {}
         for (const iso in isoList) {
             for (const language of isoList[iso as ISOCode].languages) {
@@ -83,6 +136,9 @@ export default class ISOToLanguage {
         for (const iso in isoList) {
             for (const language of isoList[iso as ISOCode].languages) {
                 const languageCode = this.format(language, iso, { separator })
+                if (!languageCode) {
+                    continue
+                }
                 languageCodes[languageCode] = true
             }
         }
@@ -94,7 +150,7 @@ export default class ISOToLanguage {
      *
      * @returns {string[]} - An array of Locale codes.
      */
-    getAllLanguageCodes(): string[] {
+    private getAllLanguageCodes(): string[] {
         return this.getAllCountryLanguage('-')
     }
 
@@ -103,7 +159,7 @@ export default class ISOToLanguage {
      *
      * @returns {string[]} - An array of language codes.
      */
-    getAllLocales(): string[] {
+    private getAllLocales(): string[] {
         return this.getAllCountryLanguage()
     }
 
@@ -115,7 +171,7 @@ export default class ISOToLanguage {
      *
      * @return {string[]} An array of names collected from isoList.
      */
-    getAllNames(): string[] {
+    private getAllNames(): string[] {
         const names: string[] = []
         for (const iso in isoList) {
             names.push(isoList[iso as ISOCode].name)
@@ -132,7 +188,7 @@ export default class ISOToLanguage {
      *
      * @return {string[]} An array of original names from the isoList.
      */
-    getAllOriginalNames(): string[] {
+    private getAllOriginalNames(): string[] {
         const names: string[] = []
         for (const iso in isoList) {
             names.push(isoList[iso as ISOCode].original)
@@ -148,9 +204,10 @@ export default class ISOToLanguage {
      * Retrieves ISO data by ISO code or string.
      *
      * @param {ISOCode | string} iso - ISO code or string.
-     * @return {ISOData[ISOCode] | false} ISO data if found, otherwise false.
+     * @return {ISOCountry[ISOCode] | false} ISO data if found, otherwise false.
      */
-    getByIso(iso: ISOCode | string): ISOData[ISOCode] | false {
+    private getIso(iso: ISOCode | string): ISOCountry[ISOCode] | false {
+        // Return false if no data is found
         if (this.isValidIso(iso)) {
             return isoList[iso]
         }
@@ -165,11 +222,8 @@ export default class ISOToLanguage {
      * @return {string[] | false} An array of languages associated with the ISO code,
      *                            or false if no data found.
      */
-    getLanguages(
-        iso: string,
-        format?: 'locale' | 'language-code'
-    ): string[] | false {
-        const isoData = this.getByIso(iso)
+    private getLanguages(iso: string, format?: 'locale' | 'language-code'): string[] | false {
+        const isoData = this.getIso(iso)
         // Return false if no data is found
         if (!isoData) {
             return false
@@ -195,8 +249,8 @@ export default class ISOToLanguage {
      * @return {string | false} The name associated with the ISO code,
      * or false if no such ISO code exists.
      */
-    getNameByISO(iso: string): string | false {
-        const isoData = this.getByIso(iso)
+    private getNameByISO(iso: string): string | false {
+        const isoData = this.getIso(iso)
         return isoData ? isoData.name : false
     }
 
@@ -207,8 +261,8 @@ export default class ISOToLanguage {
      * @return {string | false} The original data related to the ISO code
      * or false if it doesn't exist
      */
-    getOriginalNameByISO(iso: string): string | false {
-        const isoData = this.getByIso(iso)
+    private getOriginalNameByISO(iso: string): string | false {
+        const isoData = this.getIso(iso)
         return isoData ? isoData.original : false
     }
 
@@ -216,43 +270,50 @@ export default class ISOToLanguage {
      * Generates a new object where the keys are derived from the specified `isoData` object's `languages` property.
      * The values of the new object are copies of the `isoData` objects with an additional `code` property set to the ISO code.
      *
-     * @param isoData - The `CountryData` object containing language information.
      * @param iso - The ISO code for the `isoData` object.
+     * @param countryData - The `CountryData` object containing language information.
      * @param type - Optional. Specify the type of key to generate. It Can be one of 'locale' or 'language-code'. Defaults to 'locale'.
      * @returns A new object with keys derived from the `languages` property and values consisting of copies of `isoData` objects with an additional `code` property.
      */
-    getAsKey(
-        isoData: Country,
-        iso: ISOCode,
+    private getAsKey(
+        iso: ISOCode | string,
+        countryData: Country,
         type?: 'locale' | 'language-code'
     ): { [key: string]: CountryData } {
         const result: { [key: string]: CountryData } = {}
         // Get the separator based on the type
         const separator = type === 'locale' ? '_' : '-'
-        isoData.languages.forEach((language) => {
+        countryData.languages.forEach((language) => {
+            // Format the language and country code
             const locale = this.format(language, iso, { separator })
-            result[locale] = { ...isoData, code: iso as ISOCode }
+            // Add the country data to the result
+            if (locale) {
+                result[locale] = { ...countryData, code: iso as ISOCode }
+            }
         })
         return result
     }
 
     /**
-     * Get country data by a given Locale format.
+     * Get country data by a given a locale format (e.g. "en_US") or a language code (e.g. "en-US").
      *
      * @param {string} languageCode - A language code in the form of "Locale_Format"
-     * @return {CountryData | null} Returns CountryData if a match is found, null otherwise
+     * @return {Country | false} Returns CountryData if a match is found, null otherwise
      */
-    getByLocale(languageCode: string): CountryData | null {
-        // Split the languageCode by "_"
-        const [iso] = languageCode.split('_')
-
-        // Check if the iso code is valid
-        if (this.isValidIso(iso)) {
-            const isoData: Country = isoList[iso]
-            return { ...isoData, code: iso }
+    getCountryData(languageCode: string): Country | false {
+        let iso: string = ''
+        // check if the languageCode has 2 characters
+        if (languageCode.length === 2) {
+            iso = languageCode
+        } else if (languageCode.length === 5) {
+            // get the country code from the language code or locale
+            iso = languageCode.substring(3, 5)
+        } else {
+            return false
         }
 
-        return null // Return null if no match is found
+        // Check if the iso code is valid
+        return this.getIso(iso)
     }
 
     /**
@@ -284,7 +345,7 @@ export default class ISOToLanguage {
         const languages: Record<string, boolean> = {}
 
         for (const iso of isos) {
-            const isoData = this.getByIso(iso)
+            const isoData = this.getIso(iso)
             if (isoData) {
                 isoData.languages.forEach((language) => {
                     languages[language] = true
@@ -307,11 +368,13 @@ export default class ISOToLanguage {
         const separator = type === 'locale' ? '_' : '-'
 
         for (const iso of isos) {
-            const isoData = this.getByIso(iso)
+            const isoData = this.getIso(iso)
             if (isoData) {
                 isoData.languages.forEach((language) => {
-                    const languageCode = this.format( language, iso, { separator })
-                    languageCodes[languageCode] = true
+                    const languageCode = this.format(language, iso, { separator })
+                    if (languageCode) {
+                        languageCodes[languageCode] = true
+                    }
                 })
             }
         }
@@ -327,7 +390,9 @@ export default class ISOToLanguage {
      * @return Depending on the type parameter, either a list of ISOs, languages,
      * names, original names, or the isoList.
      */
-    getAll(type?: string): string[] | typeof isoList {
+    getAll(
+        type?: 'iso' | 'languages' | 'names' | 'original' | 'language-codes' | 'locales'
+    ): string[] | typeof isoList {
         switch (type) {
             case 'iso':
                 return this.getAllISO()
@@ -341,7 +406,6 @@ export default class ISOToLanguage {
                 return this.getAllLanguageCodes()
             case 'locales':
                 return this.getAllLocales()
-            case 'all':
             default:
                 return isoList
         }
@@ -355,22 +419,20 @@ export default class ISOToLanguage {
      *                                                If not provided, default data is returned.
      * @return The data corresponding to the provided ISO and type.
      */
-    getBy(
+    get(
         iso: string,
         type?: 'languages' | 'names' | 'original' | 'language-code' | 'locale'
     ): string | string[] | Country | false {
         if (type === 'languages') {
             return this.getLanguages(iso)
-        } else if (type === 'language-code') {
-            return this.getLanguages(iso, type)
-        } else if (type === 'locale') {
-            return this.getLanguages(iso, type)
         } else if (type === 'names') {
             return this.getNameByISO(iso)
         } else if (type === 'original') {
             return this.getOriginalNameByISO(iso)
+        } else if (type === 'language-code' || type === 'locale') {
+            return this.getLanguages(iso, type)
         }
-        return this.getByIso(iso)
+        return this.getIso(iso)
     }
 
     /**
@@ -414,19 +476,19 @@ export default class ISOToLanguage {
         const result: Record<string, CountryData> = {}
 
         for (const iso in isoList) {
-            const isoData = isoList[iso as ISOCode]
+            const country: Country = isoList[iso as ISOCode]
             if (field === 'locale') {
-                return this.getAsKey(isoData, iso as ISOCode, field)
+                return this.getAsKey(iso as ISOCode, country, field)
             } else if (field === 'language-code') {
-                return this.getAsKey(isoData, iso as ISOCode, field)
+                return this.getAsKey(iso as ISOCode, country, field)
             } else {
-                const keyValue = isoData[field]
+                const keyValue = country[field]
                 if (keyValue instanceof Array) {
                     keyValue.forEach((value) => {
-                        result[value] = { ...isoData, code: iso as ISOCode }
+                        result[value] = { ...country, code: iso as ISOCode }
                     })
                 } else {
-                    result[keyValue] = { ...isoData, code: iso as ISOCode }
+                    result[keyValue] = { ...country, code: iso as ISOCode }
                 }
             }
         }
@@ -453,3 +515,5 @@ export default class ISOToLanguage {
         return false
     }
 }
+
+export default ISOToLanguage
