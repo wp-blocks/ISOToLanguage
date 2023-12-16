@@ -8,7 +8,7 @@ describe('getCountriesByLanguage', () => {
         const result = isoToLanguage.getCountriesByLanguage(languages)
 
         // Add your expectations based on the isoList data
-        // For demonstration, we assume that isoList contains specific data
+        // For demonstration purposes we assume that isoList contains specific data
         expect(result).toEqual(expect.objectContaining({
             AG: {
                 languages: ['en'],

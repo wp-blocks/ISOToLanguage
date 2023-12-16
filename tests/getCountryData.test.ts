@@ -38,7 +38,7 @@ describe('ISOToLanguage', () => {
     })
 
     it('should return null for an invalid language code', () => {
-        const result = isoToLanguage.getCountryData(false)
+        const result = isoToLanguage.getCountryData(false as unknown as string)
 
         expect(result).toBeFalsy()
     })

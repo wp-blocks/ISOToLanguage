@@ -34,7 +34,6 @@ describe('format', () => {
 
     it('should use the separator based on the options.type if options.separator is not specified', () => {
         const isoToLanguage = new ISOToLanguage()
-        isoToLanguage.getSeparator = jest.fn((type) => type === 'language-code' ? '-' : '_')
         const formattedString = isoToLanguage.format('en', 'US', { type: 'language-code' })
         expect(formattedString).toBe('en-US')
     })

@@ -2,7 +2,7 @@ import { describe, expect } from '@jest/globals'
 import ISOToLanguage from '../src/index'
 import { isoList } from '../src/iso'
 
-describe('getBy', () => {
+describe('get', () => {
     let isoToLanguage: ISOToLanguage
 
     beforeEach(() => {
@@ -76,7 +76,7 @@ describe('getBy', () => {
 
         it('should return ISO data for the provided ISO code and no type', () => {
             const isoCode = null
-            const result = isoToLanguage.get(isoCode)
+            const result = isoToLanguage.get(isoCode as unknown as string)
             const expectedData = false
 
             expect(result).toEqual(expectedData)
@@ -84,7 +84,7 @@ describe('getBy', () => {
 
         it('should return false for an invalid type', () => {
             const isoCode = 'AD'
-            const result = isoToLanguage.get(isoCode, 'invalidType')
+            const result = isoToLanguage.get(isoCode, 'invalidType' as unknown as 'locale')
 
             expect(result).toMatchObject({
                 languages: ['ca'],
@@ -92,17 +92,7 @@ describe('getBy', () => {
                 original: 'Andorra',
             })
         })
-    })
-})
 
-describe('ISOToLanguage', () => {
-    let isoToLanguage: ISOToLanguage
-
-    beforeEach(() => {
-        isoToLanguage = new ISOToLanguage()
-    })
-
-    describe('get', () => {
         it('should return ISO data for a valid ISO code', () => {
             const validISO = 'AD'
             const result = isoToLanguage.get(validISO)
@@ -138,20 +128,20 @@ describe('ISOToLanguage', () => {
         })
 
         it('should return false for undefined ISO code', () => {
-            const result = isoToLanguage.get(undefined as any)
+            const result = isoToLanguage.get(undefined as unknown as string)
 
             expect(result).toBe(false)
         })
 
         it('should return false for null ISO code', () => {
-            const result = isoToLanguage.get(null as any)
+            const result = isoToLanguage.get(null as unknown as string)
 
             expect(result).toBe(false)
         })
 
         it('should return false for a non-string ISO code', () => {
             const nonStringISO = 123
-            const result = isoToLanguage.get(nonStringISO as any)
+            const result = isoToLanguage.get(nonStringISO as unknown as string)
 
             expect(result).toBe(false)
         })

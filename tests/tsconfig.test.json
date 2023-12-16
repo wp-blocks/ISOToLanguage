@@ -1,0 +1,20 @@
+{
+  "transformIgnorePatterns": [
+    "/node_modules/"
+  ],
+  "compilerOptions": {
+    "moduleResolution": "nodeNext",
+    "target": "ESNext",
+    "strictNullChecks": true,
+    "esModuleInterop": true
+  },
+  "coverageThreshold": {
+    "global": {
+      "branches": 10,
+      "functions": 10,
+      "lines": 100,
+      "statements": 10
+    }
+  },
+  "collectCoverage": true
+}

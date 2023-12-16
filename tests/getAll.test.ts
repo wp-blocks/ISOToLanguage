@@ -2,7 +2,7 @@ import { describe, expect } from '@jest/globals'
 import ISOToLanguage from '../src/index'
 import { isoList } from '../src/iso'
 
-describe('ISOToLanguage', () => {
+describe('getAll', () => {
     let isoToLanguage: ISOToLanguage
 
     beforeEach(() => {
@@ -19,6 +19,7 @@ describe('ISOToLanguage', () => {
 
         it('should return all languages when type is "languages"', () => {
             const result = isoToLanguage.getAll('languages')
+            // @ts-ignore
             const expectedLanguages = isoToLanguage.getAllLanguages()
 
             expect(result).toEqual(expect.arrayContaining(expectedLanguages))
@@ -26,6 +27,7 @@ describe('ISOToLanguage', () => {
 
         it('should return all names when type is "names"', () => {
             const result = isoToLanguage.getAll('names')
+            // @ts-ignore
             const expectedNames = isoToLanguage.getAllNames()
 
             expect(result).toEqual(expect.arrayContaining(expectedNames))
@@ -33,6 +35,7 @@ describe('ISOToLanguage', () => {
 
         it('should return all original names when type is "original"', () => {
             const result = isoToLanguage.getAll('original')
+            // @ts-ignore
             const expectedOriginalNames = isoToLanguage.getAllOriginalNames()
 
             expect(result).toEqual(
@@ -46,7 +49,7 @@ describe('ISOToLanguage', () => {
         })
 
         it('should return isoList when an invalid type is provided', () => {
-            const result = isoToLanguage.getAll('invalidType')
+            const result = isoToLanguage.getAll('invalidType' as unknown as 'iso')
             expect(result).toEqual(isoList)
         })
     })
