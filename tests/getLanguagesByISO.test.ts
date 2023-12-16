@@ -9,23 +9,6 @@ describe('ISOToLanguage', () => {
         isoToLanguage = new ISOToLanguage()
     })
 
-    describe('getByISO', () => {
-        it('should return ISO data for a valid ISO code', () => {
-            const isoCode = 'AD'
-            const result = isoToLanguage.getByIso(isoCode)
-            const expectedData = isoList[isoCode]
-
-            expect(result).toEqual(expectedData)
-        })
-
-        it('should return false for an invalid ISO code', () => {
-            const isoCode = 'InvalidISO'
-            const result = isoToLanguage.getByIso(isoCode)
-
-            expect(result).toBe(false)
-        })
-    })
-
     describe('getLanguagesByISO', () => {
         it('should return an array of languages for a valid ISO code', () => {
             const isoCode = 'AD'

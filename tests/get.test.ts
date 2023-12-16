@@ -1,5 +1,5 @@
 import { describe, expect } from '@jest/globals'
-import ISOToLanguage from '../src'
+import ISOToLanguage from '../src/index'
 import { isoList } from '../src/iso'
 
 describe('getBy', () => {
@@ -12,7 +12,7 @@ describe('getBy', () => {
     describe('getByIso', () => {
         it('should return languages for the provided ISO code and type "languages"', () => {
             const isoCode = 'AD'
-            const result = isoToLanguage.getBy(isoCode, 'languages')
+            const result = isoToLanguage.get(isoCode, 'languages')
             const expectedLanguages = isoList[isoCode].languages.map(
                 (language) => `${language}`
             )
@@ -22,7 +22,7 @@ describe('getBy', () => {
 
         it('should return languages for the provided ISO code and type "locale"', () => {
             const isoCode = 'AD'
-            const result = isoToLanguage.getBy(isoCode, 'locale')
+            const result = isoToLanguage.get(isoCode, 'locale')
             const expectedLanguages = isoList[isoCode].languages.map(
                 (language) => `${language}_${isoCode}`
             )
@@ -32,7 +32,7 @@ describe('getBy', () => {
 
         it('should return languages for the provided ISO code and type "language-code"', () => {
             const isoCode = 'AD'
-            const result = isoToLanguage.getBy(isoCode, 'language-code')
+            const result = isoToLanguage.get(isoCode, 'language-code')
             const expectedLanguages = isoList[isoCode].languages.map(
                 (language) => `${language}-${isoCode}`
             )
@@ -42,7 +42,7 @@ describe('getBy', () => {
 
         it('should return languages for the provided ISO code and type "languages"', () => {
             const isoCode = 'AD'
-            const result = isoToLanguage.getBy(isoCode, 'locale')
+            const result = isoToLanguage.get(isoCode, 'locale')
             const expectedLanguages = isoList[isoCode].languages.map(
                 (language) => `${language}_${isoCode}`
             )
@@ -52,7 +52,7 @@ describe('getBy', () => {
 
         it('should return name for the provided ISO code and type "names"', () => {
             const isoCode = 'AD'
-            const result = isoToLanguage.getBy(isoCode, 'names')
+            const result = isoToLanguage.get(isoCode, 'names')
             const expectedName = isoList[isoCode].name
 
             expect(result).toEqual(expectedName)
@@ -60,7 +60,7 @@ describe('getBy', () => {
 
         it('should return original data for the provided ISO code and type "original"', () => {
             const isoCode = 'AD'
-            const result = isoToLanguage.getBy(isoCode, 'original')
+            const result = isoToLanguage.get(isoCode, 'original')
             const expectedOriginal = isoList[isoCode].original
 
             expect(result).toEqual(expectedOriginal)
@@ -68,7 +68,7 @@ describe('getBy', () => {
 
         it('should return ISO data for the provided ISO code and no type', () => {
             const isoCode = 'AD'
-            const result = isoToLanguage.getBy(isoCode)
+            const result = isoToLanguage.get(isoCode)
             const expectedData = isoList[isoCode]
 
             expect(result).toEqual(expectedData)
@@ -76,7 +76,7 @@ describe('getBy', () => {
 
         it('should return ISO data for the provided ISO code and no type', () => {
             const isoCode = null
-            const result = isoToLanguage.getBy(isoCode)
+            const result = isoToLanguage.get(isoCode)
             const expectedData = false
 
             expect(result).toEqual(expectedData)
@@ -84,13 +84,76 @@ describe('getBy', () => {
 
         it('should return false for an invalid type', () => {
             const isoCode = 'AD'
-            const result = isoToLanguage.getBy(isoCode, 'invalidType')
+            const result = isoToLanguage.get(isoCode, 'invalidType')
 
             expect(result).toMatchObject({
                 languages: ['ca'],
                 name: 'Andorra',
                 original: 'Andorra',
             })
+        })
+    })
+})
+
+describe('ISOToLanguage', () => {
+    let isoToLanguage: ISOToLanguage
+
+    beforeEach(() => {
+        isoToLanguage = new ISOToLanguage()
+    })
+
+    describe('get', () => {
+        it('should return ISO data for a valid ISO code', () => {
+            const validISO = 'AD'
+            const result = isoToLanguage.get(validISO)
+            const expectedData = isoList[validISO]
+
+            expect(result).toEqual(expectedData)
+        })
+
+        it('should return ISO data for a valid ISO code', () => {
+            const validISO = 'IT'
+            const result = isoToLanguage.get(validISO)
+            const expectedData = {
+                languages: ['it'],
+                name: 'Italy',
+                original: 'Italia',
+            }
+
+            expect(result).toEqual(expectedData)
+        })
+
+        it('should return false for an invalid ISO code', () => {
+            const invalidISO = 'InvalidCode'
+            const result = isoToLanguage.get(invalidISO)
+
+            expect(result).toBe(false)
+        })
+
+        it('should return false for an empty ISO code', () => {
+            const emptyISO = ''
+            const result = isoToLanguage.get(emptyISO)
+
+            expect(result).toBe(false)
+        })
+
+        it('should return false for undefined ISO code', () => {
+            const result = isoToLanguage.get(undefined as any)
+
+            expect(result).toBe(false)
+        })
+
+        it('should return false for null ISO code', () => {
+            const result = isoToLanguage.get(null as any)
+
+            expect(result).toBe(false)
+        })
+
+        it('should return false for a non-string ISO code', () => {
+            const nonStringISO = 123
+            const result = isoToLanguage.get(nonStringISO as any)
+
+            expect(result).toBe(false)
         })
     })
 })

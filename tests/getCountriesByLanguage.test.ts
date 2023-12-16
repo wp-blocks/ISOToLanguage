@@ -1,4 +1,4 @@
-import ISOToLanguage from '../src'
+import ISOToLanguage from '../src/index'
 
 const isoToLanguage = new ISOToLanguage()
 
