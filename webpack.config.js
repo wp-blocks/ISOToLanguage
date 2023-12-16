@@ -25,6 +25,7 @@ const webpackConfig = {
     globalObject: 'this',
     library: {
       name: 'ISOToLanguage',
+      export: 'default',
       type: 'umd'
     }
   },

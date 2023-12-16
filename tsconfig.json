@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
-    "module": "ES2015",
-    "moduleResolution": "Node16",    // Search under node_modules for non-relative imports.
+    "module": "ES6",
     "pretty": true,
     "sourceMap": true,
     "strict": true, // Enable strictest settings like strictNullChecks & noImplicitAny.

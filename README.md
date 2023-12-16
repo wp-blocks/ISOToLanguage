@@ -15,24 +15,39 @@ An ISO-to-language converter module that provides utility functions to work with
 - 📊 Data Exploration - Functions to explore ISO data by ISO code, name, or original name.
 - 🎯 Focused Functionality - Methods for specialized tasks, such as sorting and language code retrieval.
 
+
 ## Installation
 
 Install the module using npm:
 
 ```bash
-npm install yourModule
+npm install ISOToLanguage
 ```
 
 ## A brief recap
-Locale name - en_US
-language code ISO 639-1 - en-US
-ISO - US
+
+### ISO Country Code
+ISO 3166-1-alpha-2 is the standard for country codes. It defines two-letter codes that are unique to each country. For example, the country code for the United Kingdom is `UK`, the country code for France is `FR`, and the country code for Spain is `ES`.
+
+### Language Code
+ISO 639 is the standard for language codes. It defines two-letter and three-letter codes that are unique to each language. For example, the two-letter language code for English is `en`, the two-letter language code for French is `fr`, and the two-letter language code for Spanish is `es`.
+
+## Locale Format
+The locale format is a way of combining a language code and a country code to represent a specific linguistic and cultural context. There are two main locale formats:
+
+### BCP 47 (IETF language tag):
+
+The BCP 47 format separates the language code and country code with an underscore. For example, `en_US` represents English spoken in the United States, `fr_FR` represents French spoken in France, and `es_ES` represents Spanish spoken in Spain.
+
+### ISO 3166-1-alpha-2 or language code:
+
+The ISO 3166-1-alpha-2 format uses the ISO 3166-1-alpha-2 country code instead of an underscore. For example, `en-US` represents English spoken in the United States, `fr-FR` represents French spoken in France, and `es-ES` represents Spanish spoken in Spain.
 
 
 ## Usage
 
-```typescript
-import ISOToLanguage, { CountryData, ISOCode } from 'ISOToLanguage';
+```js
+import ISOToLanguage from 'ISOToLanguage';
 
 const isoToLanguage = new ISOToLanguage();
 ```
