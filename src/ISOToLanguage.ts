@@ -286,7 +286,7 @@ function getOriginalNameByISO(iso: string): string | false {
  * @param type - Optional. Specify the type of key to generate. It Can be one of 'locale' or 'language-code'. Defaults to 'locale'.
  * @returns A new object with keys derived from the `languages` property and values consisting of copies of `isoData` objects with an additional `code` property.
  */
-function getAsKey(
+function useKey(
     iso: ISOCode | string,
     countryData: Country,
     type?: 'locale' | 'language-code'
@@ -481,7 +481,7 @@ function getCountriesByLanguage(languages: string[]): {
  * @param field - The field to use as the key for the resulting object. It can be one of 'languages', 'name', or 'original'.
  * @returns A new object with keys derived from the specified field and values consisting of copies of the corresponding `isoData` objects with an additional `code` property.
  */
-function asKey(
+function getAsKey(
     field: 'languages' | 'name' | 'original' | 'locale' | 'language-code'
 ): Record<string, CountryData> {
     const result: Record<string, CountryData> = {}
@@ -489,9 +489,9 @@ function asKey(
     for (const iso in isoList) {
         const country: Country = isoList[iso as ISOCode]
         if (field === 'locale') {
-            return getAsKey(iso as ISOCode, country, field)
+            return useKey(iso as ISOCode, country, field)
         } else if (field === 'language-code') {
-            return getAsKey(iso as ISOCode, country, field)
+            return useKey(iso as ISOCode, country, field)
         } else {
             const keyValue = country[field]
             if (keyValue instanceof Array) {
@@ -530,11 +530,11 @@ export {
     isValidIso,
     format,
     iso,
-    asKey,
     getCountry,
     getCountryData,
     getCountriesByISO,
     getCountriesByLanguage,
+    getAsKey,
     getAll,
     getAllLanguagesByISO,
     getAllLanguageCodesByISO,
