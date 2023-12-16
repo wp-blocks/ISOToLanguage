@@ -56,71 +56,435 @@ Import the module:
 const isoCodes = require('iso-language-country-codes');
 ```
 
-### Formatting Language and Country
+## Usage
 
-The `format` function combines a language code and a country code into a formatted string:
+### Function: `isValidIso`
+
+A function that checks if the provided ISO code is valid.
+
+#### Example:
 
 ```javascript
-const formattedCode = isoCodes.format('en', 'US');
-console.log(formattedCode); // Output: 'en_US'
+const isValid = isValidIso('EN');
+console.log(isValid); // false
 ```
 
-If the country code is not provided, the function attempts to use the language code as a fallback:
+#### Args:
 
-```javascript
-const formattedFallback = isoCodes.format('en');
-console.log(formattedFallback); // Output: 'en_US' (fallback to 'US')
+```json
+{
+  "iso": "EN"
+}
 ```
 
-### Getting Countries by Language
+### Function: `format`
 
-The `getCountriesByLanguage` function returns a list of countries that speak the given languages:
+A function that formats the language and country into a single string.
+
+#### Example:
 
 ```javascript
-const countriesByLanguage = isoCodes.getCountriesByLanguage(['en', 'fr']);
-console.log(countriesByLanguage);
-// Output: { US: { name: 'United States', original: 'United States', languages: ['en'] }, ... }
+const result = format('en', 'us');
+console.log(result); // en_US
 ```
 
-### Retrieving Data by ISO Code
+#### Args:
 
-The `getIso` function retrieves ISO data by ISO code:
+```json
+{
+  "language": "en",
+  "country": "us"
+}
+```
+
+### Function: `format` with custom separator
+
+Passing a third argument with a custom separator.
+
+#### Example:
 
 ```javascript
-const isoData = isoCodes.getIso('US');
+const result = format('en', 'US', { separator: '-' });
+console.log(result); // en-US
+```
+
+#### Args:
+
+```json
+{
+  "language": "en",
+  "iso": "US",
+  "options": {
+    "separator": "-"
+  }
+}
+```
+
+### Function: `format` with type 'language-code'
+
+Passing a third argument with the type 'language-code'.
+
+#### Example:
+
+```javascript
+const result = format('en', 'US', { type: 'language-code' });
+console.log(result); // en-US
+```
+
+#### Args:
+
+```json
+{
+  "language": "en",
+  "iso": "US",
+  "options": {
+    "type": "language-code"
+  }
+}
+```
+
+### Function: `format` with type 'locale'
+
+Passing a third argument with the type 'locale'.
+
+#### Example:
+
+```javascript
+const result = format('en', 'US', { type: 'locale' });
+console.log(result); // en_US
+```
+
+#### Args:
+
+```json
+{
+  "language": "en",
+  "iso": "US",
+  "options": {
+    "type": "locale"
+  }
+}
+```
+
+### Function: `getCountryData`
+
+Get country data by a given locale format (e.g., "en_US").
+
+#### Example:
+
+```javascript
+const data = getCountryData('de_BE');
+console.log(data);
+
+/*
+{
+  "languages": ["nl", "fr", "de"],
+  "name": "Belgium",
+  "original": "België"
+}
+*/
+```
+
+#### Args:
+
+```json
+{
+  "languageCode": "de_BE"
+}
+```
+
+### Function: `get`
+
+A function that returns the ISO data for a given ISO code.
+
+#### Example:
+
+```javascript
+const isoData = get('US');
 console.log(isoData);
-// Output: { name: 'United States', original: 'United States', languages: ['en'], ... }
+
+/*
+{
+  "languages": ["en"],
+  "name": "United States",
+  "original": "United States"
+}
+*/
 ```
 
-### Getting All ISO Codes
+#### Args:
 
-The `getAllISO` function returns an array of all available ISO codes:
+```json
+{
+  "iso": "US"
+}
+```
+
+### Function: `get` with type 'languages'
+
+Example:
 
 ```javascript
-const allIsoCodes = isoCodes.getAllISO();
-console.log(allIsoCodes); // Output: ['US', 'CA', ...]
+const languages = get('BE', 'languages');
+console.log(languages);
+
+/*
+["nl", "fr", "de"]
+*/
 ```
 
-### Additional Functions
+#### Args:
 
-- `getLanguages(iso: string, format?: 'locale' | 'language-code'): string[] | false`: Retrieves languages associated with the given ISO code.
+```json
+{
+  "arg1": "BE",
+  "type": "languages"
+}
+```
 
-- `getNameByISO(iso: string): string | false`: Returns the name associated with the given ISO code.
+### Function: `getAll`
 
-- `getOriginalNameByISO(iso: string): string | false`: Returns the original name associated with the given ISO code.
+Example:
 
-- `getAll(type?: 'iso' | 'languages' | 'names' | 'original' | 'language-codes' | 'locales'): string[] | typeof isoCodes.isoList`: Retrieves all ISO codes or other specified types.
+```javascript
+const allData = getAll();
+console.log(allData);
 
-- `getCountryData(languageCode: string): isoCodes.Country | false`: Gets country data by a given language code in the format "Locale_Format".
+/*
+{
+  "AD": {
+    "languages": ["ca"],
+    "name": "Andorra",
+    "original": "Andorra"
+  },
+  "AE": {
+    "languages": ["ar"],
+    "name": "United Arab Emirates",
+    "original": "دولة الإمارات العربية المتحدة"
+  },
+  ...
+}
+*/
+```
 
-- `getCountriesByISO(isos: string[]): Record<string, isoCodes.Country>`: Retrieves data for countries associated with the given array of ISO codes.
+#### Args:
 
-- `getAllLanguagesByISO(isos: string[]): string[]`: Retrieves all languages associated with the given array of ISO codes.
+```json
+{}
+```
 
-- `getAllLanguageCodesByISO(isos: string[], type?: string): string[]`: Retrieves all language codes associated with the given array of ISO codes.
+### Function: `getAll` with type 'iso'
 
-- `getCountry(name: string): isoCodes.CountryData | false`: Retrieves country data by its name (official and original e.g. "Italy" and "Itelia").
+Example:
 
+```javascript
+const isoArray = getAll('iso');
+console.log(isoArray);
+
+/*
+["AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR", "AS", "AT", "AU", "AW", ...]
+*/
+```
+
+#### Args:
+
+```json
+{
+  "type": "iso"
+}
+```
+
+### Function: `getAll` with type 'language-codes'
+
+Example:
+
+```javascript
+const languageCodesArray = getAll('language-codes');
+console.log(languageCodesArray);
+
+/*
+["ca-AD", "ar-AE", "ps-AF", "uz-AF", "tk-AF", "en-AG", "en-AI", "sq-AL", "hy-AM", "ru-AM", "pt-AO", "es-AR", "gn-AR", "en-AS", ...]
+*/
+```
+
+#### Args:
+
+```json
+{
+  "type": "language-codes"
+}
+```
+
+### Function: `getCountriesByISO`
+
+Example:
+
+```javascript
+const countriesData = getCountriesByISO(['US', 'IT', 'GB', 'FR']);
+console.log(countriesData);
+
+/*
+{
+  "US": {
+    "languages": ["en"],
+    "name": "United States",
+    "original": "United States"
+  },
+  "IT": {
+    "languages": ["it"],
+    "name": "Italy",
+    "original": "Italia"
+  },
+  ...
+}
+*/
+```
+
+#### Args:
+
+```json
+{
+  "isos": ["US", "IT", "GB", "FR"]
+}
+```
+
+### Function: `getAllLanguagesByISO`
+
+Example:
+
+```javascript
+const languagesByISO = getAllLanguagesByISO(['CD', 'ES', 'FR']);
+console.log(languagesByISO);
+
+/*
+["fr", "ln", "kg", "sw", "lu", "es", "eu", "ca", "gl", "oc"]
+*/
+```
+
+#### Args:
+
+```json
+{
+  "isos
+
+": ["CD", "ES", "FR"]
+}
+```
+
+### Function: `getAllLanguageCodesByISO`
+
+Example:
+
+```javascript
+const languageCodesByISO = getAllLanguageCodesByISO(['US', 'IT', 'GB', 'FR']);
+console.log(languageCodesByISO);
+
+/*
+["en-US", "it-IT", "en-GB", "fr-FR"]
+*/
+```
+
+#### Args:
+
+```json
+{
+  "isos": ["US", "IT", "GB", "FR"]
+}
+```
+
+### Function: `getCountriesByLanguage`
+
+Example:
+
+```javascript
+const countriesByLanguage = getCountriesByLanguage(['gb', 'fr']);
+console.log(countriesByLanguage);
+
+/*
+{
+  "BE": {
+    "languages": ["nl", "fr", "de"],
+    "name": "Belgium",
+    "original": "België"
+  },
+  "BF": {
+    "languages": ["fr", "ff"],
+    ...
+}
+*/
+```
+
+#### Args:
+
+```json
+{
+  "languages": ["gb", "fr"]
+}
+```
+
+### Function: `getAsKey`
+
+Example:
+
+```javascript
+const dataAsKey = getAsKey('languages');
+console.log(dataAsKey);
+
+/*
+{
+  "ca": {
+    "languages": ["es", "eu", "ca", "gl", "oc"],
+    "name": "Spain",
+    "original": "España",
+    "code": "ES"
+  },
+  "ar": {
+    "languages": [...],
+    ...
+  }
+}
+*/
+```
+
+#### Args:
+
+```json
+{
+  "field": "languages"
+}
+```
+
+### Function: `getAsKey` with field 'original'
+
+Example:
+
+```javascript
+const dataAsKeyOriginal = getAsKey('original');
+console.log(dataAsKeyOriginal);
+
+/*
+{
+  "Andorra": {
+    "languages": ["ca"],
+    "name": "Andorra",
+    "original": "Andorra",
+    "code": "AD"
+  },
+  "دولة الإمارات العربية المتحدة": {
+    "languages": ["ar"],
+    ...
+  }
+}
+*/
+```
+
+#### Args:
+
+```json
+{
+  "field": "original"
+}
+```
 
 ## Contributing
 
