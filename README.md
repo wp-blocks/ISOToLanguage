@@ -43,130 +43,84 @@ The BCP 47 format separates the language code and country code with an underscor
 
 The ISO 3166-1-alpha-2 format uses the ISO 3166-1-alpha-2 country code instead of an underscore. For example, `en-US` represents English spoken in the United States, `fr-FR` represents French spoken in France, and `es-ES` represents Spanish spoken in Spain.
 
+# ISO Language-Country Codes
+
+This module provides utility functions for working with ISO language-country codes. It includes functions for formatting, retrieving data, and checking the validity of ISO codes.
+
 
 ## Usage
 
-```js
-import ISOToLanguage from 'ISOToLanguage';
+Import the module:
 
-const isoToLanguage = new ISOToLanguage();
+```javascript
+const isoCodes = require('iso-language-country-codes');
 ```
 
-```typescript
-// Get all ISO codes
-const allISOs: string[] = isoToLanguage.getAllISO();
-console.log('All ISOs:', allISOs);
+### Formatting Language and Country
+
+The `format` function combines a language code and a country code into a formatted string:
+
+```javascript
+const formattedCode = isoCodes.format('en', 'US');
+console.log(formattedCode); // Output: 'en_US'
 ```
 
-```typescript
-// Get all available languages
-const allLanguages: string[] = isoToLanguage.getAllLanguages();
-console.log('All Languages:', allLanguages);
+If the country code is not provided, the function attempts to use the language code as a fallback:
+
+```javascript
+const formattedFallback = isoCodes.format('en');
+console.log(formattedFallback); // Output: 'en_US' (fallback to 'US')
 ```
 
-```typescript
-// Get all country names
-const allNames: string[] = isoToLanguage.getAllNames();
-console.log('All Country Names:', allNames);
+### Getting Countries by Language
+
+The `getCountriesByLanguage` function returns a list of countries that speak the given languages:
+
+```javascript
+const countriesByLanguage = isoCodes.getCountriesByLanguage(['en', 'fr']);
+console.log(countriesByLanguage);
+// Output: { US: { name: 'United States', original: 'United States', languages: ['en'] }, ... }
 ```
 
-```typescript
-// Get all original country names
-const allOriginalNames: string[] = isoToLanguage.getAllOriginalNames();
-console.log('All Original Country Names:', allOriginalNames);
+### Retrieving Data by ISO Code
+
+The `getIso` function retrieves ISO data by ISO code:
+
+```javascript
+const isoData = isoCodes.getIso('US');
+console.log(isoData);
+// Output: { name: 'United States', original: 'United States', languages: ['en'], ... }
 ```
 
-```typescript
-// Get ISO data for a specific ISO code
-const isoData: CountryData | false = isoToLanguage.getByISO('US');
-console.log('ISO Data for US:', isoData);
+### Getting All ISO Codes
+
+The `getAllISO` function returns an array of all available ISO codes:
+
+```javascript
+const allIsoCodes = isoCodes.getAllISO();
+console.log(allIsoCodes); // Output: ['US', 'CA', ...]
 ```
 
-```typescript
-// Fetch languages associated with a specific ISO code
-const languagesForUS: string[] | false = isoToLanguage.getLanguagesByISO('US');
-console.log('Languages for US:', languagesForUS);
-```
+### Additional Functions
 
-```typescript
-// Get the name associated with a specific ISO code
-const nameForUS: string | false = isoToLanguage.getNameByISO('US');
-console.log('Name for US:', nameForUS);
-```
+- `getLanguages(iso: string, format?: 'locale' | 'language-code'): string[] | false`: Retrieves languages associated with the given ISO code.
 
-```typescript
-// Get the original data associated with a specific ISO code
-const originalForUS: string | false = isoToLanguage.getOriginalByISO('US');
-console.log('Original data for US:', originalForUS);
-```
+- `getNameByISO(iso: string): string | false`: Returns the name associated with the given ISO code.
 
-```typescript
-// Get ISO data by ISO code or string
-const isoDataForUS: CountryData | false = isoToLanguage.getByISO('US');
-console.log('ISO Data for US:', isoDataForUS);
-```
+- `getOriginalNameByISO(iso: string): string | false`: Returns the original name associated with the given ISO code.
 
-```typescript
-// Fetch ISO data by ISO code or string and a specific type
-const languagesForUSByType: string[] | false = isoToLanguage.getByIso('US', 'languages');
-console.log('Languages for US by type:', languagesForUSByType);
-```
+- `getAll(type?: 'iso' | 'languages' | 'names' | 'original' | 'language-codes' | 'locales'): string[] | typeof isoCodes.isoList`: Retrieves all ISO codes or other specified types.
 
-```typescript
-// Retrieve ISO data as key-value pairs based on a specified field
-const isoDataAsKey: Record<string, CountryData> = isoToLanguage.asKey('name');
-console.log('ISO Data as Key:', isoDataAsKey);
-```
+- `getCountryData(languageCode: string): isoCodes.Country | false`: Gets country data by a given language code in the format "Locale_Format".
 
-```typescript
-// Get country data by a given language code
-const countryDataByLanguage: CountryData | null = isoToLanguage.getByLanguageCode('EN_US');
-console.log('Country Data by Language Code:', countryDataByLanguage);
-```
+- `getCountriesByISO(isos: string[]): Record<string, isoCodes.Country>`: Retrieves data for countries associated with the given array of ISO codes.
 
-```typescript
-// Retrieve data for a given list of ISO country codes
-const countriesByISO: Record<string, CountryData> = isoToLanguage.getCountriesByISO(['US', 'CA']);
-console.log('Countries by ISO:', countriesByISO);
-```
+- `getAllLanguagesByISO(isos: string[]): string[]`: Retrieves all languages associated with the given array of ISO codes.
 
-## Additional Methods
+- `getAllLanguageCodesByISO(isos: string[], type?: string): string[]`: Retrieves all language codes associated with the given array of ISO codes.
 
-### getAllLanguagesByISO
+- `getCountry(name: string): isoCodes.CountryData | false`: Retrieves country data by its name (official and original e.g. "Italy" and "Itelia").
 
-Retrieve all languages associated with the given array of ISO codes.
-
-```typescript
-const languagesForCountries: string[] = isoToLanguage.getAllLanguagesByISO(['US', 'CA']);
-console.log('Languages for Countries:', languagesForCountries);
-```
-
-### getAllLanguageCodesByISO
-
-Retrieve all language codes associated with the given array of ISO codes.
-
-```typescript
-const languageCodesForCountries: string[] = isoToLanguage.getAllLanguageCodesByISO(['US', 'CA']);
-console.log('Language Codes for Countries:', languageCodesForCountries);
-```
-
-### getLanguagesForISOs
-
-Retrieve all languages used given an array of ISO codes.
-
-```typescript
-const languagesForISOs: string[] = isoToLanguage.getLanguagesForISOs(['US', 'CA']);
-console.log('Languages for ISOs:', languagesForISOs);
-```
-
-### getLanguageCodesForISOs
-
-Retrieve all language codes for the given array of ISO codes.
-
-```typescript
-const languageCodesForISOs: string[] = isoToLanguage.getLanguageCodesForISOs(['US', 'CA']);
-console.log('Language Codes for ISOs:', languageCodesForISOs);
-```
 
 ## Contributing
 
