@@ -1,16 +1,10 @@
 import { describe, expect } from '@jest/globals'
-import ISOToLanguage from '../src/index'
-
-let isoToLanguage: ISOToLanguage
+import { getCountryData } from '../src/ISOToLanguage'
 
 describe('ISOToLanguage', () => {
 
-    beforeEach(() => {
-        isoToLanguage = new ISOToLanguage()
-    })
-
     it('should return the country data for a valid language code', () => {
-        const result = isoToLanguage.getCountryData('tk_AF')
+        const result = getCountryData('tk_AF')
         const expectedData = {
             languages: ['ps', 'uz', 'tk'],
             name: 'Afghanistan',
@@ -21,13 +15,13 @@ describe('ISOToLanguage', () => {
     })
 
     it('should return null for an invalid language code', () => {
-        const result = isoToLanguage.getCountryData('InvalidCode')
+        const result = getCountryData('InvalidCode')
         expect(result).toBeFalsy()
     })
 
 
     it('should return the country data for a valid language code', () => {
-        const result = isoToLanguage.getCountryData('AF_tk')
+        const result = getCountryData('AF_tk')
         const expectedData = {
             languages: ['ps', 'uz', 'tk'],
             name: 'Afghanistan',
@@ -38,13 +32,13 @@ describe('ISOToLanguage', () => {
     })
 
     it('should return null for an invalid language code', () => {
-        const result = isoToLanguage.getCountryData(false as unknown as string)
+        const result = getCountryData(false as unknown as string)
 
         expect(result).toBeFalsy()
     })
 
     it('should return null for an invalid ISO code', () => {
-        const result = isoToLanguage.getCountryData('Invalid_ISO')
+        const result = getCountryData('Invalid_ISO')
 
         expect(result).toBeFalsy()
     })

@@ -1,16 +1,10 @@
 import { describe, expect } from '@jest/globals'
-import ISOToLanguage from '../src/index'
-
-let isoToLanguage: ISOToLanguage
+import { getCountriesByISO } from '../src/ISOToLanguage'
 
 describe('getCountriesByISO', () => {
 
-    beforeEach(() => {
-        isoToLanguage = new ISOToLanguage()
-    })
-
     it('should return an object of country data for valid ISO codes', () => {
-        const result = isoToLanguage.getCountriesByISO(['AD', 'AE', 'AF'])
+        const result = getCountriesByISO(['AD', 'AE', 'AF'])
         const expectedData = {
             AD: {
                 languages: ['ca'],
@@ -33,7 +27,7 @@ describe('getCountriesByISO', () => {
     })
 
     it('should return an empty object for an array of invalid ISO codes', () => {
-        const result = isoToLanguage.getCountriesByISO([
+        const result = getCountriesByISO([
             'Invalid1',
             'Invalid2',
         ])
@@ -42,7 +36,7 @@ describe('getCountriesByISO', () => {
     })
 
     it('should return an empty object for an empty array', () => {
-        const result = isoToLanguage.getCountriesByISO([])
+        const result = getCountriesByISO([])
 
         expect(result).toEqual({})
     })

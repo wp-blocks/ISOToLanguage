@@ -1,17 +1,13 @@
 import { describe, expect } from '@jest/globals'
-import ISOToLanguage from '../src/index'
+import { getAllLanguageCodesByISO } from '../src/ISOToLanguage'
 import { isoList } from '../src/iso'
 
 describe('getAllLanguageCodesByISO', () => {
-    let isoToLanguage: ISOToLanguage
 
-    beforeEach(() => {
-        isoToLanguage = new ISOToLanguage()
-    })
 
     it('should return all language codes associated with the given ISO codes', () => {
         const isoCodes = ['AD', 'AE', 'AF']
-        const result = isoToLanguage.getAllLanguageCodesByISO(isoCodes)
+        const result = getAllLanguageCodesByISO(isoCodes)
         const expectedLanguageCodes = Array.from(
             new Set(
                 isoCodes.flatMap((isoCode) => {
@@ -27,7 +23,7 @@ describe('getAllLanguageCodesByISO', () => {
 
     it('should return all language codes associated with the given ISO codes', () => {
         const isoCodes = ['AD', 'AE', 'AF']
-        const result = isoToLanguage.getAllLanguageCodesByISO(isoCodes, 'locale')
+        const result = getAllLanguageCodesByISO(isoCodes, 'locale')
         const expectedLanguageCodes = Array.from(
             new Set(
                 isoCodes.flatMap((isoCode) => {
@@ -42,13 +38,13 @@ describe('getAllLanguageCodesByISO', () => {
     })
 
     it('should return an empty array for an empty input', () => {
-        const result = isoToLanguage.getAllLanguageCodesByISO([])
+        const result = getAllLanguageCodesByISO([])
         expect(result).toEqual([])
     })
 
     it('should return an empty array for invalid ISO codes', () => {
         const isoCodes = ['InvalidCode1', 'InvalidCode2']
-        const result = isoToLanguage.getAllLanguageCodesByISO(isoCodes)
+        const result = getAllLanguageCodesByISO(isoCodes)
         expect(result).toEqual([])
     })
 })

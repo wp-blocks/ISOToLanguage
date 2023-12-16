@@ -16,5 +16,9 @@
       "statements": 10
     }
   },
+  "transform": {
+    "\\.[jt]sx?$": "babel-jest"
+  },
+  "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.tsx?$",
   "collectCoverage": true
 }

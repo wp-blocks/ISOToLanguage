@@ -1,24 +1,17 @@
 import { describe, expect } from '@jest/globals'
-import ISOToLanguage from '../src/index'
-
-let isoToLanguage: ISOToLanguage
+import { getCountry } from '../src/ISOToLanguage'
 
 describe('ISOToLanguage', () => {
-
-    beforeEach(() => {
-        isoToLanguage = new ISOToLanguage()
-    })
-
     describe('getCountry', () => {
         it('should return the country data for a valid country name', () => {
-            const resultByName = isoToLanguage.getCountry('Andorra')
+            const resultByName = getCountry('Andorra')
             const expectedDataAD = {
                 code: 'AD',
                 languages: ['ca'],
                 name: 'Andorra',
                 original: 'Andorra',
             }
-            const resultByOriginal = isoToLanguage.getCountry(
+            const resultByOriginal = getCountry(
                 'دولة الإمارات العربية المتحدة'
             )
             const expectedDataAE = {
@@ -36,7 +29,7 @@ describe('ISOToLanguage', () => {
         })
 
         it('should return null for an invalid country name', () => {
-            const result = isoToLanguage.getCountry('InvalidName')
+            const result = getCountry('InvalidName')
 
             expect(result).toBeFalsy()
         })
