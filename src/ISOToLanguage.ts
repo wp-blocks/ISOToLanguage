@@ -1,4 +1,4 @@
-import { Country, CountryData, ISOCode, ISOCountry } from './type'
+import { Country, CountryData, ISOCode, ISOCountry, IsoDataType } from './type'
 import { isoList } from './iso'
 
 function tryCountriesFallback(language: string) {
@@ -40,22 +40,18 @@ function format(
     if (!language) {
         return null
     }
+
     // Step 1: Set separator based on type or use the default separator
     if (!separator) {
         separator = type ? getSeparator(type) : '_'
     }
 
-    // Step 2: Fallback to language if country is not provided
-    if (!country && isValidIso(language.toUpperCase())) {
-        country = language.toUpperCase()
-    }
-
-    // Step 3: Try a defined fallback if country is not provided
+    // Step 2: Try a defined fallback if country is not provided
     if (!country) {
         country = tryCountriesFallback(language.toLowerCase())
     }
 
-    // Step 4: Fallback to language if country is still not provided
+    // Step 3: Try to get country from language if country is not provided
     if (!country) {
         const countries = getCountriesByLanguage([language.toLowerCase()])
         country = Object.keys(countries)[0]
@@ -76,7 +72,7 @@ function format(
  * @param {('locale' | 'language-code')} type - The type of separator to get.
  * @return {string} - The separator.
  */
-function getSeparator(type: 'locale' | 'language-code'): string {
+function getSeparator(type?: 'locale' | 'language-code' ): string {
     return type === 'locale' ? '_' : '-'
 }
 
@@ -293,7 +289,7 @@ function useKey(
 ): { [key: string]: CountryData } {
     const result: { [key: string]: CountryData } = {}
     // Get the separator based on the type
-    const separator = type === 'locale' ? '_' : '-'
+    const separator = getSeparator( type )
     countryData.languages.forEach((language) => {
         // Format the language and country code
         const locale = format(language, iso, { separator })
@@ -402,20 +398,20 @@ function getAllLanguageCodesByISO(isos: string[], type?: string): string[] {
  * names, original names, or the isoList.
  */
 function getAll(
-    type?: 'iso' | 'languages' | 'names' | 'original' | 'language-codes' | 'locales'
+    type?: IsoDataType
 ): string[] | typeof isoList {
     switch (type) {
         case 'iso':
             return getAllISO()
-        case 'languages':
+        case 'language':
             return getAllLanguages()
-        case 'names':
+        case 'name':
             return getAllNames()
         case 'original':
             return getAllOriginalNames()
-        case 'language-codes':
+        case 'language-code':
             return getAllLanguageCodes()
-        case 'locales':
+        case 'locale':
             return getAllLocales()
         default:
             return isoList
@@ -426,22 +422,26 @@ function getAll(
  * Retrieves data by ISO code and a specific type.
  *
  * @param {string} iso - The ISO code to search for.
- * @param {'languages'|'names'|'original'|'language-code'|'locales'} type - The type of data to retrieve.
+ * @param {'language'|'name'|'original'|'language-code'|'locale'} type - The type of data to retrieve.
  *                                                If not provided, default data is returned.
  * @return The data corresponding to the provided ISO and type.
  */
-function iso(
+function ISO(
     iso: string,
-    type?: 'languages' | 'names' | 'original' | 'language-code' | 'locale'
+    type?: IsoDataType
 ): string | string[] | Country | false {
-    if (type === 'languages') {
-        return getLanguages(iso)
-    } else if (type === 'names') {
-        return getNameByISO(iso)
-    } else if (type === 'original') {
-        return getOriginalNameByISO(iso)
-    } else if (type === 'language-code' || type === 'locale') {
-        return getLanguages(iso, type)
+    if (type !== undefined) {
+        if (type === 'language') {
+            return getLanguages(iso)
+        } else if (type === 'name') {
+            return getNameByISO(iso)
+        } else if (type === 'original') {
+            return getOriginalNameByISO(iso)
+        } else if (type === 'iso') {
+            return iso
+        }  else if (type === 'language-code' || type === 'locale') {
+            return getLanguages(iso, type)
+        }
     }
     return getIso(iso)
 }
@@ -560,7 +560,7 @@ function getCountry(name: string): CountryData | false {
 export {
     isValidIso,
     format,
-    iso,
+    ISO,
     getCountry,
     getCountryData,
     getCountriesByISO,
