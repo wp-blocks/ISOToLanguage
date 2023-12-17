@@ -508,6 +508,38 @@ function getAsKey(
 }
 
 /**
+ * Generates an array of objects suitable for React Select options based on the specified field.
+ *
+ * @param {string} key - The field to use as the key for the resulting object. It can be one of 'iso', 'language', 'name', 'original', 'language-code', or 'locale'.
+ * @param {string} value - The field to use as the value for the resulting object. It can be one of 'iso', 'language', 'name', 'original', 'language-code', or 'locale'.
+ * @returns {Object[]} An array of objects suitable for React Select options.
+ */
+function getKeyValue(key: IsoDataType, value: IsoDataType): { value: string; label: string }[] {
+    const result = [];
+
+    for (const iso in isoList) {
+        const keyValue = ISO(iso as ISOCode, key);
+        const country = ISO(iso as ISOCode, value);
+
+        if (keyValue instanceof Array) {
+            keyValue.forEach((item) => {
+                result.push({
+                    value: item,
+                    label: country.toString(),
+                });
+            });
+        } else {
+            result.push({
+                value: keyValue.toString(),
+                label: country.toString(),
+            });
+        }
+    }
+
+    return result;
+}
+
+/**
  * This function retrieves country data by its name.
  *
  * @param {string} name - The name of the country to fetch data for.
@@ -535,6 +567,7 @@ export {
     getCountriesByISO,
     getCountriesByLanguage,
     getAsKey,
+    getKeyValue,
     getAll,
     getAllLanguagesByISO,
     getAllLanguageCodesByISO,
