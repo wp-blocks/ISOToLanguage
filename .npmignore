@@ -1,7 +1,7 @@
 # Project exclude paths
 /.idea/
-/docs/
-/test/
+/.husky/
+/coverage/
 /src/
 
 .github

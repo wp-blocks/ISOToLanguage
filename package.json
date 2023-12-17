@@ -8,21 +8,26 @@
     "dev": "webpack --mode development --watch",
     "lint": "eslint ./src --fix",
     "test": "jest --no-cache --coverage",
-    "prepare": "husky install",
-    "docs": "npx typedoc src/*.ts --titleLink 'example/index.html' --tsconfig ./tsconfig.json --readme README.md"
+    "prepare": "husky install"
   },
   "license": "ISC",
   "types": "lib/@types",
   "main": "lib/ISOToLanguage.js",
   "keywords": [
     "iso",
+    "language",
     "country",
-    "code",
-    "language"
+    "country code",
+    "locale format",
+    "locale format",
+    "IETF",
+    "ISO 3166-1",
+    "language tag"
   ],
   "files": [
     "lib/",
     "tests/",
+    "docs/",
     "*.json",
     ".gitignore",
     ".eslintrc.js",
@@ -63,5 +68,12 @@
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
+  },
+  "lint-staged": {
+    "src/**/*.{ts}": [
+      "eslint --fix",
+      "prettier --write",
+      "tsc --build"
+    ]
   }
 }
