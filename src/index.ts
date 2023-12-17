@@ -1,4 +1,13 @@
-import { Country, CountryData, ISOCode, ISOCountry, IsoDataType, ISOLangCode, ISOLanguage, Language } from './type'
+import {
+    Country,
+    CountryData,
+    ISOCode,
+    ISOCountry,
+    IsoDataType,
+    ISOLangCode,
+    ISOLanguage,
+    Language,
+} from './type'
 import { isoList } from './iso'
 import { isoLang } from './lang'
 
@@ -89,7 +98,6 @@ function getSeparator(type?: 'locale' | 'language-code'): string {
 function isValidCountry(iso: string): iso is ISOCode {
     return iso in isoList
 }
-
 
 /**
  * Checks if the provided ISO code is valid or not.
@@ -223,7 +231,13 @@ function getIso(iso: ISOCode | string): ISOCountry[ISOCode] | false {
     return false
 }
 
-function getLanguage(languageCode: ISOLangCode | string) : ISOLanguage[ISOLangCode] {
+/**
+ * Retrieves the ISO language object based on the provided language code.
+ *
+ * @param {ISOLangCode | string} languageCode - The language code to search for.
+ * @return {ISOLanguage[ISOLangCode] | false} The ISO language object corresponding to the language code, or false if the language code is invalid.
+ */
+function getLanguage(languageCode: ISOLangCode | string): ISOLanguage[ISOLangCode] | false {
     if (isValidLanguage(languageCode)) {
         return isoLang[languageCode]
     }
@@ -239,7 +253,10 @@ function getLanguage(languageCode: ISOLangCode | string) : ISOLanguage[ISOLangCo
  * @return {string[] | false} An array of languages associated with the ISO code,
  *                            or false if no data found.
  */
-function getLanguages(iso: string, format?: 'locale' | 'language-code'): string[] | false {
+function getLanguages(
+    iso: string,
+    format?: 'locale' | 'language-code' | 'language' | 'language-name' | 'language-original'
+): string[] | false {
     const isoData = getIso(iso)
     // Return false if no data is found
     if (!isoData) {
@@ -253,6 +270,14 @@ function getLanguages(iso: string, format?: 'locale' | 'language-code'): string[
         case 'language-code':
             return isoData.languages.map((language) => {
                 return `${language}-${iso}`
+            })
+        case 'language-name':
+            return isoData.languages.map((language) => {
+                return getLanguageName(language)
+            })
+        case 'language-original':
+            return isoData.languages.map((language) => {
+                return getLanguageOriginalName(language)
             })
         default:
             return isoData.languages
@@ -377,27 +402,6 @@ function getCountryData(countryCode: string): Country | false {
 
     // Check if the iso code is valid
     return getIso(iso)
-}
-
-/**
- * Retrieves the language data for the specified language code.
- *
- * @param languageCode - The language code or locale.
- * @returns The language data as a `Language` object if found, or `false` if not found.
- */
-function getLanguageData(languageCode: string): Language | false {
-    let language: string = ''
-    // check if the languageCode has 2 characters
-    if (languageCode.length === 2) {
-        language = languageCode
-    } else if (languageCode.length === 5) {
-        // get the country code from the language code or locale
-        language = languageCode.substring(0, 2)
-    } else {
-        return false
-    }
-
-    return getLanguage(language)
 }
 
 /**
@@ -543,15 +547,13 @@ function getAll(type?: IsoDataType): string[] | typeof isoList {
  */
 function ISO(iso: string, type?: IsoDataType): string | string[] | Country | false {
     if (type !== undefined) {
-        if (type === 'language') {
-            return getLanguages(iso)
-        } else if (type === 'name') {
+        if (type === 'name') {
             return getNameByISO(iso)
         } else if (type === 'original') {
             return getOriginalNameByISO(iso)
         } else if (type === 'iso') {
             return iso
-        } else if (type === 'language-code' || type === 'locale') {
+        } else if (type === 'language' || type === 'language-name' || type === 'language-original' || type === 'language-code' || type === 'locale') {
             return getLanguages(iso, type)
         }
     }
@@ -601,10 +603,16 @@ function getAsKey(type: IsoDataType): Record<string, CountryData> {
         if (type === 'locale' || type === 'language-code') {
             const results = useKey(iso as ISOCode, country, type)
             result = { ...result, ...results }
-        } else if (type === 'language') {
+        } else if (
+            type === 'language' ||
+            type === 'language-name' ||
+            type === 'language-original'
+        ) {
             if (country['languages'] instanceof Array) {
                 country.languages.forEach((language) => {
-                    result[language] = { ...country, code: iso as ISOCode }
+                    const key = getLanguageBy(language, type)
+                    // Add the country data to the result
+                    result[key] = { ...country, code: iso as ISOCode }
                 })
             }
         } else if (type === 'iso') {
@@ -670,16 +678,16 @@ function getCountry(name: string): CountryData | false {
 }
 
 export {
-    isValidCountry,
-    isValidLanguage, //new
     format,
     ISO,
+    isValidCountry, //new
     getCountry,
     getCountryData,
     getCountriesByISO,
+    isValidLanguage, //new
     getLanguage, //new
     getLanguageData, //new
-    getLanguagesByISO,
+    getLanguagesByISO, //new
     getCountriesByLanguage,
     getAsKey,
     getKeyValue,
