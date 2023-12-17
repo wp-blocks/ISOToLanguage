@@ -54,7 +54,10 @@ function format(
     // Step 3: Try to get country from language if country is not provided
     if (!country) {
         const countries = getCountriesByLanguage([language.toLowerCase()])
-        country = Object.keys(countries)[0]
+        const countriesKeys = Object.keys(countries)
+        if (countriesKeys.length === 1) {
+            country = countriesKeys[0]
+        }
     }
 
     // Return the formatted string if both language and country are found
@@ -134,10 +137,9 @@ function getAllCountryLanguage(separator: string = '_'): string[] {
     for (const iso in isoList) {
         for (const language of isoList[iso as ISOCode].languages) {
             const languageCode = format(language, iso, { separator })
-            if (!languageCode) {
-                continue
+            if (languageCode) {
+                languageCodes[languageCode] = true
             }
-            languageCodes[languageCode] = true
         }
     }
     return Object.keys(languageCodes)
@@ -286,7 +288,7 @@ function useKey(
     iso: ISOCode | string,
     countryData: Country,
     type?: 'locale' | 'language-code'
-): { [key: string]: CountryData } {
+): Record<string, CountryData> {
     const result: { [key: string]: CountryData } = {}
     // Get the separator based on the type
     const separator = getSeparator( type )
