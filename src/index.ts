@@ -34,7 +34,10 @@ function tryCountriesFallback(language: string) {
 function format(
     language: string,
     country?: string,
-    { separator, type }: { separator?: string; type?: 'locale' | 'language-code' } = {}
+    {
+        separator,
+        type,
+    }: { separator?: string; type?: 'locale' | 'language-code' } = {}
 ): string | null {
     // if a null value is passed in, return null
     if (!language) {
@@ -75,7 +78,7 @@ function format(
  * @param {('locale' | 'language-code')} type - The type of separator to get.
  * @return {string} - The separator.
  */
-function getSeparator(type?: 'locale' | 'language-code' ): string {
+function getSeparator(type?: 'locale' | 'language-code'): string {
     return type === 'locale' ? '_' : '-'
 }
 
@@ -228,7 +231,10 @@ function getIso(iso: ISOCode | string): ISOCountry[ISOCode] | false {
  * @return {string[] | false} An array of languages associated with the ISO code,
  *                            or false if no data found.
  */
-function getLanguages(iso: string, format?: 'locale' | 'language-code'): string[] | false {
+function getLanguages(
+    iso: string,
+    format?: 'locale' | 'language-code'
+): string[] | false {
     const isoData = getIso(iso)
     // Return false if no data is found
     if (!isoData) {
@@ -291,7 +297,7 @@ function useKey(
 ): Record<string, CountryData> {
     const result: { [key: string]: CountryData } = {}
     // Get the separator based on the type
-    const separator = getSeparator( type )
+    const separator = getSeparator(type)
     countryData.languages.forEach((language) => {
         // Format the language and country code
         const locale = format(language, iso, { separator })
@@ -399,9 +405,7 @@ function getAllLanguageCodesByISO(isos: string[], type?: string): string[] {
  * @return Depending on the type parameter, either a list of ISOs, languages,
  * names, original names, or the isoList.
  */
-function getAll(
-    type?: IsoDataType
-): string[] | typeof isoList {
+function getAll(type?: IsoDataType): string[] | typeof isoList {
     switch (type) {
         case 'iso':
             return getAllISO()
@@ -441,7 +445,7 @@ function ISO(
             return getOriginalNameByISO(iso)
         } else if (type === 'iso') {
             return iso
-        }  else if (type === 'language-code' || type === 'locale') {
+        } else if (type === 'language-code' || type === 'locale') {
             return getLanguages(iso, type)
         }
     }
@@ -480,27 +484,27 @@ function getCountriesByLanguage(languages: string[]): {
  * Generates a new object where the keys are derived from the specified field of each item in the `isoList` object.
  * The values of the new object are copies of the corresponding `isoData` objects with an additional `code` property set to the ISO code.
  *
- * @param field - The field to use as the key for the resulting object. It can be one of 'language', 'name', or 'original'.
+ * @param type - The field to use as the key for the resulting object. It can be one of 'language', 'name', or 'original'.
  * @returns A new object with keys derived from the specified field and values consisting of copies of the corresponding `isoData` objects with an additional `code` property.
  */
-function getAsKey(
-    field: 'language' | 'name' | 'original' | 'locale' | 'language-code'
-): Record<string, CountryData> {
+function getAsKey(type: IsoDataType): Record<string, CountryData> {
     let result: Record<string, CountryData> = {}
 
     for (const iso in isoList) {
         const country: Country = isoList[iso as ISOCode]
-        if (field === 'locale' || field === 'language-code') {
-            const results = useKey(iso as ISOCode, country, field)
+        if (type === 'locale' || type === 'language-code') {
+            const results = useKey(iso as ISOCode, country, type)
             result = { ...result, ...results }
-        } else if (field === 'language') {
+        } else if (type === 'language') {
             if (country['languages'] instanceof Array) {
                 country.languages.forEach((language) => {
                     result[language] = { ...country, code: iso as ISOCode }
                 })
             }
+        } else if (type === 'iso') {
+            result[iso] = { ...country, code: iso as ISOCode }
         } else {
-            const keyValue = country[field]
+            const keyValue = country[type]
             result[keyValue] = { ...country, code: iso as ISOCode }
         }
     }
@@ -515,29 +519,32 @@ function getAsKey(
  * @param {string} value - The field to use as the value for the resulting object. It can be one of 'iso', 'language', 'name', 'original', 'language-code', or 'locale'.
  * @returns {Object[]} An array of objects suitable for React Select options.
  */
-function getKeyValue(key: IsoDataType, value: IsoDataType): { value: string; label: string }[] {
-    const result = [];
+function getKeyValue(
+    key: IsoDataType,
+    value: IsoDataType
+): { value: string; label: string }[] {
+    const result = []
 
     for (const iso in isoList) {
-        const keyValue = ISO(iso as ISOCode, key);
-        const country = ISO(iso as ISOCode, value);
+        const keyValue = ISO(iso as ISOCode, key)
+        const country = ISO(iso as ISOCode, value)
 
         if (keyValue instanceof Array) {
             keyValue.forEach((item) => {
                 result.push({
                     value: item,
                     label: country.toString(),
-                });
-            });
+                })
+            })
         } else {
             result.push({
                 value: keyValue.toString(),
                 label: country.toString(),
-            });
+            })
         }
     }
 
-    return result;
+    return result
 }
 
 /**

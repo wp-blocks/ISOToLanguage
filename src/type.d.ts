@@ -16,4 +16,10 @@ interface CountryData extends Country {
     code: ISOCode
 }
 
-type IsoDataType = 'iso' | 'language' | 'name' | 'original' | 'language-code' | 'locale'
+type IsoDataType =
+    | 'iso'
+    | 'language'
+    | 'name'
+    | 'original'
+    | 'language-code'
+    | 'locale'
