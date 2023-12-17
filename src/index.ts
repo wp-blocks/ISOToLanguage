@@ -419,6 +419,33 @@ function getCountriesByISO(isos: string[]): Record<string, Country> {
     return result
 }
 
+/**
+ * Retrieves the language information based on the provided language code.
+ *
+ * @param {string} language - The language code.
+ * @param {'language' | 'language-name' | 'language-original'} type - The type of language information to retrieve.
+ * @return {string} The requested language information.
+ */
+function getLanguageBy(language: string, type: 'language' | 'language-name' | 'language-original'): string {
+    // by default, we use the language code
+    let key = language;
+    // if we want the language name or original name
+    if (type === 'language-name') {
+        key = getLanguageName(language)
+    } else if (type === 'language-original') {
+        key = getLanguageOriginalName(language)
+    }
+    return key
+}
+
+/**
+ * This function takes an array of ISO codes and returns a dictionary of languages
+ * corresponding to those codes. It iterates over each ISO code and checks if it is a
+ * valid language. If it is, the language is added to the result dictionary.
+ *
+ * @param {string[]} isos - An array of ISO codes.
+ * @return {Record<string, Language>} A dictionary of languages indexed by their ISO codes.
+ */
 function getLanguagesByISO(isos: string[]): Record<string, Language> {
     const result: Record<string, Language> = {}
 
