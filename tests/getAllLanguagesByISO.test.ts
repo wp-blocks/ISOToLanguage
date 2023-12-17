@@ -3,17 +3,13 @@ import { getAllLanguageCodesByISO } from '../src/ISOToLanguage'
 import { isoList } from '../src/iso'
 
 describe('getAllLanguageCodesByISO', () => {
-
-
     it('should return all language codes associated with the given ISO codes', () => {
         const isoCodes = ['AD', 'AE', 'AF']
         const result = getAllLanguageCodesByISO(isoCodes)
         const expectedLanguageCodes = Array.from(
             new Set(
                 isoCodes.flatMap((isoCode) => {
-                    return isoList[isoCode].languages.map(
-                        (language) => `${language}-${isoCode}`
-                    )
+                    return isoList[isoCode].languages.map((language) => `${language}-${isoCode}`)
                 })
             )
         )
@@ -27,9 +23,7 @@ describe('getAllLanguageCodesByISO', () => {
         const expectedLanguageCodes = Array.from(
             new Set(
                 isoCodes.flatMap((isoCode) => {
-                    return isoList[isoCode].languages.map(
-                        (language) => `${language}_${isoCode}`
-                    )
+                    return isoList[isoCode].languages.map((language) => `${language}_${isoCode}`)
                 })
             )
         )

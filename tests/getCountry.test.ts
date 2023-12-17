@@ -11,9 +11,7 @@ describe('ISOToLanguage', () => {
                 name: 'Andorra',
                 original: 'Andorra',
             }
-            const resultByOriginal = getCountry(
-                'دولة الإمارات العربية المتحدة'
-            )
+            const resultByOriginal = getCountry('دولة الإمارات العربية المتحدة')
             const expectedDataAE = {
                 code: 'AE',
                 languages: ['ar'],
@@ -23,9 +21,7 @@ describe('ISOToLanguage', () => {
 
             expect(resultByName).toEqual(expectedDataAD)
             expect(resultByOriginal).not.toBeNull()
-            expect(resultByOriginal).toEqual(
-                expect.objectContaining(expectedDataAE)
-            )
+            expect(resultByOriginal).toEqual(expect.objectContaining(expectedDataAE))
         })
 
         it('should return null for an invalid country name', () => {

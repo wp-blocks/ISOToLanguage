@@ -2,8 +2,6 @@ import { describe, expect } from '@jest/globals'
 import { isValidIso } from '../src/ISOToLanguage'
 
 describe('ISOToLanguage', () => {
-
-
     describe('isValidISO', () => {
         it('should return true for a valid ISO code', () => {
             const result = isValidIso('AD')

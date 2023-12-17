@@ -1,4 +1,4 @@
-import {getCountriesByLanguage} from '../src/ISOToLanguage'
+import { getCountriesByLanguage } from '../src/ISOToLanguage'
 
 describe('getCountriesByLanguage', () => {
     it('should return an array of countries that speak the given languages', () => {
@@ -7,13 +7,15 @@ describe('getCountriesByLanguage', () => {
 
         // Add your expectations based on the isoList data
         // For demonstration purposes we assume that isoList contains specific data
-        expect(result).toEqual(expect.objectContaining({
-            AG: {
-                languages: ['en'],
-                name: 'Antigua and Barbuda',
-                original: 'Antigua and Barbuda',
-            },
-        } ))
+        expect(result).toEqual(
+            expect.objectContaining({
+                AG: {
+                    languages: ['en'],
+                    name: 'Antigua and Barbuda',
+                    original: 'Antigua and Barbuda',
+                },
+            })
+        )
     })
 
     it('should handle an empty array of languages', () => {
