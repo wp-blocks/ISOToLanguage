@@ -1,5 +1,5 @@
 import { describe, expect } from '@jest/globals'
-import { ISO } from '../src/ISOToLanguage'
+import { ISO } from '../src/'
 import { isoList } from '../src/iso'
 
 describe('get', () => {

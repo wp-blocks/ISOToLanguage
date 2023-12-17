@@ -1,5 +1,5 @@
 import { describe, expect, test } from '@jest/globals';
-import { getKeyValue } from '../src/ISOToLanguage';
+import { getKeyValue } from '../src/';
 import { IsoDataType } from '../src/type'
 
 describe('getKeyValue', () => {

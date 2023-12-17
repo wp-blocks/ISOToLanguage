@@ -1,5 +1,5 @@
 import { describe, expect } from '@jest/globals'
-import { getAsKey } from '../src/ISOToLanguage'
+import { getAsKey } from '../src/'
 
 describe('getAsKey', () => {
     describe('getAsKey', () => {

@@ -1,5 +1,5 @@
 import { describe, expect } from '@jest/globals'
-import { getCountry } from '../src/ISOToLanguage'
+import { getCountry } from '../src/'
 
 describe('ISOToLanguage', () => {
     describe('getCountry', () => {

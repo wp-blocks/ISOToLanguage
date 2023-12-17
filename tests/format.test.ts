@@ -1,4 +1,4 @@
-import { format } from '../src/ISOToLanguage'
+import { format } from '../src/'
 
 describe('format', () => {
     it('should format the language and country into a single string with default options', () => {

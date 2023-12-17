@@ -1,5 +1,5 @@
 import { describe, expect } from '@jest/globals'
-import { getCountriesByISO } from '../src/ISOToLanguage'
+import { getCountriesByISO } from '../src/'
 
 describe('getCountriesByISO', () => {
     it('should return an object of country data for valid ISO codes', () => {

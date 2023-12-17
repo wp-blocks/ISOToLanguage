@@ -1,4 +1,4 @@
-import { getCountriesByLanguage } from '../src/ISOToLanguage'
+import { getCountriesByLanguage } from '../src/'
 
 describe('getCountriesByLanguage', () => {
     it('should return an array of countries that speak the given languages', () => {
