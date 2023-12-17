@@ -17,6 +17,8 @@ interface CountryData extends Country {
     code: ISOCode
 }
 
+type IsoDataType = 'iso' | 'language' | 'name' | 'original' | 'language-code' | 'locales'
+
 declare module ISOToLanguage {
     interface ISOToLanguage {
         isValidIso: typeof isValidIso
