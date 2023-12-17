@@ -4,7 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 const webpackConfig = {
     entry: {
-        'ISOToLanguage': path.resolve(__dirname, 'src/ISOToLanguage.ts'),
+        'ISOToLanguage': path.resolve(__dirname, 'src/index.ts'),
     },
     module: {
         rules: [

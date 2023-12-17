@@ -395,7 +395,7 @@ function getAllLanguageCodesByISO(isos: string[], type?: string): string[] {
  * Retrieves all items of a specified type.
  *
  * @param {string} type - Type of items to retrieve. It Can be "iso", "languages",
- * "names", "original", "language-codes", or "locales". If no type is provided, return the isoList.
+ * "names", "original", "language-codes", or "locale". If no type is provided, return the isoList.
  * @return Depending on the type parameter, either a list of ISOs, languages,
  * names, original names, or the isoList.
  */
