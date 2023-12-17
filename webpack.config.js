@@ -22,7 +22,7 @@ const webpackConfig = {
         filename: '[name].js',
         clean: true,
         umdNamedDefine: true,
-        globalObject: 'globalThis',
+        globalObject: 'this',
         library: {
             name: 'ISOToLanguage',
             type: 'umd',
