@@ -478,29 +478,28 @@ function getCountriesByLanguage(languages: string[]): {
  * Generates a new object where the keys are derived from the specified field of each item in the `isoList` object.
  * The values of the new object are copies of the corresponding `isoData` objects with an additional `code` property set to the ISO code.
  *
- * @param field - The field to use as the key for the resulting object. It can be one of 'languages', 'name', or 'original'.
+ * @param field - The field to use as the key for the resulting object. It can be one of 'language', 'name', or 'original'.
  * @returns A new object with keys derived from the specified field and values consisting of copies of the corresponding `isoData` objects with an additional `code` property.
  */
 function getAsKey(
-    field: 'languages' | 'name' | 'original' | 'locale' | 'language-code'
+    field: 'language' | 'name' | 'original' | 'locale' | 'language-code'
 ): Record<string, CountryData> {
-    const result: Record<string, CountryData> = {}
+    let result: Record<string, CountryData> = {}
 
     for (const iso in isoList) {
         const country: Country = isoList[iso as ISOCode]
-        if (field === 'locale') {
-            return useKey(iso as ISOCode, country, field)
-        } else if (field === 'language-code') {
-            return useKey(iso as ISOCode, country, field)
+        if (field === 'locale' || field === 'language-code') {
+            const results = useKey(iso as ISOCode, country, field)
+            result = { ...result, ...results }
+        } else if (field === 'language') {
+            if (country['languages'] instanceof Array) {
+                country.languages.forEach((language) => {
+                    result[language] = { ...country, code: iso as ISOCode }
+                })
+            }
         } else {
             const keyValue = country[field]
-            if (keyValue instanceof Array) {
-                keyValue.forEach((value) => {
-                    result[value] = { ...country, code: iso as ISOCode }
-                })
-            } else {
-                result[keyValue] = { ...country, code: iso as ISOCode }
-            }
+            result[keyValue] = { ...country, code: iso as ISOCode }
         }
     }
 
