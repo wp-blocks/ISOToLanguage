@@ -54,6 +54,17 @@ describe('getAsKey', () => {
         })
 
         it('should return an object with original data as keys', () => {
+            const result = getAsKey('iso')
+            const expectedKeys = Object.keys(result)
+
+            expect(expectedKeys).toEqual(
+                expect.arrayContaining([
+                    "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR"
+                ])
+            )
+        })
+
+        it('should return an object with original data as keys', () => {
             const result = getAsKey('original')
             const expectedKeys = Object.keys(result)
 
