@@ -34,10 +34,7 @@ function tryCountriesFallback(language: string) {
 function format(
     language: string,
     country?: string,
-    {
-        separator,
-        type,
-    }: { separator?: string; type?: 'locale' | 'language-code' } = {}
+    { separator, type }: { separator?: string; type?: 'locale' | 'language-code' } = {}
 ): string | null {
     // if a null value is passed in, return null
     if (!language) {
@@ -46,7 +43,7 @@ function format(
 
     // Step 1: Set separator based on type or use the default separator
     if (!separator) {
-        separator = type ? getSeparator(type) : '_'
+        separator = getSeparator(type)
     }
 
     // Step 2: Try a defined fallback if country is not provided
@@ -79,7 +76,7 @@ function format(
  * @return {string} - The separator.
  */
 function getSeparator(type?: 'locale' | 'language-code'): string {
-    return type === 'locale' ? '_' : '-'
+    return type === 'language-code' ? '-' : '_'
 }
 
 /**
