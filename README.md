@@ -42,7 +42,7 @@ import { getCountry, getAll } from 'ISOToLanguage';
 
 ## Usage
 
-1. **[isValidIso](#isValidIso)**
+1. **[isValidCountry](#isValidCountry)**
     - Validates ISO codes for languages and countries.
 
 2. **[format](#format)**
@@ -78,17 +78,17 @@ import { getCountry, getAll } from 'ISOToLanguage';
 12. **[getAllLanguageCodesByISO](#getAllLanguageCodesByISO)**
     - Retrieves all language codes associated with an array of ISO codes.
 
-## `isValidIso`
+## `isValidCountry`
 
 A function that checks if the provided ISO code is valid.
 
 **Args**: `{"iso": "EN"}`
 
 ```javascript
-const enIsValid = isValidIso('EN');
+const enIsValid = isValidCountry('EN');
 console.log(enIsValid); // false
 
-const gbIsValid = isValidIso('GB');
+const gbIsValid = isValidCountry('GB');
 console.log(gbIsValid); // true
 ```
 
