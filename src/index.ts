@@ -228,10 +228,7 @@ function getIso(iso: ISOCode | string): ISOCountry[ISOCode] | false {
  * @return {string[] | false} An array of languages associated with the ISO code,
  *                            or false if no data found.
  */
-function getLanguages(
-    iso: string,
-    format?: 'locale' | 'language-code'
-): string[] | false {
+function getLanguages(iso: string, format?: 'locale' | 'language-code'): string[] | false {
     const isoData = getIso(iso)
     // Return false if no data is found
     if (!isoData) {
@@ -429,10 +426,7 @@ function getAll(type?: IsoDataType): string[] | typeof isoList {
  *                                                If not provided, default data is returned.
  * @return The data corresponding to the provided ISO and type.
  */
-function ISO(
-    iso: string,
-    type?: IsoDataType
-): string | string[] | Country | false {
+function ISO(iso: string, type?: IsoDataType): string | string[] | Country | false {
     if (type !== undefined) {
         if (type === 'language') {
             return getLanguages(iso)
@@ -516,10 +510,7 @@ function getAsKey(type: IsoDataType): Record<string, CountryData> {
  * @param {string} value - The field to use as the value for the resulting object. It can be one of 'iso', 'language', 'name', 'original', 'language-code', or 'locale'.
  * @returns {Object[]} An array of objects suitable for React Select options.
  */
-function getKeyValue(
-    key: IsoDataType,
-    value: IsoDataType
-): { value: string; label: string }[] {
+function getKeyValue(key: IsoDataType, value: IsoDataType): { value: string; label: string }[] {
     const result = []
 
     for (const iso in isoList) {

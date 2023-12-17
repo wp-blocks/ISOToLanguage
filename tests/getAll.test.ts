@@ -1,6 +1,7 @@
 import { describe, expect } from '@jest/globals'
 import { getAll } from '../src/'
 import { isoList } from '../src/iso'
+import { IsoDataType } from '../src/type'
 
 describe('getAll', () => {
     describe('getAll', () => {
@@ -80,14 +81,14 @@ describe('getAll', () => {
                 ],
             ])('should return correct result for type "%s"', (type, expected) => {
                 // Run the test
-                const result = getAll(type)
+                const result = getAll(type as IsoDataType)
 
                 if (type !== 'countries') {
                     // Test only a part of the result array
-                    expect(result).toEqual(expect.arrayContaining(expected))
+                    expect(result).toEqual(expect.arrayContaining(expected as unknown[]))
                 } else {
                     // For other types, test objects
-                    expect(result).toMatchObject(expected)
+                    expect(result).toMatchObject(expected as Record<string, unknown> | Record<string, unknown>[])
                 }
             })
         })

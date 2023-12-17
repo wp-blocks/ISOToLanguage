@@ -58,9 +58,7 @@ describe('getAsKey', () => {
             const expectedKeys = Object.keys(result)
 
             expect(expectedKeys).toEqual(
-                expect.arrayContaining([
-                    "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR"
-                ])
+                expect.arrayContaining(['AD', 'AE', 'AF', 'AG', 'AI', 'AL', 'AM', 'AO', 'AQ', 'AR'])
             )
         })
 
