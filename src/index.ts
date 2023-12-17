@@ -260,6 +260,28 @@ function getLanguages(iso: string, format?: 'locale' | 'language-code'): string[
 }
 
 /**
+ * Retrieves the name of a language based on its language code.
+ *
+ * @param {string} languageCode - The language code to retrieve the name for.
+ * @return {string | false} The name of the language if found, otherwise false.
+ */
+function getLanguageName(languageCode: string): string {
+    const language = getLanguage(languageCode)
+    return language ? language.name : languageCode
+}
+
+/**
+ * Retrieves the original name of a language based on its code.
+ *
+ * @param {string} languageCode - The code of the language.
+ * @return {string | false} - The original name of the language, or false if not found.
+ */
+function getLanguageOriginalName(languageCode: string): string {
+    const language = getLanguage(languageCode)
+    return language ? language.original : languageCode
+}
+
+/**
  * Returns the name associated with the given ISO code.
  *
  * @param {string} iso - An ISO code
@@ -312,6 +334,27 @@ function useKey(
         }
     })
     return result
+}
+
+/**
+ * Retrieves the language data for the specified language code.
+ *
+ * @param languageCode - The language code or locale.
+ * @returns The language data as a `Language` object if found, or `false` if not found.
+ */
+function getLanguageData(languageCode: string): Language | false {
+    let language: string = ''
+    // check if the languageCode has 2 characters
+    if (languageCode.length === 2) {
+        language = languageCode
+    } else if (languageCode.length === 5) {
+        // get the country code from the language code or locale
+        language = languageCode.substring(0, 2)
+    } else {
+        return false
+    }
+
+    return getLanguage(language)
 }
 
 /**
