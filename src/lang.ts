@@ -120,7 +120,7 @@ export const isoLang = {
     nr: { name: 'South Ndebele', original: 'isiNdebele' },
     oc: { name: 'Occitan', original: 'Occitan' },
     oj: { name: 'Ojibwe, Ojibwa', original: 'ᐊᓂᔑᓈᐯᒧᐎᓐ' },
-    cu: { name: 'Old Church Slavonic', original: 'ѩзыкъ словѣньскъ'},
+    cu: { name: 'Old Church Slavonic', original: 'ѩзыкъ словѣньскъ' },
     om: { name: 'Oromo', original: 'Afaan Oromoo' },
     or: { name: 'Oriya', original: 'ଓଡ଼ିଆ' },
     os: { name: 'Ossetian, Ossetic', original: 'ирон æвзаг' },
