@@ -1,19 +1,18 @@
-# ISOToLanguage
+# ISO To Language
 
-An ISO-to-language converter module that provides utility functions to work with ISO codes and language data. in 5.6kb gzipped!
+Unlock the power of ISO codes with our lightweight and high-performance ISO-to-language converter module. This meticulously crafted package seamlessly transforms ISO country and language codes into meaningful country names, ensuring you have all the essentials without unnecessary bloat.
 
-## Features:
-- 🚀 Fast Lookup - Quickly retrieve ISO data and language information for countries.
-- 😎 Versatile - Provides functions for fetching ISO data, languages, names, and original names.
-- 📒 Well-Defined Types - Utilizes TypeScript for well-documented and type-safe development.
-- 📦 Lightweight - Compact module for ISO code and language-related tasks.
-- ✅ Tested - Comprehensive Jest tests with 100% coverage to ensure reliability.
-- 🪅 Easy to Use - Simple API for common use cases with detailed examples.
-- 🌍 Global Compatibility - Works seamlessly with both browsers and Node.js environments.
-- 📚 Extensive Documentation - A well-documented API with examples, demos, and code references.
-- 🔄 Dynamic Data Access - Retrieve data based on ISO code, language code, or specific data type.
-- 📊 Data Exploration - Functions to explore ISO data by ISO code, name, or original name.
-- 🎯 Focused Functionality - Methods for specialized tasks, such as sorting and language code retrieval.
+## Key Features:
+
+- **🚀 Performance-Driven:** Engineered with speed in mind, the package boasts swift execution for seamless integration into your projects.
+
+- **📦 Minimal Footprint:** Weighing in at only 5.6kb gzipped, no dependencies, it keeps your project light without compromising on functionality.
+
+- **🎯 Focused Functionality:** From validating ISO codes to formatting languages and countries, our module provides a suite of versatile utility functions for your language-related tasks.
+
+- **📒 Well-Defined Types:** Utilizes TypeScript for well-documented and type-safe development.
+
+- **✅ Tested:** Comprehensive Jest tests with 100% coverage to ensure reliability.
 
 
 ## Installation
@@ -24,153 +23,114 @@ Install the module using npm:
 npm install ISOToLanguage
 ```
 
-## A brief recap
-
-### ISO Country Code
-ISO 3166-1-alpha-2 is the standard for country codes. It defines two-letter codes that are unique to each country. For example, the country code for the United Kingdom is `UK`, the country code for France is `FR`, and the country code for Spain is `ES`.
-
-### Language Code
-ISO 639 is the standard for language codes. It defines two-letter and three-letter codes that are unique to each language. For example, the two-letter language code for English is `en`, the two-letter language code for French is `fr`, and the two-letter language code for Spanish is `es`.
-
-## Locale Format
-The locale format is a way of combining a language code and a country code to represent a specific linguistic and cultural context. There are two main locale formats:
-
-### BCP 47 (IETF language tag):
-
-The BCP 47 format separates the language code and country code with an underscore. For example, `en_US` represents English spoken in the United States, `fr_FR` represents French spoken in France, and `es_ES` represents Spanish spoken in Spain.
-
-### ISO 3166-1-alpha-2 or language code:
-
-The ISO 3166-1-alpha-2 format uses the ISO 3166-1-alpha-2 country code instead of an underscore. For example, `en-US` represents English spoken in the United States, `fr-FR` represents French spoken in France, and `es-ES` represents Spanish spoken in Spain.
-
-# ISO Language-Country Codes
-
-This module provides utility functions for working with ISO language-country codes. It includes functions for formatting, retrieving data, and checking the validity of ISO codes.
-
-
 ## Usage
 
 Import the module:
 
 ```javascript
-const isoCodes = require('iso-language-country-codes');
+const ITL = require('ISOToLanguage');
+console.log(ITL.getAll());
 ```
+
+ESM import:
+
+```javascript
+import ITL from 'ISOToLanguage';
+// or
+import { getCountry, getAll } from 'ISOToLanguage';
+```
+
 
 ## Usage
 
-### Function: `isValidIso`
+1. **[isValidIso](#isValidIso)**
+    - Validates ISO codes for languages and countries.
+
+2. **[format](#format)**
+    - Formats language and country into a single string.
+
+3. **[getCountryData](#getCountryData)**
+   - Retrieves country data by locale format or language code.
+
+4. **[iso](#iso)**
+   - Retrieves data by ISO code and a specific type.
+
+5. **[getCountry](#getCountry)**
+   - Retrieves country data by name.
+
+6. **[getcountriesbylanguage](#getcountriesbylanguage)**
+    - Returns countries that speak any of the given languages.
+
+7. **[getaskey](#getaskey)**
+   - Generates a new object with keys derived from specified fields.
+
+8. **[getAll](#getAll)**
+   - Retrieves data based on a specified type.
+
+9. **[getCountriesByISO](#getCountriesByISO)**
+    - Get the country data from the given array of ISO codes.
+
+10. **[getAllLanguagesByISO](#getAllLanguagesByISO)**
+     - Retrieves all languages associated with an array of ISO codes.
+
+11. **[getAllLanguageCodesByISO](#getAllLanguageCodesByISO)**
+     - Retrieves all language codes associated with an array of ISO codes.
+
+
+## `isValidIso`
 
 A function that checks if the provided ISO code is valid.
 
-#### Example:
+**Args**: `{"iso": "EN"}`
 
 ```javascript
 const isValid = isValidIso('EN');
 console.log(isValid); // false
 ```
 
-#### Args:
-
-```json
-{
-  "iso": "EN"
-}
-```
-
-### Function: `format`
+## `format`
 
 A function that formats the language and country into a single string.
 
-#### Example:
+**Args**: `{ "language": "en", "country": "us" }`
 
 ```javascript
 const result = format('en', 'us');
 console.log(result); // en_US
 ```
 
-#### Args:
+##### `format` with custom separator
 
-```json
-{
-  "language": "en",
-  "country": "us"
-}
-```
-
-### Function: `format` with custom separator
-
-Passing a third argument with a custom separator.
-
-#### Example:
+**Args**: `{"language": "en", "iso": "US", "options": {"separator": "-"}}`
 
 ```javascript
 const result = format('en', 'US', { separator: '-' });
 console.log(result); // en-US
 ```
 
-#### Args:
+#### `format` with type 'language-code'
 
-```json
-{
-  "language": "en",
-  "iso": "US",
-  "options": {
-    "separator": "-"
-  }
-}
-```
-
-### Function: `format` with type 'language-code'
-
-Passing a third argument with the type 'language-code'.
-
-#### Example:
+**Args**: `{"language": "en", "iso": "US", "options": {"type": "language-code"}}`
 
 ```javascript
 const result = format('en', 'US', { type: 'language-code' });
 console.log(result); // en-US
 ```
 
-#### Args:
+#### `format` with type 'locale'
 
-```json
-{
-  "language": "en",
-  "iso": "US",
-  "options": {
-    "type": "language-code"
-  }
-}
-```
-
-### Function: `format` with type 'locale'
-
-Passing a third argument with the type 'locale'.
-
-#### Example:
+**Args**: `{"language": "en", "iso": "US", "options": {"type": "locale"}}`
 
 ```javascript
 const result = format('en', 'US', { type: 'locale' });
 console.log(result); // en_US
 ```
 
-#### Args:
-
-```json
-{
-  "language": "en",
-  "iso": "US",
-  "options": {
-    "type": "locale"
-  }
-}
-```
-
-### Function: `getCountryData`
+## `getCountryData`
 
 Get country data by a given locale format (e.g., "en_US").
 
-#### Example:
+**Args**: `{"languageCode": "de_BE"}`
 
 ```javascript
 const data = getCountryData('de_BE');
@@ -185,22 +145,14 @@ console.log(data);
 */
 ```
 
-#### Args:
-
-```json
-{
-  "languageCode": "de_BE"
-}
-```
-
-### Function: `get`
+## `iso`
 
 A function that returns the ISO data for a given ISO code.
 
-#### Example:
+**Args**: `{"iso": "US"}`
 
 ```javascript
-const isoData = get('US');
+const isoData = iso('US');
 console.log(isoData);
 
 /*
@@ -211,21 +163,10 @@ console.log(isoData);
 }
 */
 ```
-
-#### Args:
-
-```json
-{
-  "iso": "US"
-}
-```
-
-### Function: `get` with type 'languages'
-
-Example:
+**Args**: `{ "iso": "BE", "type": "languages" }`
 
 ```javascript
-const languages = get('BE', 'languages');
+const languages = iso('BE', 'languages');
 console.log(languages);
 
 /*
@@ -233,18 +174,105 @@ console.log(languages);
 */
 ```
 
-#### Args:
+## `getCountry`
 
-```json
+Get country data by a given the country name (e.g. "Italy") or country original name (e.g. "Italia")
+
+**Args**: `{"name":"Italia"}`
+
+```javascript
+const data = getCountry("Italia");
+console.log(data);
+
+/*
 {
-  "arg1": "BE",
-  "type": "languages"
+	"languages": [
+		"it"
+	],
+	"name": "Italy",
+	"original": "Italia",
+	"code": "IT"
 }
+*/
 ```
 
-### Function: `getAll`
+## `getCountriesByLanguage`
 
-Example:
+**Args**: `{"languages": ["gb", "fr"]}`
+
+```javascript
+const countriesByLanguage = getCountriesByLanguage(['gb', 'fr']);
+console.log(countriesByLanguage);
+
+/*
+{
+  "BE": {
+    "languages": ["nl", "fr", "de"],
+    "name": "Belgium",
+    "original": "België"
+  },
+  "BF": {
+    "languages": ["fr", "ff"],
+    ...
+}
+*/
+```
+
+## `getAsKey`
+
+**Args**: `{"field":"original"}`
+
+```javascript
+const dataAsKey = getAsKey('languages');
+console.log(dataAsKey);
+
+/*
+	"Andorra": {
+		"languages": [
+			"ca"
+		],
+		"name": "Andorra",
+		"original": "Andorra",
+		"code": "AD"
+	},
+	"دولة الإمارات العربية المتحدة": {
+		"languages": [
+			"ar"
+		],
+		"name": "United Arab Emirates",
+		"original": "دولة الإمارات العربية ال
+(...)
+*/
+```
+
+## `getAsKey`
+
+**Args**: `{"field": "original"}`
+
+```javascript
+const dataAsKeyOriginal = getAsKey('original');
+console.log(dataAsKeyOriginal);
+
+/*
+{
+  "Andorra": {
+    "languages": ["ca"],
+    "name": "Andorra",
+    "original": "Andorra",
+    "code": "AD"
+  },
+  "دولة الإمارات العربية المتحدة": {
+    "languages": ["ar"],
+    ...
+  }
+}
+*/
+```
+
+## `getAll`
+
+**Args**: `{}`
+
 
 ```javascript
 const allData = getAll();
@@ -266,16 +294,7 @@ console.log(allData);
 }
 */
 ```
-
-#### Args:
-
-```json
-{}
-```
-
-### Function: `getAll` with type 'iso'
-
-Example:
+**Args**: `{"type": "iso"}`
 
 ```javascript
 const isoArray = getAll('iso');
@@ -285,18 +304,7 @@ console.log(isoArray);
 ["AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR", "AS", "AT", "AU", "AW", ...]
 */
 ```
-
-#### Args:
-
-```json
-{
-  "type": "iso"
-}
-```
-
-### Function: `getAll` with type 'language-codes'
-
-Example:
+**Args**: `{"type": "language-codes"}`
 
 ```javascript
 const languageCodesArray = getAll('language-codes');
@@ -307,17 +315,9 @@ console.log(languageCodesArray);
 */
 ```
 
-#### Args:
+## `getCountriesByISO`
 
-```json
-{
-  "type": "language-codes"
-}
-```
-
-### Function: `getCountriesByISO`
-
-Example:
+**Args**: `{"isos": ["US", "IT", "GB", "FR"]}`
 
 ```javascript
 const countriesData = getCountriesByISO(['US', 'IT', 'GB', 'FR']);
@@ -340,17 +340,9 @@ console.log(countriesData);
 */
 ```
 
-#### Args:
+## `getAllLanguagesByISO`
 
-```json
-{
-  "isos": ["US", "IT", "GB", "FR"]
-}
-```
-
-### Function: `getAllLanguagesByISO`
-
-Example:
+**Args**: `{"isos ": ["CD", "ES", "FR"]}`
 
 ```javascript
 const languagesByISO = getAllLanguagesByISO(['CD', 'ES', 'FR']);
@@ -361,19 +353,9 @@ console.log(languagesByISO);
 */
 ```
 
-#### Args:
+## `getAllLanguageCodesByISO`
 
-```json
-{
-  "isos
-
-": ["CD", "ES", "FR"]
-}
-```
-
-### Function: `getAllLanguageCodesByISO`
-
-Example:
+**Args**: `{"isos": ["US", "IT", "GB", "FR"]}`
 
 ```javascript
 const languageCodesByISO = getAllLanguageCodesByISO(['US', 'IT', 'GB', 'FR']);
@@ -384,107 +366,27 @@ console.log(languageCodesByISO);
 */
 ```
 
-#### Args:
 
-```json
-{
-  "isos": ["US", "IT", "GB", "FR"]
-}
-```
 
-### Function: `getCountriesByLanguage`
+## A brief recap
 
-Example:
+### ISO Country Code
+ISO 3166-1-alpha-2 is the standard for country codes. It defines two-letter codes that are unique to each country. For example, the country code for the United Kingdom is `UK`, the country code for France is `FR`, and the country code for Spain is `ES`.
 
-```javascript
-const countriesByLanguage = getCountriesByLanguage(['gb', 'fr']);
-console.log(countriesByLanguage);
+### Language Code
+ISO 639 is the standard for language codes. It defines two-letter and three-letter codes that are unique to each language. For example, the two-letter language code for English is `en`, the two-letter language code for French is `fr`, and the two-letter language code for Spanish is `es`.
 
-/*
-{
-  "BE": {
-    "languages": ["nl", "fr", "de"],
-    "name": "Belgium",
-    "original": "België"
-  },
-  "BF": {
-    "languages": ["fr", "ff"],
-    ...
-}
-*/
-```
+## Locale Format
+The locale format is a way of combining a language code and a country code to represent a specific linguistic and cultural context. There are two main locale formats:
 
-#### Args:
+### BCP 47 (IETF language tag):
 
-```json
-{
-  "languages": ["gb", "fr"]
-}
-```
+The BCP 47 format separates the language code and country code with an underscore. For example, `en_US` represents English spoken in the United States, `fr_FR` represents French spoken in France, and `es_ES` represents Spanish spoken in Spain.
 
-### Function: `getAsKey`
+### ISO 3166-1-alpha-2 or language code:
 
-Example:
+The ISO 3166-1-alpha-2 format uses the ISO 3166-1-alpha-2 country code instead of an underscore. For example, `en-US` represents English spoken in the United States, `fr-FR` represents French spoken in France, and `es-ES` represents Spanish spoken in Spain.
 
-```javascript
-const dataAsKey = getAsKey('languages');
-console.log(dataAsKey);
-
-/*
-{
-  "ca": {
-    "languages": ["es", "eu", "ca", "gl", "oc"],
-    "name": "Spain",
-    "original": "España",
-    "code": "ES"
-  },
-  "ar": {
-    "languages": [...],
-    ...
-  }
-}
-*/
-```
-
-#### Args:
-
-```json
-{
-  "field": "languages"
-}
-```
-
-### Function: `getAsKey` with field 'original'
-
-Example:
-
-```javascript
-const dataAsKeyOriginal = getAsKey('original');
-console.log(dataAsKeyOriginal);
-
-/*
-{
-  "Andorra": {
-    "languages": ["ca"],
-    "name": "Andorra",
-    "original": "Andorra",
-    "code": "AD"
-  },
-  "دولة الإمارات العربية المتحدة": {
-    "languages": ["ar"],
-    ...
-  }
-}
-*/
-```
-
-#### Args:
-
-```json
-{
-  "field": "original"
-}
-```
 
 ## Contributing
 
