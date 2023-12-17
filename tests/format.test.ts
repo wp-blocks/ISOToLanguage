@@ -31,7 +31,7 @@ describe('format', () => {
         expect(formattedString).toBe('id_ID')
     })
 
-    it('should fallback to the language if the country is not provided and isValidIso returns false', () => {
+    it('should fallback to the language if the country is not provided and isValidCountry returns false', () => {
         const formattedString = format('EN')
         expect(formattedString).toBe('en_US')
     })
