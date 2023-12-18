@@ -31,10 +31,10 @@ interface LanguageData extends Language {
 
 type IsoDataType =
     | 'iso'
-    | 'language'
     | 'name'
     | 'original'
-    | 'language-code'
+    | 'language'
     | 'language-name'
     | 'language-original'
+    | 'language-code'
     | 'locale'

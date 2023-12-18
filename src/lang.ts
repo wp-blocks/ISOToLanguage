@@ -45,7 +45,7 @@ export const isoLang = {
     fo: { name: 'Faroese', original: 'føroyskt' },
     fj: { name: 'Fijian', original: 'vosa Vakaviti' },
     fi: { name: 'Finnish', original: 'suomi, suomen kieli' },
-    fr: { name: 'French', original: 'français, langue française' },
+    fr: { name: 'French', original: 'français' },
     ff: { name: 'Fula; Fulah; Pulaar; Pular', original: 'Fulfulde, Pulaar, Pular' },
     gl: { name: 'Galician', original: 'Galego' },
     ka: { name: 'Georgian', original: 'ქართული' },
