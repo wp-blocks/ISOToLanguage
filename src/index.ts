@@ -14,7 +14,7 @@ import { isoLang } from './lang'
 function tryCountriesFallback(language: string) {
     // Fallback for specific languages
     const fallbackMap: { [key: string]: string } = {
-        en: 'US', // Fallback English to en_US - United States
+        en: 'US', // Fallback English to en_US - the United States
         zh: 'CN', // Fallback Chinese (Simplified) to zh_CN - China
         ar: 'SA', // Fallback Arabic to ar_SA - Saudi Arabia
         ja: 'JP', // Fallback Japanese to ja_JP - Japan
@@ -46,33 +46,30 @@ function format(
     country?: string,
     { separator, type }: { separator?: string; type?: 'locale' | 'language-code' } = {}
 ): string | null {
-    // if a null value is passed in, return null
-    if (!language) {
-        return null
-    }
+    // Step 0: Set language to lowercase
+    language = language.toLowerCase()
 
     // Step 1: Set separator based on type or use the default separator
-    if (!separator) {
+    if (! separator) {
         separator = getSeparator(type)
     }
 
     // Step 2: Try a defined fallback if country is not provided
-    if (!country) {
-        country = tryCountriesFallback(language.toLowerCase())
-    }
+    if ( ! country ) {
+        country = tryCountriesFallback(language)
 
-    // Step 3: Try to get country from language if country is not provided
-    if (!country) {
-        const countries = getCountriesByLanguage([language.toLowerCase()])
-        const countriesKeys = Object.keys(countries)
-        if (countriesKeys.length === 1) {
-            country = countriesKeys[0]
+        if ( ! country ) {
+            const countries = getCountriesByLanguage([language])
+            const countriesKeys = Object.keys(countries)
+            if (countriesKeys.length === 1) {
+                country = countriesKeys[0]
+            }
         }
     }
 
     // Return the formatted string if both language and country are found
     if (country) {
-        return `${language.toLowerCase()}${separator}${country.toUpperCase()}`
+        return `${language}${separator}${country.toUpperCase()}`
     }
 
     return null
@@ -458,9 +455,12 @@ function getCountriesByISO(isos: string[]): Record<string, Country> {
  * @param {'language' | 'language-name' | 'language-original'} type - The type of language information to retrieve.
  * @return {string} The requested language information.
  */
-function getLanguageBy(language: string, type: 'language' | 'language-name' | 'language-original'): string {
+function getLanguageBy(
+    language: string,
+    type: 'language' | 'language-name' | 'language-original'
+): string {
     // by default, we use the language code
-    let key = language;
+    let key = language
     // if we want the language name or original name
     if (type === 'language-name') {
         key = getLanguageName(language)
@@ -475,7 +475,7 @@ function getLanguageBy(language: string, type: 'language' | 'language-name' | 'l
  * corresponding to those codes. It iterates over each ISO code and checks if it is a
  * valid language. If it is, the language is added to the result dictionary.
  *
- * @param {string[]} isos - An array of ISO codes.
+ * @param {string[]} isos - An array of ISO language codes.
  * @return {Record<string, Language>} A dictionary of languages indexed by their ISO codes.
  */
 function getLanguagesByISO(isos: string[]): Record<string, Language> {
@@ -484,7 +484,7 @@ function getLanguagesByISO(isos: string[]): Record<string, Language> {
     for (const iso in isos) {
         // check if the key of isoData is the same as the iso code
         if (isValidLanguage(isos[iso])) {
-            result[isos[iso]] = isoList[isos[iso] as ISOCode]
+            result[isos[iso]] = isoLang[isos[iso] as ISOLangCode]
         }
     }
 
@@ -581,7 +581,13 @@ function ISO(iso: string, type?: IsoDataType): string | string[] | Country | fal
             return getOriginalNameByISO(iso)
         } else if (type === 'iso') {
             return iso
-        } else if (type === 'language' || type === 'language-name' || type === 'language-original' || type === 'language-code' || type === 'locale') {
+        } else if (
+            type === 'language' ||
+            type === 'language-name' ||
+            type === 'language-original' ||
+            type === 'language-code' ||
+            type === 'locale'
+        ) {
             return getLanguages(iso, type)
         }
     }
@@ -636,13 +642,8 @@ function getAsKey(type: IsoDataType): Record<string, CountryData> {
             type === 'language-name' ||
             type === 'language-original'
         ) {
-            if (country['languages'] instanceof Array) {
-                country.languages.forEach((language) => {
-                    const key = getLanguageBy(language, type)
-                    // Add the country data to the result
-                    result[key] = { ...country, code: iso as ISOCode }
-                })
-            }
+            const results = useLanguageKey(iso as ISOCode, country, type)
+            result = { ...result, ...results }
         } else if (type === 'iso') {
             result[iso] = { ...country, code: iso as ISOCode }
         } else {
@@ -708,11 +709,11 @@ function getCountry(name: string): CountryData | false {
 export {
     format,
     ISO,
-    isValidCountry, //new
+    isValidCountry,
     getCountry,
     getCountryData,
     getCountriesByISO,
-    isValidLanguage, //new
+    isValidLanguage,
     getLanguage, //new
     getLanguageData, //new
     getLanguagesByISO, //new
