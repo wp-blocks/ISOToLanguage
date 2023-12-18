@@ -25,7 +25,7 @@ npm install ISOToLanguage
 
 ## Usage
 
-Import the module:
+Common JS (require):
 
 ```javascript
 const ITL = require('ISOToLanguage');
@@ -42,8 +42,11 @@ import { getCountry, getAll } from 'ISOToLanguage';
 
 ## Usage
 
-1. **[isValidIso](#isValidIso)**
-    - Validates ISO codes for languages and countries.
+1. **[isValidCountry](#isValidCountry)**
+    - Validates ISO codes for countries.
+    -
+1. **[isValidLanguage](#isValidLanguage)**
+    - Validates ISO codes for languages.
 
 2. **[format](#format)**
     - Formats language and country into a single string.
@@ -78,18 +81,32 @@ import { getCountry, getAll } from 'ISOToLanguage';
 12. **[getAllLanguageCodesByISO](#getAllLanguageCodesByISO)**
     - Retrieves all language codes associated with an array of ISO codes.
 
-## `isValidIso`
+## `isValidCountry`
 
 A function that checks if the provided ISO code is valid.
 
-**Args**: `{"iso": "EN"}`
+**Args**: `{ "iso": "EN" }`
 
 ```javascript
-const enIsValid = isValidIso('EN');
+const enIsValid = isValidCountry('EN');
 console.log(enIsValid); // false
 
-const gbIsValid = isValidIso('GB');
+const gbIsValid = isValidCountry('GB');
 console.log(gbIsValid); // true
+```
+
+## `isValidLanguage`
+
+A function that checks if the provided language is valid.
+
+**Args**: `{ "iso": "en" }`
+
+```javascript
+const enIsValid = isValidLanguage('en');
+console.log(enIsValid); // true
+
+const gbIsValid = isValidLanguage('gb');
+console.log(gbIsValid); // false
 ```
 
 ## `format`
@@ -165,6 +182,24 @@ console.log(data);
 */
 ```
 
+## `getLanguage`
+
+Retrieve the ISO language object based on the provided language code.
+
+**Args**: `{ "languageCode" : string }`
+
+```javascript
+const data = getCountry('Italia');
+console.log(data);
+
+/*
+{
+  "name": "Italian",
+  "original": "Italiano"
+}
+*/
+```
+
 ## `getCountryData`
 
 Get country data by a given locale format (e.g., "en_US").
@@ -180,6 +215,24 @@ console.log(data);
   "languages": ["nl", "fr", "de"],
   "name": "Belgium",
   "original": "België"
+}
+*/
+```
+
+## `getLanguageData`
+
+Retrieve the language data for the specified language code. As getCountryData, accepts two digit language code (e.g. "it") or five (e.g. "it-IT" or "it_IT")
+
+**Args**: `{ "languageCode": string }`
+
+```javascript
+const data = getLanguageData( 'it-IT');
+console.log(data);
+
+/*
+{
+  "name": "Italian",
+  "original": "Italiano"
 }
 */
 ```
@@ -345,6 +398,34 @@ console.log(countriesData);
     "original": "Italia"
   },
  (...)
+*/
+```
+
+## `getLanguagesByISO`
+
+This function takes an array of ISO codes and returns a dictionary of languages corresponding to those codes. It iterates over each ISO code and checks if it is a valid language. If it is, the language is added to the result dictionary.
+
+**Args**: `{ "isos": [Array of ISO] }`
+
+```javascript
+const countriesData = getLanguagesByISO(['en', 'it', 'es']);
+console.log(countriesData);
+
+/*
+{
+  "en": {
+    "name": "English",
+    "original": "English"
+  },
+  "it": {
+    "name": "Italian",
+    "original": "Italiano"
+  },
+  "es": {
+    "name": "Spanish; Castilian",
+    "original": "español, castellano"
+  }
+}
 */
 ```
 

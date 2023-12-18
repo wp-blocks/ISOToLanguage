@@ -63,6 +63,24 @@ describe('getAsKey', () => {
         })
 
         it('should return an object with original data as keys', () => {
+            const result = getAsKey('language-name')
+            const expectedKeys = Object.keys(result)
+
+            expect(expectedKeys).toEqual(
+                expect.arrayContaining(["Catalan; Valencian", "Arabic", "Pashto, Pushto", "Uzbek", "Turkmen", "English", "Albanian", "Armenian", "Russian", "Portuguese"])
+            )
+        })
+
+        it('should return an object with original data as keys', () => {
+            const result = getAsKey('language-original')
+            const expectedKeys = Object.keys(result)
+
+            expect(expectedKeys).toEqual(
+                expect.arrayContaining(["Català", "العربية", "پښتو", "Türkmen, Түркмен", "English", "Shqip", "Հայերեն", "русский язык", "Português"])
+            )
+        })
+
+        it('should return an object with original data as keys', () => {
             const result = getAsKey('original')
             const expectedKeys = Object.keys(result)
 

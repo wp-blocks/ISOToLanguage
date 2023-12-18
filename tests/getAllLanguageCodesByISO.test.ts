@@ -1,13 +1,13 @@
 import { describe, expect } from '@jest/globals'
 import { getAllLanguagesByISO } from '../src/'
-import { isoList } from '../src/iso'
+import { isoCountries } from '../src/countries'
 
 describe('getAllLanguagesByISO', () => {
     it('should return all languages associated with the given ISO codes', () => {
         const isoCodes = ['AD', 'AE', 'AF']
         const result = getAllLanguagesByISO(isoCodes)
         const expectedLanguages = Array.from(
-            new Set(isoCodes.flatMap((isoCode) => isoList[isoCode].languages))
+            new Set(isoCodes.flatMap((isoCode) => isoCountries[isoCode].languages))
         )
 
         expect(result).toEqual(expectedLanguages)

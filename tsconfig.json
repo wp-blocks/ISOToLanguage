@@ -3,8 +3,8 @@
     "module": "ES6",
     "pretty": true,
     "sourceMap": true,
-    "strict": true, // Enable strictest settings like strictNullChecks & noImplicitAny.
-    "isolatedModules": true, // Disallow features that require cross-file information for emit.
+    "strict": true, // Enable the strictest settings like strictNullChecks & noImplicitAny.
+    "isolatedModules": true, // Disallow features that require cross-file information for emitting.
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "noImplicitAny": true,
@@ -15,7 +15,8 @@
     "outDir": "lib",
     "rootDir": "src",
     "typeRoots": [
-      "node_modules/@types/"
+      "node_modules/@types/",
+      "lib/@types"
     ],
   },
   "include": [
@@ -26,6 +27,6 @@
     "coverage",
     "dist",
     "docs",
-    "example",
+    "./example/**",
   ]
 }

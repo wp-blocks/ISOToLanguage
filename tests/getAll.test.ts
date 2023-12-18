@@ -1,30 +1,30 @@
 import { describe, expect } from '@jest/globals'
 import { getAll } from '../src/'
-import { isoList } from '../src/iso'
+import { isoCountries } from '../src/countries'
 import { IsoDataType } from '../src/type'
 
 describe('getAll', () => {
     describe('getAll', () => {
         it('should return all ISO codes when type is "iso"', () => {
             const result = getAll('iso')
-            const expectedISOs = Object.keys(isoList)
+            const expectedISOs = Object.keys(isoCountries)
 
             expect(result).toEqual(expect.arrayContaining(expectedISOs))
         })
 
         it('should return isoList when no type is provided', () => {
             const result = getAll()
-            expect(result).toEqual(isoList)
+            expect(result).toEqual(isoCountries)
         })
 
         it('should return isoList when an invalid type is provided', () => {
             const result = getAll('invalidType' as unknown as 'iso')
-            expect(result).toEqual(isoList)
+            expect(result).toEqual(isoCountries)
         })
 
         describe('getAll', () => {
             test.each([
-                ['iso', Object.keys(isoList)],
+                ['iso', Object.keys(isoCountries)],
                 ['countries', { AD: {}, AE: {} }],
                 ['language', ['ar', 'en', 'en', 'en', 'en', 'sq', 'en']],
                 [

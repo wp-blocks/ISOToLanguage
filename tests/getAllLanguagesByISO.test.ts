@@ -1,6 +1,6 @@
 import { describe, expect } from '@jest/globals'
 import { getAllLanguageCodesByISO } from '../src/'
-import { isoList } from '../src/iso'
+import { isoCountries } from '../src/countries'
 
 describe('getAllLanguageCodesByISO', () => {
     it('should return all language codes associated with the given ISO codes', () => {
@@ -9,7 +9,7 @@ describe('getAllLanguageCodesByISO', () => {
         const expectedLanguageCodes = Array.from(
             new Set(
                 isoCodes.flatMap((isoCode) => {
-                    return isoList[isoCode].languages.map((language) => `${language}-${isoCode}`)
+                    return isoCountries[isoCode].languages.map((language) => `${language}-${isoCode}`)
                 })
             )
         )
@@ -23,7 +23,7 @@ describe('getAllLanguageCodesByISO', () => {
         const expectedLanguageCodes = Array.from(
             new Set(
                 isoCodes.flatMap((isoCode) => {
-                    return isoList[isoCode].languages.map((language) => `${language}_${isoCode}`)
+                    return isoCountries[isoCode].languages.map((language) => `${language}_${isoCode}`)
                 })
             )
         )
