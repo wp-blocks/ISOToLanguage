@@ -1,9 +1,9 @@
-import { isoList } from './iso'
+import { isoCountries } from './countries.ts'
 import { isoLang } from './lang.ts'
 
 // The ISO language code type e.g. 'UK' 'US'
-type ISOCode = keyof typeof isoList
-type ISOCountry = typeof isoList
+type ISOCode = keyof typeof isoCountries
+type ISOCountry = typeof isoCountries
 
 type ISOLangCode = keyof typeof isoLang
 type ISOLanguage = typeof isoLang
@@ -29,6 +29,9 @@ interface LanguageData extends Language {
     code: ISOLanguage
 }
 
+/**
+ * the data type that can be retrieved by the `ISO` functions
+ */
 type IsoDataType =
     | 'iso'
     | 'name'
