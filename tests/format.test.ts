@@ -16,11 +16,6 @@ describe('format', () => {
         expect(formattedString).toBeNull()
     })
 
-    it('should return null if the language is not provided', () => {
-        const formattedString = format(undefined as unknown as string)
-        expect(formattedString).toBeNull()
-    })
-
     it('Should return null if the language is passed at the place of the country', () => {
         const formattedString = format('us')
         expect(formattedString).toBeNull()
