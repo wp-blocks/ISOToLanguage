@@ -358,6 +358,34 @@ function useKey(
             result[locale] = { ...countryData, code: iso as ISOCode }
         }
     })
+    // Return all the matches
+    return result
+}
+
+/**
+ * Retrieves country data based on the specified ISO code or string and language type.
+ *
+ * @param {ISOCode | string} iso The ISO code or string representing the country.
+ * @param {Country} countryData The country data object.
+ * @param {'language' | 'language-name' | 'language-original'} type The type of language to retrieve.
+ * @returns {Record<string, CountryData>} An object containing the country data for each language key.
+ */
+function useLanguageKey(
+    iso: ISOCode | string,
+    countryData: Country,
+    type: 'language' | 'language-name' | 'language-original'
+): Record<string, CountryData> {
+    const result: Record<string, CountryData> = {}
+    // Add the country data to the result
+    if (countryData['languages'] instanceof Array) {
+        countryData.languages.forEach((language) => {
+            // the language type "language" is already of the type needed (2 digit code)
+            const key = type === 'language' ? language : getLanguageBy(language, type)
+            // Add the country data to the result
+            result[key] = { ...countryData, code: iso as ISOCode }
+        })
+    }
+    // Return all the matches
     return result
 }
 
