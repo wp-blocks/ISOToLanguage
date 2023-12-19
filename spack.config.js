@@ -5,7 +5,7 @@ const path = require("path");
 
 module.exports = config({
     entry: {
-        isoToLanguage: path.join("src", "index.ts"),
+        isoToLanguage: path.join("src", "isoToLanguage.ts"),
     },
     output: {
         path: path.join('lib', 'umd'),
