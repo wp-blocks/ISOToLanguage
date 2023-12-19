@@ -3,7 +3,6 @@ import type { Country, CountryData, ISOCode } from './types'
 import { getIso } from './iso'
 import { isoCountries } from './countries'
 
-
 /**
  * This function retrieves country data by its name.
  *
@@ -24,7 +23,7 @@ export function getCountry(name: string): CountryData | false {
 }
 
 /**
- * Get country data by a given a locale format (e.g. "en_US") or a language code (e.g. "en-US").
+ * Get country data by a given a locale isoFormat (e.g. "en_US") or a language code (e.g. "en-US").
  *
  * @param {string} countryCode - A language code in the form of "Locale_Format"
  * @return {Country | false} Returns CountryData if a match is found, null otherwise

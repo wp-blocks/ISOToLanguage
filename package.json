@@ -18,8 +18,9 @@
     ".": {
       "types": "./lib/@types/index.d.ts",
       "umd": "./lib/umd/isoToLanguage.js",
-      "require": "./lib/cjs/index.js",
-      "import": "./lib/esm/index.js",
+      "browser": "./lib/browser/isoToLanguage.js",
+      "commonjs": "./lib/cjs/index.js",
+      "esm": "./lib/esm/index.js",
       "default": "./lib/esm/index.js"
     }
   },

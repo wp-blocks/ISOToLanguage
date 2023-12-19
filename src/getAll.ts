@@ -1,7 +1,7 @@
 import type { ISOCode, IsoDataType } from './types'
 
 import { isoCountries } from './countries'
-import { format } from './format'
+import { isoFormat } from './isoFormat'
 
 /**
  * Retrieves all ISO codes from the isoCountries object.
@@ -42,7 +42,7 @@ export function getAllCountryLanguage(separator: string = '_'): string[] {
     const languageCodes: Record<string, boolean> = {}
     for (const iso in isoCountries) {
         for (const language of isoCountries[iso as ISOCode].languages) {
-            const languageCode = format(language, iso, { separator })
+            const languageCode = isoFormat(language, iso, { separator })
             if (languageCode) {
                 languageCodes[languageCode] = true
             }

@@ -2,7 +2,6 @@ import type { ISOCode, ISOLangCode } from './types'
 import { isoCountries } from './countries'
 import { isoLang } from './lang'
 
-
 /**
  * Checks if the provided ISO code is valid or not.
  *

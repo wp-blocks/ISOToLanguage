@@ -1,7 +1,7 @@
 import type { Country, CountryData, ISOCode, IsoDataType } from './types'
 
 import { getSeparator } from './utils'
-import { format } from './format'
+import { isoFormat } from './isoFormat'
 import { isoCountries } from './countries'
 import { isoTL } from './iso'
 import { getLanguageBy } from './getBy'
@@ -26,7 +26,7 @@ export function useKey(
     const separator = getSeparator(type)
     countryData.languages.forEach((language) => {
         // Format the language and country code
-        const locale = format(language, iso, { separator })
+        const locale = isoFormat(language, iso, { separator })
         // Add the country data to the result
         if (locale) {
             result[locale] = { ...countryData, code: iso as ISOCode }
@@ -103,7 +103,10 @@ export function getAsKey(type: IsoDataType): Record<string, CountryData> {
  * @param {string} value - The field to use as the value for the resulting object. It can be one of 'iso', 'language', 'name', 'original', 'language-code', or 'locale'.
  * @returns {Object[]} An array of objects suitable for React Select options.
  */
-export function getKeyValue(key: IsoDataType, value: IsoDataType): { value: string; label: string }[] {
+export function getKeyValue(
+    key: IsoDataType,
+    value: IsoDataType
+): { value: string; label: string }[] {
     const result = []
 
     for (const iso in isoCountries) {

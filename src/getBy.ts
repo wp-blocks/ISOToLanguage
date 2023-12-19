@@ -4,7 +4,6 @@ import { isValidCountry, isValidLanguage } from './validation'
 import { getLanguageName, getLanguageOriginalName } from './get'
 import { isoCountries } from './countries'
 
-
 /**
  * Retrieves the data for a given country from a list of ISO country codes.
  *

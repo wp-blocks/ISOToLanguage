@@ -1,6 +1,5 @@
 import { getIso } from './iso'
-import { format } from './format'
-
+import { isoFormat } from './isoFormat'
 
 /**
  * Retrieves all languages associated with the given array of ISO codes.
@@ -38,7 +37,7 @@ export function getAllLanguageCodesByISO(isos: string[], type?: string): string[
         const isoData = getIso(iso)
         if (isoData) {
             isoData.languages.forEach((language) => {
-                const languageCode = format(language, iso, { separator })
+                const languageCode = isoFormat(language, iso, { separator })
                 if (languageCode) {
                     languageCodes[languageCode] = true
                 }
