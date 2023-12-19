@@ -1,7 +1,5 @@
 module.exports = {
     extensionsToTreatAsEsm: ['.ts', '.tsx'],
-    transformIgnorePatterns: [],
-    testEnvironment: 'node',
     transform: {
         '^.+\\.(t|j)sx?$': [
             '@swc/jest', {
