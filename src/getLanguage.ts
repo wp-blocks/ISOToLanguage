@@ -1,4 +1,4 @@
-import type { ISOLangCode, ISOLanguage, Language } from './type'
+import type { ISOLangCode, ISOLanguage, Language } from './types'
 import { isoLang } from './lang'
 import { getIso } from './iso'
 import { getLanguageName, getLanguageOriginalName } from './get'

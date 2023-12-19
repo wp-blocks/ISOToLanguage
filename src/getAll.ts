@@ -1,7 +1,7 @@
+import type { ISOCode, IsoDataType } from './types'
 
-import type { ISOCode, IsoDataType } from './type'
-import { format } from './index'
 import { isoCountries } from './countries'
+import { format } from './format'
 
 /**
  * Retrieves all ISO codes from the isoCountries object.

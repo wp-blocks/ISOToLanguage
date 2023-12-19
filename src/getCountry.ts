@@ -1,4 +1,4 @@
-import type { Country, CountryData, ISOCode } from './type'
+import type { Country, CountryData, ISOCode } from './types'
 
 import { getIso } from './iso'
 import { isoCountries } from './countries'

@@ -1,5 +1,5 @@
 import { getIso } from './iso'
-import { format } from './index'
+import { format } from './format'
 
 
 /**

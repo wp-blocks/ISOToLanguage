@@ -1,4 +1,4 @@
-import type { ISOCode, ISOLangCode } from './type'
+import type { ISOCode, ISOLangCode } from './types'
 import { isoCountries } from './countries'
 import { isoLang } from './lang'
 

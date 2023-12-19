@@ -1,4 +1,4 @@
-import type { Country, CountryData, ISOCode, IsoDataType } from './type'
+import type { Country, CountryData, ISOCode, IsoDataType } from './types'
 
 import { getSeparator } from './utils'
 import { format } from './format'
