@@ -1,4 +1,4 @@
-import type { ISOLangCode, ISOLanguage, Language } from './type'
+import type { ISOLangCode, ISOLanguage, Language } from './types'
 import { isoLang } from './lang'
 import { getIso } from './iso'
 import { getLanguageName, getLanguageOriginalName } from './get'
@@ -42,7 +42,7 @@ export function getLanguageData(languageCode: string): Language | false {
  * Fetches the languages associated with the given ISO code.
  *
  * @param {string} iso - The ISO code of the country.
- * @param format - The format to return the data in.
+ * @param format - The isoFormat to return the data in.
  * @private
  * @return {string[] | false} An array of languages associated with the ISO code,
  *                            or false if no data found.

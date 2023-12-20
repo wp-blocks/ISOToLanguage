@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "module": "ES6",
+    "target": "ESNext",
+    "module": "Node16",
     "pretty": true,
     "sourceMap": true,
     "strict": true, // Enable the strictest settings like strictNullChecks & noImplicitAny.
@@ -11,22 +12,23 @@
     "strictNullChecks": true,
     "declaration": true,
     "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true, // Import non-ES modules as default imports.
     "outDir": "lib",
     "rootDir": "src",
+    "moduleResolution": "Node16",
+    "esModuleInterop": true,
+    // "verbatimModuleSyntax": true,
     "typeRoots": [
-      "node_modules/@types/",
-      "lib/@types"
+      "node_modules/@types/"
     ],
   },
   "include": [
-    "src"
+    "src/**/*"
   ],
   "exclude": [
     "node_modules",
     "coverage",
-    "dist",
     "docs",
-    "./example/**",
+    "example",
+    "lib",
   ]
 }

@@ -1,4 +1,4 @@
-import type { Country, ISOCode, ISOCountry, IsoDataType } from './type'
+import type { Country, ISOCode, ISOCountry, IsoDataType } from './types'
 import { getNameByISO, getOriginalNameByISO } from './get'
 import { getLanguages } from './getLanguage'
 import { isValidCountry } from './validation'
