@@ -9,7 +9,9 @@ describe('getAllLanguageCodesByISO', () => {
         const expectedLanguageCodes = Array.from(
             new Set(
                 isoCodes.flatMap((isoCode) => {
-                    return isoCountries[isoCode].languages.map((language) => `${language}-${isoCode}`)
+                    return isoCountries[isoCode].languages.map(
+                        (language) => `${language}-${isoCode}`
+                    )
                 })
             )
         )
@@ -23,7 +25,9 @@ describe('getAllLanguageCodesByISO', () => {
         const expectedLanguageCodes = Array.from(
             new Set(
                 isoCodes.flatMap((isoCode) => {
-                    return isoCountries[isoCode].languages.map((language) => `${language}_${isoCode}`)
+                    return isoCountries[isoCode].languages.map(
+                        (language) => `${language}_${isoCode}`
+                    )
                 })
             )
         )

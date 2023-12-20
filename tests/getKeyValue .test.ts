@@ -1,6 +1,7 @@
 import { describe, expect, test } from '@jest/globals'
 import { getKeyValue } from '../src/'
-import { IsoDataType } from '../src/type'
+import { IsoDataType } from '../src/types'
+
 
 describe('getKeyValue', () => {
     test.each([

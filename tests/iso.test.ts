@@ -15,7 +15,7 @@ describe('ISO', () => {
         const isoCode = 'AD'
         const result = isoTL(isoCode, 'locale')
         const expectedLanguages = isoCountries[isoCode].languages.map(
-            (language) => `${language}_${isoCode}`,
+            (language) => `${language}_${isoCode}`
         )
 
         expect(result).toEqual(expectedLanguages)
@@ -25,7 +25,7 @@ describe('ISO', () => {
         const isoCode = 'AD'
         const result = isoTL(isoCode, 'language-code')
         const expectedLanguages = isoCountries[isoCode].languages.map(
-            (language) => `${language}-${isoCode}`,
+            (language) => `${language}-${isoCode}`
         )
 
         expect(result).toEqual(expectedLanguages)
@@ -61,7 +61,7 @@ describe('ISO', () => {
         const isoCode = 'AD'
         const result = isoTL(isoCode, 'locale')
         const expectedLanguages = isoCountries[isoCode].languages.map(
-            (language) => `${language}_${isoCode}`,
+            (language) => `${language}_${isoCode}`
         )
 
         expect(result).toEqual(expectedLanguages)

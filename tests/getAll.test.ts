@@ -88,7 +88,9 @@ describe('getAll', () => {
                     expect(result).toEqual(expect.arrayContaining(expected as unknown[]))
                 } else {
                     // For other types, test objects
-                    expect(result).toMatchObject(expected as Record<string, unknown> | Record<string, unknown>[])
+                    expect(result).toMatchObject(
+                        expected as Record<string, unknown> | Record<string, unknown>[]
+                    )
                 }
             })
         })

@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "light and fast module to convert iso country and languages codes into country names, there is no unnecessary stuff only the bare essentials",
   "scripts": {
+    "prepare": "husky install",
+    "clean": "node bin/clean.mjs",
     "module-cjs": "swc src -d lib/cjs -C module.type=commonjs --config-file .swcrc-cjs",
     "module-esm": "swc src -d lib/esm -C module.type=es6 --config-file .swcrc-esm",
     "module-umd": "npx spack",
@@ -10,9 +12,7 @@
     "build": "pnpm run clean && concurrently pnpm:module-* && pnpm run types",
     "types": "tsc -p tsconfig.json --module Node16 --emitDeclarationOnly --declaration --declarationDir ./lib/@types --skipLibCheck",
     "lint": "eslint ./src --fix",
-    "clean": "node bin/clean.mjs",
-    "test": "jest",
-    "prepare": "husky install"
+    "test": "jest"
   },
   "license": "ISC",
   "main": "./lib/esm/index.js",
@@ -56,11 +56,13 @@
     "@swc/cli": "^0.1.63",
     "@swc/core": "1.2.239",
     "@swc/jest": "^0.2.29",
+    "@jest/globals": "^29.7.0",
     "@types/jest": "^29.5.11",
     "@types/node": "^20.10.4",
     "@types/webpack": "^5.28.5",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
+    "concurrently": "^8.2.2",
     "eslint": "^8.55.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-n": "^16.3.1",
@@ -68,11 +70,13 @@
     "husky": "^8.0.3",
     "jest": "^29.7.0",
     "lint-staged": "^15.2.0",
-    "concurrently": "^8.2.2",
     "prettier": "^2.8.8",
     "typescript": "^5.3.3"
   },
   "lint-staged": {
+    "tests/**/*.{ts}": [
+      "prettier --write"
+    ],
     "src/**/*.{ts}": [
       "eslint --fix",
       "prettier --write",
