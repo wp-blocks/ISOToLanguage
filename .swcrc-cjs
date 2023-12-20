@@ -8,9 +8,9 @@
     "noInterop": false
   },
   "jsc": {
-    "transform": {
-      "legacyDecorator": true,
-      "decoratorMetadata": true
+    "parser": {
+      "syntax": "typescript",
+      "tsx": false
     },
     "target": "es5",
     "minify": {

@@ -1,6 +1,9 @@
 lockfileVersion: '6.0'
 
 devDependencies:
+  '@jest/globals':
+    specifier: ^29.7.0
+    version: 29.7.0
   '@swc/cli':
     specifier: ^0.1.63
     version: 0.1.63(@swc/core@1.2.239)
