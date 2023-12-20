@@ -2,6 +2,9 @@
 /.idea/
 /.husky/
 /coverage/
+/bin/
+/example/
 /src/
 
 .github
+.src
