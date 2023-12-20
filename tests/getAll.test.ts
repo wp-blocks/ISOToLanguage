@@ -1,7 +1,7 @@
 import { describe, expect } from '@jest/globals'
 import { getAll } from '../src/'
 import { isoCountries } from '../src/countries'
-import { IsoDataType } from '../src/type'
+import { IsoDataType } from '../src/types'
 
 describe('getAll', () => {
     describe('getAll', () => {
