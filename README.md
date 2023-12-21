@@ -56,7 +56,7 @@ import { getCountry, getAll } from 'ISOToLanguage';
 4. **[getCountryData](#getCountryData)**
     Retrieves country data by locale isoFormat or language code.
 
-5. **[ISO](#ISO)**
+5. **[isoTL](#isoTL)**
     Retrieves data by ISO code and a specific type.
 
 6. **[getCountry](#getCountry)**
@@ -139,14 +139,14 @@ const result = isoFormat('en', 'US', { type: 'locale' });
 console.log(result); // en_US
 ```
 
-## `ISO`
+## `isoTL`
 
 A function that returns the ISO data for a given ISO code.
 
 **Args**: `{ "iso": ISO, "type?": IsoDataType }`
 
 ```javascript
-const isoData = ISO('US');
+const isoData = isoTL('US');
 console.log(isoData);
 
 /*
@@ -158,7 +158,7 @@ console.log(isoData);
 */
 ```
 ```javascript
-const languages = ISO('BE', 'languages');
+const languages = isoTL('BE', 'languages');
 console.log(languages);
 
 /*
@@ -467,7 +467,7 @@ console.log(languageCodesByISO);
 
 ### ISO Country Code
 
-ISO 3166-1-alpha-2 is the standard for country codes. It defines two-letter codes that are unique to each country. For example, the country code for the United Kingdom is `UK`, the country code for France is `FR`, and the country code for
+ISO 3166-1-alpha-2 is the standard for country codes. It defines two-letter codes that are unique to each country. For example, the country code for the United Kingdom is `GB`, the country code for France is `FR`, and the country code for
 Spain is `ES`.
 
 ### Language Code
