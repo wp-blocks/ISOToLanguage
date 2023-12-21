@@ -1,27 +1,37 @@
 {
   "name": "isotolanguage",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "light and fast module to convert iso country and languages codes into country names, there is no unnecessary stuff only the bare essentials",
   "scripts": {
     "prepare": "husky install",
+    "lint": "eslint ./src --fix && prettier --write ./src",
+    "build": "pnpm run clean && concurrently pnpm:module-* && concurrently pnpm:types-*",
     "clean": "node bin/clean.mjs",
     "module-cjs": "swc src -d lib/cjs -C module.type=commonjs --config-file .swcrc-cjs",
     "module-esm": "swc src -d lib/esm -C module.type=es6 --config-file .swcrc-esm",
     "module-umd": "npx spack",
     "module-browser": "npx esbuild src/isoToLanguage.ts --outdir=lib/browser --allow-overwrite --bundle --minify --sourcemap",
-    "build": "pnpm run clean && concurrently pnpm:module-* && pnpm run types",
-    "types": "tsc -p tsconfig.json --module Node16 --emitDeclarationOnly --declaration --declarationDir ./lib/@types --skipLibCheck",
-    "lint": "eslint ./src --fix",
+    "types-cjs": "tsc -p tsconfig.json --module commonjs --moduleResolution node --emitDeclarationOnly --declaration --declarationDir ./lib/cjs/@types --skipLibCheck",
+    "types-esm": "tsc -p tsconfig.json --module Node16 --moduleResolution Node16 --emitDeclarationOnly --declaration --declarationDir ./lib/@types --skipLibCheck",
     "test": "jest"
   },
   "license": "ISC",
+  "main": "./lib/cjs/index.js",
   "exports": {
-    "types": "./lib/@types/index.d.ts",
-    "default": "./lib/esm/index.js",
-    "require": "./lib/cjs/index.js",
-    "import": "./lib/esm/index.js",
-    "node": "./lib/umd/isoToLanguage.js",
-    "browser": "./lib/browser/isoToLanguage.js"
+    ".": {
+      "types": "./lib/cjs/@types/index.d.ts",
+      "require": {
+        "default": "./lib/cjs/index.js",
+        "types": "./lib/cjs/@types/index.d.ts"
+      },
+      "import": {
+        "default": "./lib/esm/index.js",
+        "types": "./lib/@types/index.d.ts"
+      },
+      "browser": "./lib/browser/ISOToLanguage.js",
+      "umd": "./lib/umd/ISOToLanguage.js",
+      "node": "./lib/umd/ISOToLanguage.js"
+    }
   },
   "keywords": [
     "iso",
