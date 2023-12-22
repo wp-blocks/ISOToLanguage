@@ -1,5 +1,20 @@
 # ISO To Language
 
+<div>
+  <a href="https://www.npmjs.com/package/isotolanguage">
+    <img alt="version" src="https://img.shields.io/npm/v/isotolanguage.svg?label=npm%20version" />
+  </a>
+  <a href="https://github.com/erikyo/isotolanguage/blob/master/LICENSE">
+    <img alt="version" src="https://img.shields.io/npm/l/isotolanguage" />
+  </a>
+  <a href="https://github.com/erikyo/ISOToLanguage/actions">
+    <img alt="build" src="https://img.shields.io/github/actions/workflow/status/erikyo/ISOToLanguage/pnpm.yml" />
+  </a>
+  <a href="https://github.com/erikyo/ISOToLanguage/actions">
+    <img alt="workflows" src="https://github.com/erikyo/ISOToLanguage/actions/workflows/pnpm.yml/badge.svg" />
+  </a>
+</div>
+
 Unlock the power of ISO codes with our lightweight and high-performance ISO-to-language converter module. This meticulously crafted package seamlessly transforms ISO country and language codes into meaningful country names, ensuring you
 have all the essentials without unnecessary bloat.
 
@@ -15,17 +30,37 @@ have all the essentials without unnecessary bloat.
 
 - **✅ Tested:** Comprehensive Jest tests with 100% coverage to ensure reliability.
 
-## Installation
+# Usage
+
+### As a browser script
+
+Browser:
+
+```html
+<head>
+<script src="https://cdn.jsdelivr.net/npm/isotolanguage@1.0.1/lib/browser/isoToLanguage.js"></script>
+</head>
+<div id="lang"></div>
+<script>document.querySelector('#lang').innerHTML = JSON.stringify(isoToLanguage.getAll())</script>
+```
+
+Umd:
+
+```html
+<script src="./node_modules/isoToLanguage/lib/umd/isoToLanguage.js"></script>
+<script>document.querySelector('#lang').innerHTML = JSON.stringify(isoToLanguage.getAll())</script>
+```
+
+
+### As Module
+
+#### Installation
 
 Install the module using npm:
 
 ```bash
 npm install ISOToLanguage
 ```
-
-## Importing
-
-This module is provided as UMD so you can easily
 
 Common JS (require):
 
@@ -42,7 +77,7 @@ import ITL from 'ISOToLanguage';
 import { getCountry, getAll } from 'ISOToLanguage';
 ```
 
-## Usage
+## Functions
 
 1. **[isValidCountry](#isValidCountry)**
     Validates ISO codes for countries.
