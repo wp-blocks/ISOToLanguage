@@ -85,38 +85,35 @@ import { getCountry, getAll } from 'ISOToLanguage';
 2. **[isValidLanguage](#isValidLanguage)**
     Validates ISO codes for languages.
 
-3. **[isoFormat](#format)**
+3. **[formatIso](#isoFormat)**
     Formats language and country into a single string.
 
-4. **[getCountryData](#getCountryData)**
-    Retrieves country data by locale isoFormat or language code.
+4. **[parseIsoCodes](#getCountryData)**
+    Retrieves country data by locale formatIso or language code.
 
 5. **[isoTL](#isoTL)**
     Retrieves data by ISO code and a specific type.
 
+8. **[getAll](#getAll)**
+   Retrieves data based on a specified type.
+
 6. **[getCountry](#getCountry)**
     Retrieves country data by name.
 
-7. **[getcountriesbylanguage](#getcountriesbylanguage)**
+7. **[getCountriesByLanguages](#getCountriesByLanguage)**
     Returns countries that speak any of the given languages.
 
-8. **[getaskey](#getaskey)**
+9. **[getCountriesByISO](#getCountriesByISO)**
+   Gets the country data from the given array of ISO codes.
+
+10. **[getLanguagesByIso](#getLanguagesByIso)**
+    Retrieves all language codes associated with an array of ISO codes.
+
+11. **[getAsKey](#getAsKey)**
     Generates a new object with keys derived from specified fields.
 
-9. **[getKeyValue](#getKeyValue)**
+12. **[getKeyValue](#getKeyValue)**
     Generates an array with the given key value combination.
-
-10. **[getAll](#getAll)**
-    Retrieves data based on a specified type.
-
-11. **[getCountriesByISO](#getCountriesByISO)**
-    Get the country data from the given array of ISO codes.
-
-12. **[getAllLanguagesByISO](#getAllLanguagesByISO)**
-    Retrieves all languages associated with an array of ISO codes.
-
-13. **[getAllLanguageCodesByISO](#getAllLanguageCodesByISO)**
-    Retrieves all language codes associated with an array of ISO codes.
 
 ---
 
@@ -148,29 +145,29 @@ const gbIsValid = isValidLanguage('gb');
 console.log(gbIsValid); // false
 ```
 
-## `isoFormat`
+## `formatIso`
 
 A function that formats the language and country into a single string.
 
 **Args**: `{ "arg1": "language", "arg2?": "iso", "arg3?": {"type": IsoDataType, "separator": string } }`
 
 ```javascript
-const result = isoFormat('en', 'us');
+const result = formatIso('en', 'us');
 console.log(result); // en_US
 ```
 
 ```javascript
-const result = isoFormat('en', 'US', { separator: '-' });
+const result = formatIso('en', 'US', { separator: '-' });
 console.log(result); // en-US
 ```
 
 ```javascript
-const result = isoFormat('en', 'US', { type: 'language-code' });
+const result = formatIso('en', 'US', { type: 'language-code' });
 console.log(result); // en-US
 ```
 
 ```javascript
-const result = isoFormat('en', 'US', { type: 'locale' });
+const result = formatIso('en', 'US', { type: 'locale' });
 console.log(result); // en_US
 ```
 
@@ -239,14 +236,14 @@ console.log(data);
 */
 ```
 
-## `getCountryData`
+## `parseIsoCodes`
 
-Get country data by a given locale isoFormat (e.g., "en_US").
+Get country data by a given locale formatIso (e.g., "en_US").
 
 **Args**: `{ "languageCode": string }`
 
 ```javascript
-const data = getCountryData('de_BE');
+const data = parseIsoCodes('de_BE');
 console.log(data);
 
 /*
@@ -260,7 +257,7 @@ console.log(data);
 
 ## `getLanguageData`
 
-Retrieve the language data for the specified language code. As getCountryData, accepts two digit language code (e.g. "it") or five (e.g. "it-IT" or "it_IT")
+Retrieve the language data for the specified language code. As parseIsoCodes, accepts two digit language code (e.g. "it") or five (e.g. "it-IT" or "it_IT")
 
 **Args**: `{ "languageCode": string }`
 
@@ -276,14 +273,14 @@ console.log(data);
 */
 ```
 
-## `getCountriesByLanguage`
+## `getCountriesByLanguages`
 
 Get all the countries that speak the given languages
 
 **Args**: `{ "languages": [Array of ISO] }`
 
 ```javascript
-const countriesByLanguage = getCountriesByLanguage(['gb', 'fr']);
+const countriesByLanguage = getCountriesByLanguages(['gb', 'fr']);
 console.log(countriesByLanguage);
 
 /*
@@ -440,14 +437,14 @@ console.log(countriesData);
 */
 ```
 
-## `getLanguagesByISO`
+## `extractLanguages`
 
 This function takes an array of ISO codes and returns a dictionary of languages corresponding to those codes. It iterates over each ISO code and checks if it is a valid language. If it is, the language is added to the result dictionary.
 
 **Args**: `{ "isos": [Array of ISO] }`
 
 ```javascript
-const countriesData = getLanguagesByISO(['en', 'it', 'es']);
+const countriesData = extractLanguages(['en', 'it', 'es']);
 console.log(countriesData);
 
 /*
@@ -468,29 +465,23 @@ console.log(countriesData);
 */
 ```
 
-## `getAllLanguagesByISO`
+## `getLanguagesByIso`
 
-Get the languages from the given array of countries
+Return an array of language code for the given array of ISO codes
 
-**Args**: `{ "isos": [Array of ISO] }`
+
+**Args**: `{ "isos": [Array of ISO], "type?": 'locale' | 'language-code' }`
 
 ```javascript
-const languagesByISO = getAllLanguagesByISO(['CD', 'ES', 'FR']);
+const languagesByISO = getLanguagesByIso(['CD', 'ES', 'FR']);
 console.log(languagesByISO);
 
 /*
   ["fr", "ln", "kg", "sw", "lu", "es", "eu", "ca", "gl", "oc"]
 */
 ```
-
-## `getAllLanguageCodesByISO`
-
-Return an array of language code for the given array of ISO codes
-
-**Args**: `{ "isos": [Array of ISO], "type?": 'locale' | 'language-code' }`
-
 ```javascript
-const languageCodesByISO = getAllLanguageCodesByISO(['US', 'IT', 'ES']);
+const languageCodesByISO = getLanguagesByIso(['US', 'IT', 'ES'], 'language-code');
 console.log(languageCodesByISO);
 
 /*
@@ -512,16 +503,16 @@ the two-letter language code for Spanish is `es`.
 
 ## Locale Format
 
-The locale isoFormat is a way of combining a language code and a country code to represent a specific linguistic and cultural context. There are two main locale formats:
+The locale formatIso is a way of combining a language code and a country code to represent a specific linguistic and cultural context. There are two main locale formats:
 
 ### BCP 47 (IETF language tag):
 
-The BCP 47 isoFormat separates the language code and country code with an underscore. For example, `en_US` represents English spoken in the United States, `fr_FR` represents French spoken in France, and `es_ES` represents Spanish spoken in
+The BCP 47 formatIso separates the language code and country code with an underscore. For example, `en_US` represents English spoken in the United States, `fr_FR` represents French spoken in France, and `es_ES` represents Spanish spoken in
 Spain.
 
 ### ISO 3166-1-alpha-2 or language code:
 
-The ISO 3166-1-alpha-2 isoFormat uses the ISO 3166-1-alpha-2 country code instead of an underscore. For example, `en-US` represents English spoken in the United States, `fr-FR` represents French spoken in France, and `es-ES` represents Spanish
+The ISO 3166-1-alpha-2 formatIso uses the ISO 3166-1-alpha-2 country code instead of an underscore. For example, `en-US` represents English spoken in the United States, `fr-FR` represents French spoken in France, and `es-ES` represents Spanish
 spoken in Spain.
 
 ## Contributing

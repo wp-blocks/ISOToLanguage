@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "Node16",
+    "module": "ES2015",
+    "moduleResolution": "node",    // Search under node_modules for non-relative imports.
     "pretty": true,
     "sourceMap": true,
     "strict": true, // Enable the strictest settings like strictNullChecks & noImplicitAny.
@@ -14,7 +14,6 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "lib",
     "rootDir": "src",
-    "moduleResolution": "Node16",
     "esModuleInterop": true,
     // "verbatimModuleSyntax": true,
     "typeRoots": [
@@ -30,5 +29,6 @@
     "docs",
     "example",
     "lib",
+    "src/isoToLanguage.ts"
   ]
 }
