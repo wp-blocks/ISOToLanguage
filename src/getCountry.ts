@@ -128,11 +128,29 @@ export function getCountry(
                 return Object.values(countryData)[0]
             }
 
-            return {
+            const countryDataExtended = {
                 iso2: countryIso,
                 ...countriesIso[countryIso],
                 ...countryData,
             } as Partial<CountryDataExtended>
+
+            // if fields are available, return only the requested fields otherwise return all
+            return fields.map((field) => field in countryDataExtended)
+                ? fields.reduce(
+                      (
+                          acc: Record<string, string | string[] | Partial<CountryDataExtended>>,
+                          field
+                      ) => {
+                          if (field in countryDataExtended) {
+                              acc[field] = countryDataExtended[
+                                  field as keyof CountryDataExtended
+                              ] as string | string[] | Partial<CountryDataExtended>
+                          }
+                          return acc
+                      },
+                      {}
+                  )
+                : countryDataExtended
         }
 
         // If no fields are provided, return all fields
