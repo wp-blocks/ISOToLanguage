@@ -1,1 +1,1 @@
-export * as isoToLanguage from './index.js'
+export * as isoToLanguage from './index'

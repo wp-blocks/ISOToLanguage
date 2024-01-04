@@ -1,6 +1,6 @@
-import type { CountryDataFields } from './types.js'
-import { countriesIso } from './data/countries-iso.js'
-import { getIso } from './getIso.js'
+import type { CountryDataFields } from './types'
+import { countriesIso } from './data/countries-iso'
+import { getIso } from './getIso'
 
 function itemPush(
     result: { [x: number]: string }[],
@@ -40,18 +40,30 @@ export function getKeyValue(
             keyValue.forEach((item) => {
                 if (field instanceof Array) {
                     field.forEach((fieldItem) =>
-                        itemPush(result, valueKey, item, labelKey, fieldItem + ' (' + item + ')')
+                        itemPush(
+                            result,
+                            valueKey,
+                            item as string,
+                            labelKey,
+                            fieldItem + ' (' + item + ')'
+                        )
                     )
                 } else {
-                    itemPush(result, valueKey, item, labelKey, field + ' (' + item + ')')
+                    itemPush(result, valueKey, item as string, labelKey, field + ' (' + item + ')')
                 }
             })
         } else if (field instanceof Array) {
             field.forEach((fieldItem) => {
-                itemPush(result, valueKey, keyValue + '-' + fieldItem, labelKey, fieldItem)
+                itemPush(
+                    result,
+                    valueKey,
+                    keyValue + '-' + fieldItem,
+                    labelKey,
+                    fieldItem as string
+                )
             })
         } else {
-            itemPush(result, valueKey, keyValue, labelKey, field)
+            itemPush(result, valueKey, keyValue as string, labelKey, field as string)
         }
     }
 

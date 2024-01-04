@@ -1,4 +1,4 @@
-import { countriesGeo } from './data/countries-geo.js'
+import { countriesGeo } from './data/countries-geo'
 import { countriesIso } from './data/countries-iso'
 import { CountryData, CountryGeo, IsoCode, ISOCountryCode } from './types'
 

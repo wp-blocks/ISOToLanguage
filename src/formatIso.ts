@@ -1,8 +1,8 @@
-import { getSeparator } from './utils.js'
-import { tryCountriesFallback } from './fallbacks.js'
-import { validateISO } from './validation.js'
-import { getIso } from './getIso.js'
-import { IsoCodeFormat } from './types.js'
+import { getSeparator } from './utils'
+import { tryCountriesFallback } from './fallbacks'
+import { validateISO } from './validation'
+import { getIso } from './getIso'
+import { IsoCodeFormat } from './types'
 
 /**
  * Formats the language and country into a single string.
@@ -14,7 +14,7 @@ import { IsoCodeFormat } from './types.js'
  */
 export function formatIso(
     language: string | undefined,
-    country: string | undefined,
+    country?: string | undefined,
     separator?: string | IsoCodeFormat
 ): string | false {
     let isoLanguage = language && validateISO(language, 'language') ? language : undefined
@@ -25,8 +25,8 @@ export function formatIso(
         isoLanguage = (getIso(language, 'language', 'iso2') as string) || undefined
     }
 
-    if (!isoCountry && country) {
-        isoCountry = tryCountriesFallback(country)
+    if (!isoCountry && language) {
+        isoCountry = tryCountriesFallback(language)
     }
 
     if (!isoCountry && country) {

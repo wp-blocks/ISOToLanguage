@@ -13,13 +13,13 @@ import {
     LanguageDataFields,
 } from './types'
 
-import { countriesIso } from './data/countries-iso.js'
-import { formatIso } from './formatIso.js'
-import { langIso } from './data/lang-iso.js'
-import { getIso } from './getIso.js'
-import { isCountryFormat, isExtraField, isGeoField, isLanguageFormat } from './utils.js'
-import { getCountry } from './getCountry.js'
-import { LangIso3 } from './data/lang-iso3.js'
+import { countriesIso } from './data/countries-iso'
+import { formatIso } from './formatIso'
+import { langIso } from './data/lang-iso'
+import { getIso } from './getIso'
+import { isCountryFormat, isExtraField, isGeoField, isLanguageFormat } from './utils'
+import { getCountry } from './getCountry'
+import { LangIso3 } from './data/lang-iso3'
 
 /**
  * Returns an array of languages divided by a custom separator.
@@ -118,12 +118,13 @@ export function getAll(
                                 }
                                 if (newTermList[iso3 as ISO3LangCode].hierarchy) {
                                     const newHierarchy: string[] = []
-                                    newTermList[iso3 as ISO3LangCode].hierarchy = newTermList[
-                                        iso3 as ISO3LangCode
-                                    ].hierarchy.map((iso: string) => {
-                                        newHierarchy.push(LangIso3[iso]?.name ?? iso)
+                                    newTermList[iso3 as ISO3LangCode].hierarchy?.forEach((iso) => {
+                                        newHierarchy.push(
+                                            LangIso3[iso as ISO3LangCode]?.name ?? iso
+                                        )
                                     })
-                                    newTermList[iso3 as ISO3LangCode].hierarchy = newHierarchy
+                                    newTermList[iso3 as ISO3LangCode].hierarchy =
+                                        newHierarchy as string[]
                                 }
                             }
                             termList = { ...newTermList }

@@ -1,8 +1,5 @@
 {
   "testRegex": "(/tests/.*(test|spec))\\.tsx?$",
-  "globals": {
-    "ts-jest": {}
-  },
   "transformIgnorePatterns": ["/node_modules/"],
   "coverageThreshold": {
     "global": {

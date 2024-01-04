@@ -1,9 +1,9 @@
-import { validateISO, validateSeparator } from './validation.js'
-import { getIso } from './getIso.js'
-import { countriesIso } from './data/countries-iso.js'
-import { langIso } from './data/lang-iso.js'
-import { parseIso5Code } from './utils.js'
-import { Country, ISOCountry, ISOLanguage, Language } from './types.js'
+import { validateISO, validateSeparator } from './validation'
+import { getIso } from './getIso'
+import { countriesIso } from './data/countries-iso'
+import { langIso } from './data/lang-iso'
+import { parseIso5Code } from './utils'
+import { Country, ISOCountry, ISOLanguage, Language } from './types'
 
 export function isoInfo(iso: string) {
     // detect the length of the iso

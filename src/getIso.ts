@@ -6,9 +6,9 @@ import {
     ISOLangCode,
     IsoType,
     LanguageData,
-} from './types.js'
-import { getLanguage } from './getLanguage.js'
-import { getCountry } from './getCountry.js'
+} from './types'
+import { getLanguage } from './getLanguage'
+import { getCountry } from './getCountry'
 
 /**
  * Retrieves the ISO value for a given code, type, and fields.

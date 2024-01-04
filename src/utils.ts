@@ -5,8 +5,8 @@ import {
     CountryGeoFields,
     IsoCodeFormat,
     LanguageFields,
-} from './types.js'
-import { validateISO } from './validation.js'
+} from './types'
+import { validateISO } from './validation'
 
 export function isExtraField(fields: string[]): fields is CountryExtraFields[] {
     return (

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "target": "ES6",
     "module": "ES2015",
     "moduleResolution": "node",    // Search under node_modules for non-relative imports.
     // Process & infer types from .js files.

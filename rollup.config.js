@@ -6,7 +6,7 @@ function config({plugins = [], output = {}}) {
     input: 'src/index.ts',
     plugins: [
       typescript({tsconfigOverride: {compilerOptions: {module: 'ES2015'}}}),
-      ...plugins
+        ...plugins
     ],
     output: {
       ...output,

@@ -1,5 +1,5 @@
-import { countriesIso } from './data/countries-iso.js'
-import { langIso } from './data/lang-iso.js'
+import { countriesIso } from './data/countries-iso'
+import { langIso } from './data/lang-iso'
 import { LangIso3 } from './data/lang-iso3'
 
 /** Type of ISO */
@@ -12,6 +12,7 @@ export interface Country {
     name: string
     original: string
 }
+
 export type CountryFields = keyof Country
 
 /** The Country code type e.g. 'GB' 'US' */
@@ -20,6 +21,7 @@ export type ISOCountryCode = keyof typeof countriesIso
 export interface CountryData extends Country {
     iso2: ISOCountryCode
 }
+
 export type CountryExtendedFields = keyof CountryData
 export type ISOCountry = Record<ISOCountryCode, Country>
 
@@ -30,66 +32,39 @@ export interface CountryLocaleData extends Country {
 
 export interface CountryGeo {
     capital?: string
-    region: 'Oceania' | 'Americas' | 'Europe' | 'Africa' | 'Asia'
+    region: 'Oceania' | 'Americas' | 'Europe' | 'Africa' | 'Asia' | 'Antarctica'
     continent: 'AF' | 'AN' | 'AS' | 'EU' | 'NA' | 'OC' | 'SA'
     subRegion:
-        | 'Sub-Saharan Africa'
-        | 'Northern Africa'
-        | 'Eastern Africa'
-        | 'Middle Africa'
-        | 'Southern Africa'
-        | 'Western Africa'
         | 'Antarctica'
-        | 'Australia and New Zealand'
-        | 'Melanesia'
-        | 'Micronesia'
-        | 'Polynesia'
-        | 'Latin America and the Caribbean'
-        | 'Caribbean'
-        | 'Central America'
-        | 'North America'
-        | 'South America'
-        | 'Central Asia'
-        | 'Eastern Asia'
-        | 'South-Eastern Asia'
-        | 'Southern Asia'
-        | 'Western Asia'
-        | 'South-eastern Asia'
-        | 'Eastern Europe'
-        | 'Northern Europe'
-        | 'Southern Europe'
-        | 'Western Europe'
+        | 'Northern Africa'
+        | 'Sub-Saharan Africa'
         | 'Northern America'
-    intermediateRegion?:
-        | 'Eastern Africa'
-        | 'Middle Africa'
-        | 'Southern Africa'
-        | 'Western Africa'
-        | 'Sub-Saharan Africa'
-        | 'Northern Africa'
-        | 'Antarctica'
-        | 'Australia and New Zealand'
         | 'Melanesia'
         | 'Micronesia'
         | 'Polynesia'
         | 'Northern Europe'
-        | 'Southern Europe'
         | 'Western Europe'
         | 'Eastern Europe'
+        | 'Southern Europe'
         | 'Latin America and the Caribbean'
-        | 'Caribbean'
-        | 'Central America'
-        | 'North America'
-        | 'South America'
-        | 'Central Asia'
+        | 'Australia and New Zealand'
         | 'Eastern Asia'
-        | 'South-Eastern Asia'
-        | 'Southern Asia'
-        | 'Western Asia'
         | 'South-eastern Asia'
+        | 'Southern Asia'
+        | 'Central Asia'
+        | 'Western Asia'
+    intermediateRegion?:
+        | 'Caribbean'
+        | 'Middle Africa'
+        | 'Eastern Africa'
+        | 'Southern Africa'
+        | 'Central America'
+        | 'South America'
+        | 'Western Africa'
         | 'Channel Islands'
     nameFormal?: string
 }
+
 export type CountryGeoFields = keyof CountryGeo
 export type ISOCountryGeo = Record<ISOCountryCode, CountryGeo>
 
@@ -99,6 +74,7 @@ export interface CountryExtra {
     currency_code?: string
     currency?: string
 }
+
 export type CountryExtraFields = keyof CountryExtra
 export type ISOCountryExtra = Record<ISOCountryCode, CountryExtra>
 
@@ -123,17 +99,20 @@ export interface Language {
     name: string
     original: string
 }
+
 export type LanguageFields = keyof Language
 
 export interface LanguageData extends Language {
     iso2: ISOLangCode
 }
+
 export type LanguageDataFields = keyof LanguageData
 
-export interface LanguageIso3 extends Language {
-    hierarchy: ISO3LangCode[]
+export interface LanguageIso3 {
+    hierarchy?: ISO3LangCode[] | string[]
     name: string
 }
+
 export type ISO3LangCode = keyof typeof LangIso3
 export type ISO3Language = Record<ISO3LangCode, LanguageIso3>
 

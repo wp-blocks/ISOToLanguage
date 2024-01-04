@@ -6,14 +6,14 @@ import {
     ISOCountryCode,
     ISOLangCode,
     LanguageData,
-} from './types.js'
-import { validateISO } from './validation.js'
-import { countriesIso } from './data/countries-iso.js'
-import { isExtraField, isGeoField } from './utils.js'
-import { countriesExtra } from './data/countries-extra.js'
-import { countriesGeo } from './data/countries-geo.js'
-import { formatIso } from './formatIso.js'
-import { getIso } from './getIso.js'
+} from './types'
+import { validateISO } from './validation'
+import { countriesIso } from './data/countries-iso'
+import { isExtraField, isGeoField } from './utils'
+import { countriesExtra } from './data/countries-extra'
+import { countriesGeo } from './data/countries-geo'
+import { formatIso } from './formatIso'
+import { getIso } from './getIso'
 
 /**
  * This function retrieves country data by its name.
@@ -119,7 +119,7 @@ export function getCountry(
 
             if (Object.keys(countryData).length === 0 && fields.length === 1) {
                 if (fields[0] in countriesIso[countryIso]) {
-                    return countriesIso[countryIso][fields[0]] as string
+                    return countriesIso[countryIso][fields[0] as keyof Country] as string
                 }
             }
 

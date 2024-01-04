@@ -4,9 +4,9 @@ import type {
     LanguageData,
     LanguageDataFields,
     LanguageFields,
-} from './types.js'
-import { validateISO } from './validation.js'
-import { langIso } from './data/lang-iso.js'
+} from './types'
+import { validateISO } from './validation'
+import { langIso } from './data/lang-iso'
 
 /**
  * Retrieves the ISO language object based on the provided language code.
