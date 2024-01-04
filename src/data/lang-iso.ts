@@ -1,5 +1,3 @@
-import { ISOLanguage } from '../types'
-
 export const langIso = {
     ab: {
         name: 'Abkhaz',

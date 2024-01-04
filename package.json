@@ -8,11 +8,11 @@
     "build": "pnpm run clean && concurrently pnpm:module-* && concurrently pnpm:types-*",
     "clean": "node bin/clean.mjs",
     "module-node": "rollup -c",
-    "module-browser": "npx esbuild src/isoToLanguage.ts --outdir=lib/browser --allow-overwrite --bundle --minify --sourcemap",
+    "module-browser": "npx esbuild src/isoToLanguage.ts --outdir=lib/browser --global-name=isoToLanguage  --allow-overwrite --bundle --minify --sourcemap",
     "watch": "npx esbuild src/index.ts --outfile=lib/browser/isoToLanguage.js --global-name=isoToLanguage --allow-overwrite --watch --bundle --sourcemap",
-    "types-cjs": "tsc -p tsconfig.json --module commonjs --moduleResolution node --emitDeclarationOnly --declaration --declarationDir ./lib/cjs/@types --skipLibCheck",
-    "types-esm": "tsc -p tsconfig.json --module Node16 --moduleResolution Node16 --emitDeclarationOnly --declaration --declarationDir ./lib/@types --skipLibCheck",
-    "test": "jest"
+    "types-cjs": "tsc -p tsconfig.json --module commonjs --emitDeclarationOnly --declaration --declarationDir ./lib/cjs/@types",
+    "types-esm": "tsc -p tsconfig.json --emitDeclarationOnly --declaration --declarationDir ./lib/@types",
+    "test": "jest --passWithNoTests"
   },
   "license": "ISC",
   "main": "./lib/cjs/index.js",

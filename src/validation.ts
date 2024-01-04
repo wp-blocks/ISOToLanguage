@@ -1,6 +1,6 @@
-import type { IsoType } from './types'
-import { countriesIso } from './data/countries-iso'
-import { langIso } from './data/lang-iso'
+import { IsoCodeFormat, IsoType } from './types.js'
+import { countriesIso } from './data/countries-iso.js'
+import { langIso } from './data/lang-iso.js'
 
 function isValidCountry(iso: string): boolean {
     return iso in countriesIso
@@ -22,4 +22,12 @@ export function validateISO(iso: string, type?: IsoType): boolean | IsoType {
         case 'language':
             return isValidLanguage(iso)
     }
+}
+
+export function validateSeparator(separator: string): boolean | IsoCodeFormat {
+    if (separator.length === 1) {
+        if (separator === '-') return 'language-code'
+        if (separator === '_') return 'locale'
+    }
+    return false
 }

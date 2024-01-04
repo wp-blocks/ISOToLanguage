@@ -1467,6 +1467,7 @@ export const countriesIso = {
         languages: ['sq', 'sr'],
         name: 'Kosovo',
         original: 'Republika e Kosovës',
+        iso3: 'XKX',
     },
     YE: {
         languages: ['ar'],
