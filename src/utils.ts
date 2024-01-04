@@ -10,8 +10,8 @@ import { validateISO } from './validation'
 
 export function isExtraField(fields: string[]): fields is CountryExtraFields[] {
     return (
-        fields.includes('TLD') ||
-        fields.includes('Dial') ||
+        fields.includes('tld') ||
+        fields.includes('dial') ||
         fields.includes('currency_code') ||
         fields.includes('currency')
     )
@@ -19,8 +19,8 @@ export function isExtraField(fields: string[]): fields is CountryExtraFields[] {
 
 export function isGeoField(fields: string[]): fields is CountryGeoFields[] {
     return (
-        fields.includes('Capital') ||
-        fields.includes('Region') ||
+        fields.includes('capital') ||
+        fields.includes('region') ||
         fields.includes('subRegion') ||
         fields.includes('intermediateRegion') ||
         fields.includes('name_formal')

@@ -123,34 +123,43 @@ export function getCountry(
                 }
             }
 
-            if (Object.keys(countryData).length === 1) {
-                // Return the new country data
-                return Object.values(countryData)[0]
-            }
-
-            const countryDataExtended = {
+            countryData = {
                 iso2: countryIso,
                 ...countriesIso[countryIso],
                 ...countryData,
             } as Partial<CountryDataExtended>
 
             // if fields are available, return only the requested fields otherwise return all
-            return fields.map((field) => field in countryDataExtended)
-                ? fields.reduce(
-                      (
-                          acc: Record<string, string | string[] | Partial<CountryDataExtended>>,
-                          field
-                      ) => {
-                          if (field in countryDataExtended) {
-                              acc[field] = countryDataExtended[
-                                  field as keyof CountryDataExtended
-                              ] as string | string[] | Partial<CountryDataExtended>
-                          }
-                          return acc
-                      },
-                      {}
-                  )
-                : countryDataExtended
+            let newCountryData
+            if (fields.map((field) => field in countryData)) {
+                newCountryData = fields.reduce(
+                    (acc: Record<string, Partial<CountryDataExtended>>, field: string) => {
+                        if (field in countryData) {
+                            acc[field] = countryData[
+                                field as keyof CountryDataExtended
+                            ] as Partial<CountryDataExtended>
+                        }
+                        return acc
+                    },
+                    {}
+                )
+                if (fields in newCountryData) {
+                    if (Object.keys(newCountryData).length === 1) {
+                        return Object.values(newCountryData)[0]
+                    }
+                    return newCountryData
+                }
+            } else {
+                newCountryData = countryData
+            }
+
+            if (fields.length === 1 && fields in newCountryData) {
+                // Return the new country data
+                return Object.values(countryData)[1]
+            } else if (Object.keys(newCountryData).length === fields.length) {
+                return newCountryData
+            }
+            return countryData
         }
 
         // If no fields are provided, return all fields
