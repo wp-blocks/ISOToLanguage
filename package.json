@@ -8,7 +8,7 @@
     "build": "pnpm run clean && concurrently pnpm:module-* && concurrently pnpm:types-*",
     "clean": "node bin/clean.mjs",
     "module-node": "rollup -c",
-    "module-browser": "npx esbuild src/isoToLanguage.ts --outdir=lib/browser --global-name=isoToLanguage  --allow-overwrite --bundle --minify --sourcemap",
+    "module-browser": "npx esbuild src/index.ts --outfile=lib/browser/isoToLanguage.js --global-name=isoToLanguage  --allow-overwrite --bundle --minify --sourcemap",
     "watch": "npx esbuild src/index.ts --outfile=lib/browser/isoToLanguage.js --global-name=isoToLanguage --allow-overwrite --watch --bundle --sourcemap",
     "types-cjs": "tsc -p tsconfig.json --module commonjs --emitDeclarationOnly --declaration --declarationDir ./lib/cjs/@types",
     "types-esm": "tsc -p tsconfig.json --emitDeclarationOnly --declaration --declarationDir ./lib/@types",
