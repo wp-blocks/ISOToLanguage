@@ -4,7 +4,6 @@ import { countriesIso } from '../src/data/countries-iso'
 import { langIso } from '../src/data/lang-iso'
 
 describe('ISO', () => {
-
     it('should return languages for the provided ISO code and type "locale"', () => {
         const isoCode = 'AD'
         const result = getIso(isoCode, 'country', 'locale')
@@ -17,7 +16,7 @@ describe('ISO', () => {
 
     it('should return languages for the provided ISO code and type "language-code"', () => {
         const isoCode = 'AD'
-        const result = getIso(isoCode, 'country','language-code')
+        const result = getIso(isoCode, 'country', 'language-code')
         const expectedLanguages = countriesIso[isoCode].languages.map(
             (language) => `${language}-${isoCode}`
         )
@@ -39,7 +38,7 @@ describe('ISO', () => {
     it('should return ISO data for a valid ISO code', () => {
         const validISO = 'AD'
         const result = getIso(validISO)
-        const expectedData = { "iso2": 'AD', ...countriesIso[validISO] }
+        const expectedData = { iso2: 'AD', ...countriesIso[validISO] }
 
         expect(result).toEqual(expectedData)
     })
@@ -53,7 +52,7 @@ describe('ISO', () => {
 
     it('should return languages for the provided ISO code and type "languages"', () => {
         const isoCode = 'AD'
-        const result = getIso(isoCode, 'country','locale')
+        const result = getIso(isoCode, 'country', 'locale')
         const expectedLanguages = countriesIso[isoCode].languages.map(
             (language) => `${language}_${isoCode}`
         )
@@ -63,7 +62,7 @@ describe('ISO', () => {
 
     it('should return name for the provided ISO code and type "names"', () => {
         const isoCode = 'AD'
-        const result = getIso(isoCode, 'country','name')
+        const result = getIso(isoCode, 'country', 'name')
         const expectedName = countriesIso[isoCode].name
 
         expect(result).toEqual(expectedName)
@@ -120,7 +119,6 @@ describe('ISO', () => {
 
         expect(result).toBe(false)
     })
-
 
     it('should return false for null ISO code', () => {
         const result = getIso(null as unknown as string)

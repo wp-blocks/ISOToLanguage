@@ -1,4 +1,4 @@
-import {describe, expect, test} from '@jest/globals';
+import { describe, expect, test } from '@jest/globals'
 import { formatIso } from '../src/formatIso'
 
 describe('format', () => {
@@ -8,7 +8,7 @@ describe('format', () => {
     })
 
     it('should fallback to the language if the country is not provided', () => {
-        const formattedString = formatIso('en' )
+        const formattedString = formatIso('en')
         expect(formattedString).toBe('en-US') // assuming en_US is the default country for en
     })
 
@@ -33,7 +33,7 @@ describe('format', () => {
     })
 
     it('should use the provided separator if options.separator is specified', () => {
-        const formattedString = formatIso('en', 'US','-')
+        const formattedString = formatIso('en', 'US', '-')
         expect(formattedString).toBe('en-US')
     })
 

@@ -3,7 +3,6 @@ import { getAll } from '../src/'
 import { countriesIso } from '../src/data/countries-iso'
 
 describe('getAll', () => {
-
     it('should return isoList when no type is provided', () => {
         const result = getAll()
         expect(result).toEqual(countriesIso)
@@ -24,7 +23,7 @@ describe('getAll', () => {
     describe('getAll deep', () => {
         test.each([
             ['iso2', Object.keys(countriesIso)],
-            ['iso3', [ "AND", "ARE", "AFG", "ATG", "AIA", "ALB", "ARM", "AGO", "ATA", "ARG" ]],
+            ['iso3', ['AND', 'ARE', 'AFG', 'ATG', 'AIA', 'ALB', 'ARM', 'AGO', 'ATA', 'ARG']],
             ['languages', ['ar', 'en', 'en', 'en', 'en', 'sq', 'en']],
             [
                 'name',
@@ -80,7 +79,9 @@ describe('getAll', () => {
             ],
         ])('should return correct result for type "%s"', (type, expected) => {
             // Run the test
-            const result = getAll(type as 'iso2' | 'iso3' | 'languages' | 'name' | 'locale' | 'language-code')
+            const result = getAll(
+                type as 'iso2' | 'iso3' | 'languages' | 'name' | 'locale' | 'language-code'
+            )
 
             if (type !== 'countries') {
                 // Test only a part of the result array
