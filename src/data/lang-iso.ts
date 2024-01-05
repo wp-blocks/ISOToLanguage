@@ -471,7 +471,6 @@ export const langIso = {
     },
     lu: {
         name: 'Luba-Katanga',
-        original: '',
         iso3: 'lub',
     },
     lv: {

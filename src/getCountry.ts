@@ -25,7 +25,7 @@ import { getIso } from './getIso'
  */
 export function getCountry(
     key: string,
-    fields?: string | string[] | CountryDataFields[]
+    fields?: string | string[] | CountryDataFields | CountryDataFields[]
 ): ISOLangCode[] | Partial<CountryDataExtended> | LanguageData[] | string | string[] | false {
     let country: Country | false = false
     let countryIso: ISOCountryCode | false = false
@@ -71,37 +71,37 @@ export function getCountry(
 
             if (fields.includes('country-geo') || isExtraField(fields)) {
                 // merge the country geo data
-                countryData = { ...countryData, ...countriesExtra[countryIso] }
+                countryData = { ...countryData, ...countriesGeo[countryIso] }
             }
 
             if (fields.includes('country-extra') || isGeoField(fields)) {
                 // merge the country extra data
-                countryData = { ...countryData, ...countriesGeo[countryIso] }
+                countryData = { ...countryData, ...countriesExtra[countryIso] }
             }
 
             if (fields.includes('locale')) {
-                const isoCodes =
+                const localeCode =
                     country.languages.map(
                         (langIso) =>
                             formatIso(
                                 langIso as ISOLangCode,
                                 countryIso as ISOCountryCode,
                                 'locale'
-                            ) as string
-                    ) || []
-                countryData.locale = isoCodes
+                            ) ?? countryIso
+                    ) as string[]
+                countryData.locale = localeCode
             }
 
             if (fields.includes('language-code')) {
                 const isoCodes =
-                    country.languages.map(
+                    country.languages?.map(
                         (langIso) =>
                             formatIso(
                                 langIso as ISOLangCode,
                                 countryIso as ISOCountryCode,
                                 'language-code'
-                            ) as string
-                    ) || []
+                            ) ?? countryIso
+                    ) as string[]
                 countryData['language-code'] = isoCodes
             }
 
@@ -117,20 +117,15 @@ export function getCountry(
                 countryData.languages = languageData as LanguageData[]
             }
 
-            if (Object.keys(countryData).length === 0 && fields.length === 1) {
-                if (fields[0] in countriesIso[countryIso]) {
-                    return countriesIso[countryIso][fields[0] as keyof Country] as string
-                }
-            }
-
+            // merge the country data with the requested fields
             countryData = {
                 iso2: countryIso,
                 ...countriesIso[countryIso],
                 ...countryData,
             } as Partial<CountryDataExtended>
 
-            // if fields are available, return only the requested fields otherwise return all
-            let newCountryData
+            // Check if fields are available, return only the requested fields otherwise return all
+            let newCountryData: Partial<CountryDataExtended>
             if (fields.map((field) => field in countryData)) {
                 newCountryData = fields.reduce(
                     (acc: Record<string, Partial<CountryDataExtended>>, field: string) => {
@@ -143,17 +138,21 @@ export function getCountry(
                     },
                     {}
                 )
-                if (fields in newCountryData) {
+                // Check if all fields are available
+                if (fields.every((field) => field in newCountryData)) {
+                    // if there is only one field, return the value
                     if (Object.keys(newCountryData).length === 1) {
                         return Object.values(newCountryData)[0]
                     }
+                    // Return the country data with the requested fields
                     return newCountryData
                 }
             } else {
+                // just return the country data
                 newCountryData = countryData
             }
 
-            if (fields.length === 1 && fields in newCountryData) {
+            if (fields.length === 1 && fields[0] in newCountryData) {
                 // Return the new country data
                 return Object.values(countryData)[1]
             } else if (Object.keys(newCountryData).length === fields.length) {

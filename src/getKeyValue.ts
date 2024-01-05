@@ -2,19 +2,6 @@ import type { CountryDataFields } from './types'
 import { countriesIso } from './data/countries-iso'
 import { getIso } from './getIso'
 
-function itemPush(
-    result: { [x: number]: string }[],
-    key1: string,
-    value1: string,
-    key2: string,
-    value2: string
-): void {
-    result.push({
-        [key1]: value1,
-        [key2]: value2,
-    })
-}
-
 /**
  * Generates an array of objects suitable for React Select options based on the specified field.
  *
@@ -28,44 +15,36 @@ export function getKeyValue(
     key: CountryDataFields,
     value: CountryDataFields,
     labelKey: string = 'label',
-    valueKey: string = 'value'
+    valueKey: string = 'value',
 ) {
-    const result: { [key: string]: string }[] = []
-
-    for (const iso in countriesIso) {
-        const keyValue = getIso(iso, undefined, key)
-        const field = getIso(iso, undefined, value)
-
-        if (keyValue instanceof Array) {
-            keyValue.forEach((item) => {
-                if (field instanceof Array) {
-                    field.forEach((fieldItem) =>
-                        itemPush(
-                            result,
-                            valueKey,
-                            item as string,
-                            labelKey,
-                            fieldItem + ' (' + item + ')'
-                        )
-                    )
-                } else {
-                    itemPush(result, valueKey, item as string, labelKey, field + ' (' + item + ')')
-                }
-            })
-        } else if (field instanceof Array) {
-            field.forEach((fieldItem) => {
-                itemPush(
-                    result,
-                    valueKey,
-                    keyValue + '-' + fieldItem,
-                    labelKey,
-                    fieldItem as string
-                )
-            })
-        } else {
-            itemPush(result, valueKey, keyValue as string, labelKey, field as string)
+    const unpackData = (data: unknown, field?: string): string[] => {
+        if (typeof data === 'string') {
+            return [data]
+        } else if (Array.isArray(data)) {
+            return data.flatMap((item) => unpackData(item, field))
+        } else if (typeof data === 'object' && data !== null) {
+            if (field && field in data) {
+                return [data[field as keyof typeof data]]
+            }
+            return Object.values(data).flatMap((item) => unpackData(item, field))
         }
+        return data as string[]
     }
 
-    return result
+    return Object.entries(countriesIso).flatMap(([iso]) => {
+        const keyValue = getIso(iso, undefined, key)
+        const fieldValue = getIso(iso, undefined, value)
+
+        const unpackedKeyValues = unpackData(keyValue, key)
+        const unpackedFieldValues = unpackData(fieldValue, value)
+
+        if (unpackedKeyValues || unpackedFieldValues) {
+            return unpackedKeyValues?.flatMap((k: string) =>
+                unpackedFieldValues?.map((f: string) => ({
+                    [valueKey]: unpackedFieldValues.length > 1 ? `${k}-${f}` : k,
+                    [labelKey]: unpackedKeyValues.length > 1 ? `${f} (${k})` : f,
+                }))
+            )
+        }
+    })
 }

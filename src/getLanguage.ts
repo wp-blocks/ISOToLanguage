@@ -24,15 +24,16 @@ export function getLanguage(
 
     // check if the key is a valid language code
     if (validateISO(key, 'language')) {
-        language = { ...langIso[key as ISOLangCode] }
+        language = { ...langIso[key as ISOLangCode] } as Language
         isoCode = key as ISOLangCode
     } else {
         // Otherwise, loop for each language and find if the field matches the iso
         for (const lang of Object.entries(langIso)) {
+            const [k, l] = lang as [ISOLangCode, Language]
             // if the name matches the iso, then return the language
-            if (lang[1].name === key || lang[1].original === key || lang[1].iso3 === key) {
-                language = lang[1]
-                isoCode = lang[0] as ISOLangCode
+            if (l.name === k ||l.original === k || l.iso3 === k) {
+                language = l as Language
+                isoCode = k as ISOLangCode
                 break
             }
         }

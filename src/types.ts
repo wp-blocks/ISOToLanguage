@@ -26,8 +26,8 @@ export type CountryExtendedFields = keyof CountryData
 export type ISOCountry = Record<ISOCountryCode, Country>
 
 export interface CountryLocaleData extends Country {
-    locale: string[] | string | false
-    'language-code': string[] | string | false
+    locale: string[]
+    'language-code': string[]
 }
 
 export interface CountryGeo {
@@ -71,8 +71,12 @@ export type ISOCountryGeo = Record<ISOCountryCode, CountryGeo>
 export interface CountryExtra {
     tld?: string
     dial?: string
-    currency_code?: string
-    currency?: string
+    currency?: {
+        code?: string
+        symbol?: string
+        original?: string
+        name: string
+    }
 }
 
 export type CountryExtraFields = keyof CountryExtra
@@ -110,7 +114,7 @@ export type LanguageDataFields = keyof LanguageData
 
 export interface LanguageIso3 {
     hierarchy?: ISO3LangCode[] | string[]
-    name: string
+    name: string | string[]
 }
 
 export type ISO3LangCode = keyof typeof LangIso3

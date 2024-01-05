@@ -5,7 +5,7 @@ import {
     ISOCountryCode,
     ISOLangCode,
     IsoType,
-    LanguageData,
+    LanguageData, LanguageDataFields,
 } from './types'
 import { getLanguage } from './getLanguage'
 import { getCountry } from './getCountry'
@@ -21,7 +21,7 @@ import { getCountry } from './getCountry'
 export function getIso(
     code: string,
     type?: IsoType,
-    fields?: CountryDataFields
+    fields?: string | string[] | CountryDataFields | CountryDataFields[] | LanguageDataFields | LanguageDataFields[]
 ):
     | string
     | string[]
