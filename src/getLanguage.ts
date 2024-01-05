@@ -1,10 +1,4 @@
-import type {
-    ISOLangCode,
-    Language,
-    LanguageData,
-    LanguageDataFields,
-    LanguageFields,
-} from './types'
+import { ISOLangCode, Language, LanguageData, LanguageDataFields, LanguageFields } from './types'
 import { validateISO } from './validation'
 import { langIso } from './data/lang-iso'
 
@@ -28,12 +22,12 @@ export function getLanguage(
         isoCode = key as ISOLangCode
     } else {
         // Otherwise, loop for each language and find if the field matches the iso
-        for (const lang of Object.entries(langIso)) {
-            const [k, l] = lang as [ISOLangCode, Language]
+        for (const lang in langIso) {
+            const l = langIso[lang as ISOLangCode] as Language
             // if the name matches the iso, then return the language
-            if (l.name === k || l.original === k || l.iso3 === k) {
+            if (l.name === key || l.original === key || l.iso3 === key) {
                 language = l as Language
-                isoCode = k as ISOLangCode
+                isoCode = lang as ISOLangCode
                 break
             }
         }
