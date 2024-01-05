@@ -1,20 +1,14 @@
 import { describe, expect } from '@jest/globals'
-import { isoTL } from '../src/'
-import { isoCountries } from '../src/countries'
+import { getIso } from '../src/'
+import { countriesIso } from '../src/data/countries-iso'
+import { langIso } from '../src/data/lang-iso'
 
 describe('ISO', () => {
-    it('should return languages for the provided ISO code and type "languages"', () => {
-        const isoCode = 'AD'
-        const result = isoTL(isoCode, 'language')
-        const expectedLanguages = isoCountries[isoCode].languages.map((language) => `${language}`)
-
-        expect(result).toEqual(expectedLanguages)
-    })
 
     it('should return languages for the provided ISO code and type "locale"', () => {
         const isoCode = 'AD'
-        const result = isoTL(isoCode, 'locale')
-        const expectedLanguages = isoCountries[isoCode].languages.map(
+        const result = getIso(isoCode, 'country', 'locale')
+        const expectedLanguages = countriesIso[isoCode].languages.map(
             (language) => `${language}_${isoCode}`
         )
 
@@ -23,8 +17,8 @@ describe('ISO', () => {
 
     it('should return languages for the provided ISO code and type "language-code"', () => {
         const isoCode = 'AD'
-        const result = isoTL(isoCode, 'language-code')
-        const expectedLanguages = isoCountries[isoCode].languages.map(
+        const result = getIso(isoCode, 'country','language-code')
+        const expectedLanguages = countriesIso[isoCode].languages.map(
             (language) => `${language}-${isoCode}`
         )
 
@@ -33,7 +27,7 @@ describe('ISO', () => {
 
     it('should return false for an invalid type', () => {
         const isoCode = 'AD'
-        const result = isoTL(isoCode, 'invalidType' as unknown as 'locale')
+        const result = getIso(isoCode, 'country', 'invalidType' as unknown as 'locale')
 
         expect(result).toMatchObject({
             languages: ['ca'],
@@ -44,23 +38,23 @@ describe('ISO', () => {
 
     it('should return ISO data for a valid ISO code', () => {
         const validISO = 'AD'
-        const result = isoTL(validISO)
-        const expectedData = isoCountries[validISO]
+        const result = getIso(validISO)
+        const expectedData = { "iso2": 'AD', ...countriesIso[validISO] }
 
         expect(result).toEqual(expectedData)
     })
 
     it('should return ISO data for a valid ISO code', () => {
         const validISO = 'HH'
-        const result = isoTL(validISO)
+        const result = getIso(validISO)
 
         expect(result).toBeFalsy()
     })
 
     it('should return languages for the provided ISO code and type "languages"', () => {
         const isoCode = 'AD'
-        const result = isoTL(isoCode, 'locale')
-        const expectedLanguages = isoCountries[isoCode].languages.map(
+        const result = getIso(isoCode, 'country','locale')
+        const expectedLanguages = countriesIso[isoCode].languages.map(
             (language) => `${language}_${isoCode}`
         )
 
@@ -69,54 +63,31 @@ describe('ISO', () => {
 
     it('should return name for the provided ISO code and type "names"', () => {
         const isoCode = 'AD'
-        const result = isoTL(isoCode, 'name')
-        const expectedName = isoCountries[isoCode].name
+        const result = getIso(isoCode, 'country','name')
+        const expectedName = countriesIso[isoCode].name
 
         expect(result).toEqual(expectedName)
     })
 
     it('should return original data for the provided ISO code and type "original"', () => {
         const isoCode = 'AD'
-        const result = isoTL(isoCode, 'original')
-        const expectedOriginal = isoCountries[isoCode].original
+        const result = getIso(isoCode, 'country', 'original')
+        const expectedOriginal = countriesIso[isoCode].original
 
         expect(result).toEqual(expectedOriginal)
     })
 
-    it('should return languages for the provided ISO code and type "languages"', () => {
-        const isoCode = undefined
-        const result = isoTL(isoCode as unknown as string, 'language')
-
-        expect(result).toBeFalsy()
-    })
-
-    it('should return name for the provided ISO code and type "names"', () => {
-        const isoCode = 'AD'
-        const result = isoTL(isoCode, 'language-name')
-        const expectedName = ['Catalan; Valencian']
-
-        expect(result).toEqual(expectedName)
-    })
-
-    it('should return name for the provided ISO code and type "names"', () => {
-        const isoCode = 'AD'
-        const result = isoTL(isoCode, 'language-original')
-        const expectedName = ['Català']
-
-        expect(result).toEqual(expectedName)
-    })
-
     it('should return ISO data for the provided ISO code and no type', () => {
-        const isoCode = 'AD'
-        const result = isoTL(isoCode)
-        const expectedData = isoCountries[isoCode]
+        const isoCode = 'ca'
+        const result = getIso(isoCode)
+        const expectedData = langIso[isoCode]
 
-        expect(result).toEqual(expectedData)
+        expect(result).toEqual({ iso2: 'ca', ...expectedData })
     })
 
     it('should return ISO data for the provided ISO code and no type', () => {
         const isoCode = null
-        const result = isoTL(isoCode as unknown as string)
+        const result = getIso(isoCode as unknown as string)
         const expectedData = false
 
         expect(result).toEqual(expectedData)
@@ -124,8 +95,10 @@ describe('ISO', () => {
 
     it('should return ISO data for a valid ISO code', () => {
         const validISO = 'IT'
-        const result = isoTL(validISO)
+        const result = getIso(validISO)
         const expectedData = {
+            iso2: 'IT',
+            iso3: 'ITA',
             languages: ['it'],
             name: 'Italy',
             original: 'Italia',
@@ -136,33 +109,28 @@ describe('ISO', () => {
 
     it('should return false for an invalid ISO code', () => {
         const invalidISO = 'InvalidCode'
-        const result = isoTL(invalidISO)
+        const result = getIso(invalidISO)
 
         expect(result).toBe(false)
     })
 
     it('should return false for an empty ISO code', () => {
         const emptyISO = ''
-        const result = isoTL(emptyISO)
+        const result = getIso(emptyISO)
 
         expect(result).toBe(false)
     })
 
-    it('should return false for undefined ISO code', () => {
-        const result = isoTL(undefined as unknown as string)
-
-        expect(result).toBe(false)
-    })
 
     it('should return false for null ISO code', () => {
-        const result = isoTL(null as unknown as string)
+        const result = getIso(null as unknown as string)
 
         expect(result).toBe(false)
     })
 
     it('should return false for a non-string ISO code', () => {
         const nonStringISO = 123
-        const result = isoTL(nonStringISO as unknown as string)
+        const result = getIso(nonStringISO as unknown as string)
 
         expect(result).toBe(false)
     })

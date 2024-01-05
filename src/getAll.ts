@@ -1,134 +1,199 @@
-import type { ISOCode, IsoDataType } from './types'
+import {
+    CountryData,
+    CountryDataExtended,
+    CountryDataFields,
+    ISO3LangCode,
+    ISO3Language,
+    IsoCode,
+    IsoCodeFormat,
+    ISOCountryCode,
+    IsoFormat,
+    ISOLangCode,
+    IsoType,
+    LanguageData,
+    LanguageDataFields,
+} from './types'
 
-import { isoCountries } from './countries'
-import { isoFormat } from './isoFormat'
-
-/**
- * Retrieves all ISO codes from the isoCountries object.
- *
- * This function does not accept any parameters.
- *
- * @private
- * @return {string[]} An array of ISO codes.
- */
-export function getAllISO(): string[] {
-    return Object.keys(isoCountries)
-}
-
-/**
- * Retrieves all available languages.
- * @private
- *
- * @returns {string[]} An array of all available languages.
- */
-export function getAllLanguages(): string[] {
-    const languages: Record<string, boolean> = {}
-    for (const iso in isoCountries) {
-        for (const language of isoCountries[iso as ISOCode].languages) {
-            languages[language] = true
-        }
-    }
-    return Object.keys(languages)
-}
+import { countriesIso } from './data/countries-iso'
+import { formatIso } from './formatIso'
+import { langIso } from './data/lang-iso'
+import { getIso } from './getIso'
+import { isCountryFormat, isExtraField, isGeoField, isLanguageFormat } from './utils'
+import { getCountry } from './getCountry'
+import { LangIso3 } from './data/lang-iso3'
 
 /**
  * Returns an array of languages divided by a custom separator.
  *
  * @private
- * @param {string} separator - The separator used to join the language and country code. Defaults to '_'.
+ * @param {string} type - The separator used to join the language and country code. Defaults to '_'.
  * @returns {string[]} - An array of language codes.
  */
-export function getAllCountryLanguage(separator: string = '_'): string[] {
+function getIso5Code(type: IsoCodeFormat = 'locale'): string[] {
     const languageCodes: Record<string, boolean> = {}
-    for (const iso in isoCountries) {
-        for (const language of isoCountries[iso as ISOCode].languages) {
-            const languageCode = isoFormat(language, iso, { separator })
+    const countriesList = countriesIso
+    for (const country in countriesList) {
+        const current = countriesList[country as ISOCountryCode]
+        if (current?.languages.length === 0) continue
+        for (const language of current.languages) {
+            const languageCode = formatIso(language, country, type)
             if (languageCode) {
                 languageCodes[languageCode] = true
             }
         }
     }
-    return Object.keys(languageCodes)
-}
-
-/**
- * Returns an array of all language codes.
- * @private
- *
- * @returns {string[]} - An array of Locale codes.
- */
-export function getAllLanguageCodes(): string[] {
-    return getAllCountryLanguage('-')
-}
-
-/**
- * Returns an array of all language codes.
- * @private
- *
- * @returns {string[]} - An array of language codes.
- */
-export function getAllLocales(): string[] {
-    return getAllCountryLanguage()
-}
-
-/**
- * Iterates over isoCountries and collects the name property
- * of each item into an array.
- *
- * This function takes no parameters.
- * @private
- *
- * @return {string[]} An array of names collected from isoCountries.
- */
-export function getAllNames(): string[] {
-    const names: string[] = []
-    for (const iso in isoCountries) {
-        names.push(isoCountries[iso as ISOCode].name)
-    }
-    return names
-}
-
-/**
- * Retrieves all original names from the isoCountries.
- *
- * This function iterates over each element in the isoCountries, extracting
- * the 'original' property value, and stores them in an array. The
- * array of original names is then returned.
- * @private
- *
- * @return {string[]} An array of original names from the isoCountries.
- */
-export function getAllOriginalNames(): string[] {
-    const names: string[] = []
-    for (const iso in isoCountries) {
-        names.push(isoCountries[iso as ISOCode].original)
-    }
-    return names
+    // return the result sorted alphabetically
+    return Object.keys(languageCodes).sort((a, b) => a.localeCompare(b))
 }
 
 /**
  * Retrieves all items of a specified type.
  *
- * @param {string} type - Type of items to retrieve. It Can be "iso", "languages",
+ * @param from
+ * @param {string} field - Type of items to retrieve. It Can be "iso", "languages",
  * "names", "original", "language-codes", or "locale". If no type is provided, return the isoCountries.
+ * @param asKey
  * @return Depending on the type parameter, either a list of ISOs, languages,
  * names, original names, or the isoCountries.
  */
-export function getAll(type?: IsoDataType): string[] | typeof isoCountries {
-    switch (type) {
-        case 'iso':
-            return getAllISO()
-        case 'language':
-            return getAllLanguages()
-        case 'name':
-            return getAllNames()
-        case 'original':
-            return getAllOriginalNames()
-        case 'language-code':
-            return getAllLanguageCodes()
-        case 'locale':
-            return getAllLocales()
-        default:
-            return isoCountries
+export function getAll(
+    field?: IsoFormat | CountryDataFields,
+    from: IsoType = 'country'
+):
+    | Record<
+          string,
+          | Record<string, Partial<LanguageData | CountryDataExtended>>
+          | Partial<LanguageData | CountryDataExtended>
+      >
+    | Partial<LanguageData | CountryDataExtended>[]
+    | string[]
+    | string {
+    const subject = from === 'language' ? langIso : countriesIso
+    if (field !== undefined) {
+        switch (field) {
+            case 'iso2':
+                return Object.keys(subject)
+            case 'iso3':
+                if (from === 'country')
+                    return Object.values(countriesIso).map((country) => country?.iso3)
+                return Object.keys(LangIso3)
+            case 'locale':
+            case 'language-code':
+                return getIso5Code(field)
+            default:
+                if (field) {
+                    let termList = { ...subject } as Record<
+                        string,
+                        Partial<LanguageData | CountryDataExtended>
+                    >
+
+                    if (from === 'country' && isCountryFormat(field)) {
+                        for (const item in subject) {
+                            const countryData = getIso(
+                                item,
+                                from,
+                                field as CountryDataFields
+                            ) as CountryData
+                            if (countryData) termList[item as IsoCode] = countryData
+                        }
+                    }
+
+                    if (from === 'language') {
+                        if (isLanguageFormat(field)) {
+                            for (const item in subject) {
+                                const languageData = getIso(
+                                    item,
+                                    from,
+                                    field as LanguageDataFields
+                                ) as LanguageData
+                                if (languageData) termList[item as ISOLangCode] = languageData
+                            }
+                        }
+
+                        if (field === 'language-iso3') {
+                            const newTermList: ISO3Language = { ...LangIso3 }
+                            for (const iso3 in newTermList) {
+                                const iso: boolean | string = getIso(
+                                    iso3,
+                                    'language',
+                                    'iso2'
+                                ) as string
+                                if (iso) {
+                                    newTermList[iso3 as ISO3LangCode] = {
+                                        ...termList[iso],
+                                        ...newTermList[iso3 as ISO3LangCode],
+                                    }
+                                }
+                                if (newTermList[iso3 as ISO3LangCode].hierarchy) {
+                                    const newHierarchy: string[] = []
+                                    newTermList[iso3 as ISO3LangCode].hierarchy?.forEach((iso) => {
+                                        if (
+                                            typeof LangIso3[iso as ISO3LangCode]?.name === 'object'
+                                        ) {
+                                            ;(
+                                                LangIso3[iso as ISO3LangCode]?.name as string[]
+                                            ).forEach((name) => {
+                                                newHierarchy.push(name ?? iso)
+                                            })
+                                        } else {
+                                            newHierarchy.push(
+                                                (LangIso3[iso as ISO3LangCode]?.name as string) ??
+                                                    iso
+                                            )
+                                        }
+                                    })
+                                    newTermList[iso3 as ISO3LangCode].hierarchy =
+                                        newHierarchy as string[]
+                                }
+                            }
+                            termList = { ...newTermList } as Record<
+                                string,
+                                LanguageData | Partial<CountryDataExtended>
+                            >
+                        }
+                    }
+
+                    if (field === 'all') {
+                        for (const item in subject) {
+                            const data = getIso(item, from, field)
+                            if (data) termList[item as IsoCode] = data as CountryDataExtended
+                        }
+                    }
+
+                    if (field === 'country-geo' || isGeoField([field])) {
+                        for (const item in subject) {
+                            const data = getCountry(item, [field]) as CountryData
+                            if (data) termList[item as IsoCode] = data
+                        }
+                    }
+
+                    if (field === 'country-extra' || isExtraField([field])) {
+                        for (const item in subject) {
+                            const data = getCountry(item, [field]) as CountryData
+                            if (data) termList[item as IsoCode] = data
+                        }
+                    }
+
+                    // will return an array of fields if requested
+                    if (
+                        isCountryFormat(field) ||
+                        isLanguageFormat(field) ||
+                        isGeoField([field]) ||
+                        isExtraField([field])
+                    ) {
+                        if (field === 'languages')
+                            return Object.values(termList)
+                                .flat()
+                                .sort((a, b) => (a as string).localeCompare(b as string))
+                        return Object.values(termList).sort((a, b) =>
+                            (a as string).localeCompare(b as string)
+                        )
+                    }
+                    // otherwise, return an object with as a key the iso code
+                    return termList
+                }
+        }
     }
+
+    return subject
 }

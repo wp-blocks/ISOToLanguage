@@ -1,79 +1,71 @@
-import type { ISOLangCode, ISOLanguage, Language } from './types'
-import { isoLang } from './lang'
-import { getIso } from './iso'
-import { getLanguageName, getLanguageOriginalName } from './get'
-import { isValidLanguage } from './validation'
+import type {
+    ISOLangCode,
+    Language,
+    LanguageData,
+    LanguageDataFields,
+    LanguageFields,
+} from './types'
+import { validateISO } from './validation'
+import { langIso } from './data/lang-iso'
 
 /**
  * Retrieves the ISO language object based on the provided language code.
  *
- * @param {ISOLangCode | string} languageCode - The language code to search for.
- * @return {ISOLanguage[ISOLangCode] | false} The ISO language object corresponding to the language code, or false if the language code is invalid.
+ * @param {ISOLangCode | string} key - The language code to search for.
+ * @param {string} fields - The fields to retrieve. If not provided, all fields are returned.
+ * @return {ISOLanguage | false} The ISO language object corresponding to the language code, or false if the language code is invalid.
  */
-export function getLanguage(languageCode: ISOLangCode | string): ISOLanguage[ISOLangCode] | false {
-    if (isValidLanguage(languageCode)) {
-        return isoLang[languageCode]
-    }
-    return false
-}
+export function getLanguage(
+    key: string,
+    fields?: string | string[] | LanguageDataFields | LanguageData
+): LanguageData | string | string[] | false {
+    let language: Language | false = false
+    let isoCode: ISOLangCode | false = false
 
-/**
- * Retrieves the language data for the specified language code.
- *
- * @param languageCode - The language code or locale.
- * @returns The language data as a `Language` object if found, or `false` if not found.
- */
-export function getLanguageData(languageCode: string): Language | false {
-    let language: string = ''
-    // check if the languageCode has 2 characters
-    if (languageCode.length === 2) {
-        language = languageCode
-    } else if (languageCode.length === 5) {
-        // get the country code from the language code or locale
-        language = languageCode.substring(0, 2)
+    // check if the key is a valid language code
+    if (validateISO(key, 'language')) {
+        language = { ...langIso[key as ISOLangCode] } as Language
+        isoCode = key as ISOLangCode
     } else {
-        return false
+        // Otherwise, loop for each language and find if the field matches the iso
+        for (const lang of Object.entries(langIso)) {
+            const [k, l] = lang as [ISOLangCode, Language]
+            // if the name matches the iso, then return the language
+            if (l.name === k || l.original === k || l.iso3 === k) {
+                language = l as Language
+                isoCode = k as ISOLangCode
+                break
+            }
+        }
     }
 
-    return getLanguage(language)
-}
+    if (language) {
+        if (fields) {
+            // if the fields are iso, return the isoCode otherwise create the array of fields to return
+            if (fields === 'iso2') {
+                return isoCode
+            } else if (fields === 'all') {
+                fields = ['iso2', 'name', 'original', 'iso3']
+            } else if (typeof fields === 'string') {
+                fields = [fields]
+            }
 
-/**
- * Fetches the languages associated with the given ISO code.
- *
- * @param {string} iso - The ISO code of the country.
- * @param format - The isoFormat to return the data in.
- * @private
- * @return {string[] | false} An array of languages associated with the ISO code,
- *                            or false if no data found.
- */
-export function getLanguages(
-    iso: string,
-    format?: 'locale' | 'language-code' | 'language' | 'language-name' | 'language-original'
-): string[] | false {
-    const isoData = getIso(iso)
-    // Return false if no data is found
-    if (!isoData) {
-        return false
+            // if the fields are not an iso, return the fields
+            const collected = [] as Partial<LanguageData>
+            if (Object.keys(fields).length === 1) {
+                return language[Object.values(fields)[0] as LanguageFields]
+            } else {
+                for (const field in fields) {
+                    collected[field as LanguageFields] = language[field as LanguageFields]
+                }
+            }
+
+            // return the collected fields
+            return collected as LanguageData
+        }
+        // if the fields are not defined, return the language object
+        return { ...language, iso2: isoCode } as LanguageData
     }
-    switch (format) {
-        case 'locale':
-            return isoData.languages.map((language) => {
-                return `${language}_${iso}`
-            })
-        case 'language-code':
-            return isoData.languages.map((language) => {
-                return `${language}-${iso}`
-            })
-        case 'language-name':
-            return isoData.languages.map((language) => {
-                return getLanguageName(language)
-            })
-        case 'language-original':
-            return isoData.languages.map((language) => {
-                return getLanguageOriginalName(language)
-            })
-        default:
-            return isoData.languages
-    }
+
+    return false
 }

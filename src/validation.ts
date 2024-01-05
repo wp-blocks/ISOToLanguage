@@ -1,23 +1,33 @@
-import type { ISOCode, ISOLangCode } from './types'
-import { isoCountries } from './countries'
-import { isoLang } from './lang'
+import { IsoCodeFormat, IsoType } from './types'
+import { countriesIso } from './data/countries-iso'
+import { langIso } from './data/lang-iso'
 
-/**
- * Checks if the provided ISO code is valid or not.
- *
- * @param {string} iso - ISO code to be validated
- * @return {boolean} True if the ISO code is valid, false otherwise
- */
-export function isValidCountry(iso: string): iso is ISOCode {
-    return iso in isoCountries
+function isValidCountry(iso: string): boolean {
+    return iso in countriesIso
 }
 
-/**
- * Checks if the provided ISO code is valid or not.
- *
- * @param {string} lang - ISO Language code to be validated
- * @return {boolean} True if the ISO Language code is valid, false otherwise
- */
-export function isValidLanguage(lang: string): lang is ISOLangCode {
-    return lang in isoLang
+function isValidLanguage(iso: string): boolean {
+    return iso in langIso
+}
+
+export function validateISO(iso: string, type?: IsoType): boolean | IsoType {
+    if (!type) {
+        if (isValidCountry(iso)) return 'country'
+        if (isValidLanguage(iso)) return 'language'
+        return false
+    }
+    switch (type) {
+        case 'country':
+            return isValidCountry(iso)
+        case 'language':
+            return isValidLanguage(iso)
+    }
+}
+
+export function validateSeparator(separator: string): boolean | IsoCodeFormat {
+    if (separator.length === 1) {
+        if (separator === '-') return 'language-code'
+        if (separator === '_') return 'locale'
+    }
+    return false
 }

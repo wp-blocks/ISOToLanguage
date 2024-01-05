@@ -1,43 +1,133 @@
-import { isoCountries } from './countries'
-import { isoLang } from './lang'
+import { countriesIso } from './data/countries-iso'
+import { langIso } from './data/lang-iso'
+import { LangIso3 } from './data/lang-iso3'
 
-// The ISO language code type e.g. 'UK' 'US'
-export type ISOCode = keyof typeof isoCountries
-export type ISOCountry = typeof isoCountries
+/** Type of ISO */
+export type IsoType = 'country' | 'language'
 
-export type ISOLangCode = keyof typeof isoLang
-export type ISOLanguage = typeof isoLang
-
-// the object that holds the ISO data for a specified language
+/** The Country code */
 export interface Country {
-    languages: string[]
+    iso3: string
+    languages: ISOLangCode[] | LanguageData[]
     name: string
     original: string
 }
 
-export interface Language {
-    name: string
-    original: string
-}
+export type CountryFields = keyof Country
 
-// the object that holds the data for a specified language included the ISO code for that language
+/** The Country code type e.g. 'GB' 'US' */
+export type ISOCountryCode = keyof typeof countriesIso
+
 export interface CountryData extends Country {
-    code: ISOCode
+    iso2: ISOCountryCode
 }
 
-export interface LanguageData extends Language {
-    code: ISOLanguage
+export type CountryExtendedFields = keyof CountryData
+export type ISOCountry = Record<ISOCountryCode, Country>
+
+export interface CountryLocaleData extends Country {
+    locale: string[]
+    'language-code': string[]
 }
+
+export interface CountryGeo {
+    capital?: string
+    region: 'Oceania' | 'Americas' | 'Europe' | 'Africa' | 'Asia' | 'Antarctica'
+    continent: 'AF' | 'AN' | 'AS' | 'EU' | 'NA' | 'OC' | 'SA'
+    subRegion:
+        | 'Antarctica'
+        | 'Northern Africa'
+        | 'Sub-Saharan Africa'
+        | 'Northern America'
+        | 'Melanesia'
+        | 'Micronesia'
+        | 'Polynesia'
+        | 'Northern Europe'
+        | 'Western Europe'
+        | 'Eastern Europe'
+        | 'Southern Europe'
+        | 'Latin America and the Caribbean'
+        | 'Australia and New Zealand'
+        | 'Eastern Asia'
+        | 'South-eastern Asia'
+        | 'Southern Asia'
+        | 'Central Asia'
+        | 'Western Asia'
+    intermediateRegion?:
+        | 'Caribbean'
+        | 'Middle Africa'
+        | 'Eastern Africa'
+        | 'Southern Africa'
+        | 'Central America'
+        | 'South America'
+        | 'Western Africa'
+        | 'Channel Islands'
+    nameFormal?: string
+}
+
+export type CountryGeoFields = keyof CountryGeo
+export type ISOCountryGeo = Record<ISOCountryCode, CountryGeo>
+
+export interface CountryExtra {
+    tld?: string
+    dial?: string
+    currency?: {
+        code?: string
+        symbol?: string
+        original?: string
+        name: string
+    }
+}
+
+export type CountryExtraFields = keyof CountryExtra
+export type ISOCountryExtra = Record<ISOCountryCode, CountryExtra>
 
 /**
- * the data type that can be retrieved by the `ISO` functions
+ * Country data fields to retrieve.
  */
-export type IsoDataType =
-    | 'iso'
-    | 'name'
-    | 'original'
-    | 'language'
-    | 'language-name'
-    | 'language-original'
-    | 'language-code'
-    | 'locale'
+export type CountryDataCustomFields =
+    | 'language-extra'
+    | 'language-iso3'
+    | 'country-extra'
+    | 'country-geo'
+    | 'all'
+export type CountryDataExtraFields = CountryExtendedFields | CountryExtraFields | CountryGeoFields
+export type CountryDataFields = CountryDataExtraFields | CountryDataCustomFields | IsoCodeFormat
+export type CountryDataExtended = CountryGeo & CountryExtra & CountryData & CountryLocaleData
+
+/**
+ * The Language code
+ */
+export interface Language {
+    iso3: string
+    name: string
+    original: string
+}
+
+export type LanguageFields = keyof Language
+
+export interface LanguageData extends Language {
+    iso2: ISOLangCode
+}
+
+export type LanguageDataFields = keyof LanguageData
+
+export interface LanguageIso3 {
+    hierarchy?: ISO3LangCode[] | string[]
+    name: string | string[]
+}
+
+export type ISO3LangCode = keyof typeof LangIso3
+export type ISO3Language = Record<ISO3LangCode, LanguageIso3>
+
+// The Language code type e.g. 'en' 'fr'
+export type ISOLangCode = keyof typeof langIso
+export type ISOLanguage = Record<ISOLangCode, Language>
+
+/**
+ * The format of the ISO code
+ */
+export type IsoCodeFormat = 'locale' | 'language-code'
+
+export type IsoFormat = IsoCodeFormat
+export type IsoCode = ISOCountryCode | ISOLangCode

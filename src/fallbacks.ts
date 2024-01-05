@@ -4,7 +4,7 @@
  * @param {string} language - The language code for which to generate a fallback country code.
  * @return {string | undefined} - The generated fallback country code or undefined if no fallback is available.
  */
-export function tryCountriesFallback(language: string) {
+export function tryCountriesFallback(language: string): string | undefined {
     // Fallback for specific languages
     const fallbackMap: { [key: string]: string } = {
         en: 'US', // Fallback English to en_US - the United States
@@ -20,6 +20,4 @@ export function tryCountriesFallback(language: string) {
     if (fallbackMap[language]) {
         return fallbackMap[language]
     }
-
-    return undefined
 }

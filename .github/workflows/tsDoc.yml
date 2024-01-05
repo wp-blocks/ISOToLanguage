@@ -32,7 +32,7 @@ jobs:
       - name: TypeDoc Action
         uses: erikyo/tsdoc-action@v1
         with:
-          source_dir: ./ts/**/*
+          source_dir: ./src/**/*
           output_dir: ./docs
           skipErrorChecking: true
           darkHighlightTheme: dark-plus

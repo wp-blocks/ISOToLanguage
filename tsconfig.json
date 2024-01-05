@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "Node16",
+    "target": "ES6",
+    "module": "ES2015",
+    "moduleResolution": "node",    // Search under node_modules for non-relative imports.
+    // Process & infer types from .js files.
     "pretty": true,
     "sourceMap": true,
     "strict": true, // Enable the strictest settings like strictNullChecks & noImplicitAny.
@@ -12,14 +14,12 @@
     "strictNullChecks": true,
     "declaration": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "lib",
     "rootDir": "src",
-    "moduleResolution": "Node16",
     "esModuleInterop": true,
     // "verbatimModuleSyntax": true,
     "typeRoots": [
       "node_modules/@types/"
-    ],
+    ]
   },
   "include": [
     "src/**/*"
@@ -30,5 +30,6 @@
     "docs",
     "example",
     "lib",
+    "src/isoToLanguage.ts"
   ]
 }

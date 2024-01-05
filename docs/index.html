@@ -1,9 +1,9 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="/vite.svg">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite + TS</title>
+
+
+    <title>ISO To Language</title>
 
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
@@ -31,14 +31,29 @@
             gap: 5px 10px;
             padding: 0 0 3rem;
         }
-    </style>
-    <style type="text/css" data-vite-dev-id="D:/web/esm/src/style.css">
-        #app {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 2rem;
+        .code-container {
+            position: relative;
+            overflow: hidden;
+            max-height: 25rem;
+            transition: .25s ease-in-out max-height;
         }
-    </style></head>
+        .code-container.expanded {
+            max-height: 1500px;
+            overflow: auto;
+        }
+        .expand-button {
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+            height: 20px;
+            line-height: 20px;
+            cursor: pointer;
+            padding: 0 1rem !important;
+            background: #f4f5f6 !important;
+        }
+    </style>
+    <script src="./ISO To Language_files/isoToLanguage.js.download"></script>
+</head>
 <body>
 <div class="wrapper" style="margin: 50px auto;">
     <div class="container" style="margin: 50px auto;">
@@ -46,67 +61,414 @@
         <p>Light and fast module to convert iso country and languages codes into country names, there is no unnecessary stuff only the bare essentials.</p>
         <p>https://www.npmjs.com/package/isotolanguage</p>
     </div>
-    <div id="app" class="container"><div><span class="links"><a class="button" href="#isValidCountry">isValidCountry</a><a class="button" href="#isValidLanguage">isValidLanguage</a><a class="button" href="#format">format</a><a class="button" href="#isoFormat (specifying a separator)">isoFormat (specifying a separator)</a><a class="button" href="#isoFormat (with type: language-code)">isoFormat (with type: language-code)</a><a class="button" href="#isoFormat (with type: locale)">isoFormat (with type: locale)</a><a class="button" href="#isoTL">isoTL</a><a class="button" href="#isoTL (&quot;languages&quot;)">isoTL ("languages")</a><a class="button" href="#isoTL (&quot;names&quot;)">isoTL ("names")</a><a class="button" href="#isoTL (&quot;original&quot;)">isoTL ("original")</a><a class="button" href="#isoTL (&quot;language-code&quot;)">isoTL ("language-code")</a><a class="button" href="#getCountryData">getCountryData</a><a class="button" href="#getCountry">getCountry</a><a class="button" href="#getLanguage">getLanguage</a><a class="button" href="#getAll">getAll</a><a class="button" href="#getAll">getAll</a><a class="button" href="#getAll('original')">getAll('original')</a><a class="button" href="#getAll('language-codes')">getAll('language-codes')</a><a class="button" href="#getLanguageData">getLanguageData</a><a class="button" href="#getCountriesByISO">getCountriesByISO</a><a class="button" href="#getLanguagesByISO">getLanguagesByISO</a><a class="button" href="#getAllLanguagesByISO">getAllLanguagesByISO</a><a class="button" href="#getAllLanguageCodesByISO">getAllLanguageCodesByISO</a><a class="button" href="#getCountriesByLanguage">getCountriesByLanguage</a><a class="button" href="#getAsKey">getAsKey</a><a class="button" href="#getAsKey">getAsKey</a><a class="button" href="#getAsKey">getAsKey</a><a class="button" href="#getKeyValue">getKeyValue</a><a class="button" href="#getKeyValue">getKeyValue</a></span><div><h3 id="isValidCountry">Fn: <b>isValidCountry</b></h3><p>a function that formats the language and country into a single string.
-        In this case will return false because EN is not a country code it is a language code</p><p><b>Example: </b><code>isValidCountry('EN')</code></p><p><b>Args: </b><code>{"iso":"EN"}</code></p><pre><code>false</code></pre></div><div><h3 id="isValidLanguage">Fn: <b>isValidLanguage</b></h3><p>a function that formats the language and country into a single string. The correct language for the GB is en</p><p><b>Example: </b><code>isValidLanguage('en')</code></p><p><b>Args: </b><code>{"iso":"en"}</code></p><pre><code>true</code></pre></div><div><h3 id="format">Fn: <b>format</b></h3><p>a function that formats the language and country into a single string. defaults to locale isoFormat</p><p><b>Example: </b><code>format('en', 'us')</code></p><p><b>Args: </b><code>{"language":"en","country":"us"}</code></p><pre><code>en_US</code></pre></div><div><h3 id="isoFormat (specifying a separator)">Fn: <b>isoFormat (specifying a separator)</b></h3><p>You can pass as third argument "separator" the value "-" if you need the language-code</p><p><b>Example: </b><code>format('en', 'US', { separator: '-' })</code></p><p><b>Args: </b><code>{"language":"en","iso":"US","options":{"separator":"-"}}</code></p><pre><code>en-US</code></pre></div><div><h3 id="isoFormat (with type: language-code)">Fn: <b>isoFormat (with type: language-code)</b></h3><p>You can pass a third argument "type" if you need the language-code</p><p><b>Example: </b><code>format('en', 'US', { type: 'language-code' })</code></p><p><b>Args: </b><code>{"language":"en","iso":"US","options":{"type":"language-code"}}</code></p><pre><code>en-US</code></pre></div><div><h3 id="isoFormat (with type: locale)">Fn: <b>isoFormat (with type: locale)</b></h3><p>You can pass a third argument "locale" if you need the locale isoFormat</p><p><b>Example: </b><code>format('en', 'US', { type: 'locale' })</code></p><p><b>Args: </b><code>{"language":"en","iso":"US","options":{"type":"locale"}}</code></p><pre><code>en_US</code></pre></div><div><h3 id="isoTL">Fn: <b>isoTL</b></h3><p>A function that returns the ISO data for a given ISO code</p><p><b>Example: </b><code>isoTL('US')</code></p><p><b>Args: </b><code>{"ISO":"US"}</code></p><pre><code>{
-  "languages": [
-    "en"
-  ],
-  "name": "United States",
-  "original": "United States"
-}</code></pre></div><div><h3 id="isoTL (&quot;languages&quot;)">Fn: <b>isoTL ("languages")</b></h3><p>A function that returns the ISO data for a given the country code
-        Get the languages for a given ISO code</p><p><b>Example: </b><code>isoTL('BE', 'languages')</code></p><p><b>Args: </b><code>{"ISO":"BE","type":"languages"}</code></p><pre><code>{
-  "languages": [
-    "nl",
-    "fr",
-    "de"
-  ],
-  "name": "Belgium",
-  "original": "België"
-}</code></pre></div><div><h3 id="isoTL (&quot;names&quot;)">Fn: <b>isoTL ("names")</b></h3><p>A function that returns the ISO data for a given the country code
-        Get the name of the country for a given ISO code</p><p><b>Example: </b><code>isoTL('BE', 'names')</code></p><p><b>Args: </b><code>{"ISO1":"BE","type":"names"}</code></p><pre><code>{
-  "languages": [
-    "nl",
-    "fr",
-    "de"
-  ],
-  "name": "Belgium",
-  "original": "België"
-}</code></pre></div><div><h3 id="isoTL (&quot;original&quot;)">Fn: <b>isoTL ("original")</b></h3><p>A function that returns the ISO data for a given the country code
-        Get the original name of the country for a given ISO code</p><p><b>Example: </b><code>isoTL('BE', 'original')</code></p><p><b>Args: </b><code>{"ISO1":"BE","type":"original"}</code></p><pre><code>België</code></pre></div><div><h3 id="isoTL (&quot;language-code&quot;)">Fn: <b>isoTL ("language-code")</b></h3><p>A function that returns the ISO data for a given the country code
-        Get the language code for a given ISO code</p><p><b>Example: </b><code>isoTL('BE', 'language-code')</code></p><p><b>Args: </b><code>{"ISO1":"BE","type":"language-code"}</code></p><pre><code>["nl-BE","fr-BE","de-BE"]</code></pre></div><div><h3 id="getCountryData">Fn: <b>getCountryData</b></h3><p>Get country data by a given a language code (e.g. "es-ES")</p><p><b>Example: </b><code>getCountryData('es-ES')</code></p><p><b>Args: </b><code>{"languageCode":"es"}</code></p><pre><code>{
-  "languages": [
-    "es",
-    "eu",
-    "ca",
-    "gl",
-    "oc"
-  ],
-  "name": "Spain",
-  "original": "España"
-}</code></pre></div><div><h3 id="getCountry">Fn: <b>getCountry</b></h3><p>Get country data by a given the country name (e.g. "Italy") or country original name (e.g. "Italia")</p><p><b>Example: </b><code>getCountry('Italia')</code></p><p><b>Args: </b><code>{"name":"Italia"}</code></p><pre><code>{
+    <div id="app" class="container"><div><span class="links"><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#isoInfo">isoInfo</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#isoInfo">isoInfo</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#isoInfo">isoInfo</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#isoInfo">isoInfo</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#isoInfo">isoInfo</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#isoInfo">isoInfo</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#validateISO">validateISO</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#validateISO">validateISO</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#validateISO">validateISO</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#validateISO">validateISO</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#formatIso">formatIso</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#formatIso">formatIso</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#formatIso">formatIso</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#formatIso">formatIso</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getIso">getIso</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getIso">getIso</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getIso">getIso</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getIso">getIso</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getIso">getIso</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getIso">getIso</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getIso">getIso</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getIso">getIso</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getIso">getIso</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getIso">getIso</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getIso">getIso</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getIso">getIso</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getIso">getIso</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getGroupedBy">getGroupedBy</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getGroupedBy">getGroupedBy</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getGroupedBy">getGroupedBy</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getKeyValue">getKeyValue</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getAll">getAll</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getAll">getAll</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getAll">getAll</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getAll">getAll</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getAll">getAll</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getAll">getAll</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getAll">getAll</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getAll">getAll</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getAll">getAll</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getAll">getAll</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getAll">getAll</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getAll">getAll</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getAll">getAll</a><a class="button" href="http://localhost:63343/ISOToLanguage/example/browser/index.html?_ijt=7oiuep3tnqk6dii4rdt1dbr1if&amp;_ij_reload=RELOAD_ON_SAVE#getCountriesByLanguage">getCountriesByLanguage</a></span><div><h3 id="isoInfo">Fn: <b>isoInfo</b></h3><p>Gets information about the iso.</p><p><b>Example: </b><code>isoInfo('it')</code></p><p><b>Args: </b><code>{"iso":"it"}</code></p><pre class="code-container"><code>{
+  "name": "Italian",
+  "original": "Italiano",
+  "iso3": "ita",
+  "iso2": "it"
+}</code></pre></div><div><h3 id="isoInfo">Fn: <b>isoInfo</b></h3><p>Gets information about the iso.</p><p><b>Example: </b><code>isoInfo('IT')</code></p><p><b>Args: </b><code>{"iso":"IT"}</code></p><pre class="code-container"><code>{
+  "iso2": "IT",
   "languages": [
     "it"
   ],
   "name": "Italy",
   "original": "Italia",
-  "code": "IT"
-}</code></pre></div><div><h3 id="getLanguage">Fn: <b>getLanguage</b></h3><p>Retrieves the ISO language object based on the provided language code.</p><p><b>Example: </b><code>getLanguage('it')</code></p><p><b>Args: </b><code>{"languageCode":"it"}</code></p><pre><code>{
-  "name": "Italian",
-  "original": "Italiano"
-}</code></pre></div><div><h3 id="getAll">Fn: <b>getAll</b></h3><p>Get all data for all countries, accept the type 'iso' | 'languages' | 'name' | 'original' | 'language-code' | 'locale' </p><p><b>Example: </b><code>getAll()</code></p><p><b>Args: </b><code>{}</code></p><pre><code>{
+  "iso3": "ITA"
+}</code></pre></div><div><h3 id="isoInfo">Fn: <b>isoInfo</b></h3><p>Gets information about the iso.</p><p><b>Example: </b><code>isoInfo('ITA')</code></p><p><b>Args: </b><code>{"iso":"ITA"}</code></p><pre class="code-container"><code>{
+  "languages": [
+    "it"
+  ],
+  "name": "Italy",
+  "original": "Italia",
+  "iso3": "ITA"
+}</code></pre></div><div><h3 id="isoInfo">Fn: <b>isoInfo</b></h3><p>Gets information about the iso.</p><p><b>Example: </b><code>isoInfo('it_IT')</code></p><p><b>Args: </b><code>{"iso":"it_IT"}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>{
+  "type": "locale",
+  "country": {
+    "iso2": "IT",
+    "languages": [
+      "it"
+    ],
+    "name": "Italy",
+    "original": "Italia",
+    "iso3": "ITA"
+  },
+  "language": {
+    "name": "Italian",
+    "original": "Italiano",
+    "iso3": "ita",
+    "iso2": "it"
+  }
+}</code></pre></div><div><h3 id="isoInfo">Fn: <b>isoInfo</b></h3><p>Gets information about the iso.</p><p><b>Example: </b><code>isoInfo('it-IT')</code></p><p><b>Args: </b><code>{"iso":"it-IT"}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>{
+  "type": "language-code",
+  "country": {
+    "iso2": "IT",
+    "languages": [
+      "it"
+    ],
+    "name": "Italy",
+    "original": "Italia",
+    "iso3": "ITA"
+  },
+  "language": {
+    "name": "Italian",
+    "original": "Italiano",
+    "iso3": "ita",
+    "iso2": "it"
+  }
+}</code></pre></div><div><h3 id="isoInfo">Fn: <b>isoInfo</b></h3><p>Gets information about the iso.</p><p><b>Example: </b><code>isoInfo('it-IT')</code></p><p><b>Args: </b><code>{"iso":"it-IT"}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>{
+  "type": false,
+  "country": {
+    "iso2": "IT",
+    "languages": [
+      "it"
+    ],
+    "name": "Italy",
+    "original": "Italia",
+    "iso3": "ITA"
+  },
+  "language": {
+    "name": "Italian",
+    "original": "Italiano",
+    "iso3": "ita",
+    "iso2": "it"
+  }
+}</code></pre></div><div><h3 id="validateISO">Fn: <b>validateISO</b></h3><p>a function that validates if the iso code and returns the type.</p><p><b>Example: </b><code>validateISO('it')</code></p><p><b>Args: </b><code>{"iso":"it"}</code></p><pre class="code-container"><code>language</code></pre></div><div><h3 id="validateISO">Fn: <b>validateISO</b></h3><p>a function that validates if the iso code and returns the type.</p><p><b>Example: </b><code>validateISO('gb')</code></p><p><b>Args: </b><code>{"iso":"gb"}</code></p><pre class="code-container"><code>country</code></pre></div><div><h3 id="validateISO">Fn: <b>validateISO</b></h3><p>this case will return false because the iso code is invalid</p><p><b>Example: </b><code>validateISO('EN')</code></p><p><b>Args: </b><code>{"iso":"EN"}</code></p><pre class="code-container"><code>false</code></pre></div><div><h3 id="validateISO">Fn: <b>validateISO</b></h3><p>passing the type will return if the iso code is valid or not in that type</p><p><b>Example: </b><code>validateISO('en', 'language')</code></p><p><b>Args: </b><code>{"iso":"en","type":"language"}</code></p><pre class="code-container"><code>true</code></pre></div><div><h3 id="formatIso">Fn: <b>formatIso</b></h3><p>Will format the iso code into a language and country</p><p><b>Example: </b><code>formatIso('en', 'GB')</code></p><p><b>Args: </b><code>{"lang":"en","country":"GB"}</code></p><pre class="code-container"><code>en-GB</code></pre></div><div><h3 id="formatIso">Fn: <b>formatIso</b></h3><p>Will format the iso code into a language and country</p><p><b>Example: </b><code>formatIso('Italiano', 'Italy')</code></p><p><b>Args: </b><code>{"lang":"Italiano","country":"Italy"}</code></p><pre class="code-container"><code>false</code></pre></div><div><h3 id="formatIso">Fn: <b>formatIso</b></h3><p>Will format the iso code into a language and country using the locale separator</p><p><b>Example: </b><code>formatIso('en', 'GB', 'locale')</code></p><p><b>Args: </b><code>{"lang":"en","country":"GB","separator":"locale"}</code></p><pre class="code-container"><code>en_GB</code></pre></div><div><h3 id="formatIso">Fn: <b>formatIso</b></h3><p>Will format the iso code into a language and country using a custom separator</p><p><b>Example: </b><code>formatIso('ca', 'ES', ↔⭐')</code></p><p><b>Args: </b><code>{"lang":"ca","country":"ES","separator":"⭐"}</code></p><pre class="code-container"><code>ca⭐ES</code></pre></div><div><h3 id="getIso">Fn: <b>getIso</b></h3><p>Returns the information about the iso code</p><p><b>Example: </b><code>getIso('en')</code></p><p><b>Args: </b><code>{"key":"en"}</code></p><pre class="code-container"><code>{
+  "name": "English",
+  "original": "English",
+  "iso3": "eng",
+  "iso2": "en"
+}</code></pre></div><div><h3 id="getIso">Fn: <b>getIso</b></h3><p>Returns the information about the iso code</p><p><b>Example: </b><code>getIso('GB')</code></p><p><b>Args: </b><code>{"key":"GB"}</code></p><pre class="code-container"><code>{
+  "iso2": "GB",
+  "languages": [
+    "en"
+  ],
+  "name": "United Kingdom",
+  "original": "United Kingdom",
+  "iso3": "GBR"
+}</code></pre></div><div><h3 id="getIso">Fn: <b>getIso</b></h3><p>Finds for the requested term and returns the information about the iso code, key accepts as value: iso2, iso3, name, original. by default the type is country</p><p><b>Example: </b><code>getIso('Italy')</code></p><p><b>Args: </b><code>{"key":"Italy"}</code></p><pre class="code-container"><code>{
+  "iso2": "IT",
+  "languages": [
+    "it"
+  ],
+  "name": "Italy",
+  "original": "Italia",
+  "iso3": "ITA"
+}</code></pre></div><div><h3 id="getIso">Fn: <b>getIso</b></h3><p>Finds for the requested term and returns the information about the language iso code, key accept as value: iso2, iso3, name, original and type: language</p><p><b>Example: </b><code>getIso('Italiano', 'language')</code></p><p><b>Args: </b><code>{"key":"Italiano","type":"language"}</code></p><pre class="code-container"><code>false</code></pre></div><div><h3 id="getIso">Fn: <b>getIso</b></h3><p>Finds for the requested term and returns the information about the iso code</p><p><b>Example: </b><code>getIso('Italiano', 'language')</code></p><p><b>Args: </b><code>{"key":"Italiano","type":"language"}</code></p><pre class="code-container"><code>false</code></pre></div><div><h3 id="getIso">Fn: <b>getIso</b></h3><p>Finds for the requested term and returns the information about the iso code and return the required field as value</p><p><b>Example: </b><code>getIso('Italiano', 'language', 'iso2')</code></p><p><b>Args: </b><code>{"key":"Italiano","type":"language","field":"iso2"}</code></p><pre class="code-container"><code>false</code></pre></div><div><h3 id="getIso">Fn: <b>getIso</b></h3><p>the type can be omitted if you want to search in both country and language iso code fields</p><p><b>Example: </b><code>getIso('Spain', undefined, 'name')</code></p><p><b>Args: </b><code>{"key":"Spain","type":"undefined","field":"name"}</code></p><pre class="code-container"><code>Spain</code></pre></div><div><h3 id="getIso">Fn: <b>getIso</b></h3><p>the third parameter can be an array of fields to return even only one</p><p><b>Example: </b><code>getIso('Switzerland', "country", ['capital'])</code></p><p><b>Args: </b><code>{"key":"Switzerland","type":"country","field":"capital"}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>{
+  "iso2": "CH",
+  "languages": [
+    "de",
+    "fr",
+    "it"
+  ],
+  "name": "Switzerland",
+  "original": "Schweiz",
+  "iso3": "CHE",
+  "tld": ".ch",
+  "dial": "41",
+  "currency": {
+    "code": "CHF",
+    "symbol": "CHF",
+    "original": "CHF",
+    "name": "Swiss Franc"
+  }
+}</code></pre></div><div><h3 id="getIso">Fn: <b>getIso</b></h3><p>in order to expand the language iso code of the country, works also with the custom data from extra and geo sets</p><p><b>Example: </b><code>getIso('Switzerland', "country", ['capital', 'currency])</code></p><p><b>Args: </b><code>{"key":"Switzerland","type":"country","field":["capital","currency"]}</code></p><pre class="code-container"><code>{
+  "capital": "Bern",
+  "currency": {
+    "code": "CHF",
+    "symbol": "CHF",
+    "original": "CHF",
+    "name": "Swiss Franc"
+  }
+}</code></pre></div><div><h3 id="getIso">Fn: <b>getIso</b></h3><p>the third parameter can be an array of fields to return</p><p><b>Example: </b><code>getIso('Spain', undefined, ['name', 'locale', 'language-code'])</code></p><p><b>Args: </b><code>{"key":"Spain","field":["name","locale","language-code"]}</code></p><pre class="code-container"><code>{
+  "name": "Spain",
+  "locale": [
+    "es_ES",
+    "eu_ES",
+    "ca_ES",
+    "gl_ES",
+    "oc_ES"
+  ],
+  "language-code": [
+    "es-ES",
+    "eu-ES",
+    "ca-ES",
+    "gl-ES",
+    "oc-ES"
+  ]
+}</code></pre></div><div><h3 id="getIso">Fn: <b>getIso</b></h3><p>in order to expand the language iso code of the country, you need to specify "all" as field parameter</p><p><b>Example: </b><code>getIso('France', "country", ['all'])</code></p><p><b>Args: </b><code>{"key":"France","type":"country","field":["all"]}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>{
+  "iso2": "FR",
+  "languages": [
+    {
+      "name": "French",
+      "original": "français",
+      "iso3": "fre",
+      "iso2": "fr"
+    }
+  ],
+  "name": "France",
+  "original": "France",
+  "iso3": "FRA",
+  "capital": "Paris",
+  "region": "Europe",
+  "continent": "EU",
+  "subRegion": "Western Europe",
+  "nameFormal": "the French Republic",
+  "tld": ".fr",
+  "dial": "33",
+  "currency": {
+    "code": "EUR",
+    "symbol": "€",
+    "original": "€",
+    "name": "Euro"
+  },
+  "locale": [
+    "fr_FR"
+  ],
+  "language-code": [
+    "fr-FR"
+  ]
+}</code></pre></div><div><h3 id="getIso">Fn: <b>getIso</b></h3><p>in order to expand the language iso code of the country, you need to specify "country-extra" as third parameter</p><p><b>Example: </b><code>getIso('France', "country", 'country-extra')</code></p><p><b>Args: </b><code>{"key":"France","type":"country","field":["country-extra"]}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>{
+  "iso2": "FR",
+  "languages": [
+    "fr"
+  ],
+  "name": "France",
+  "original": "France",
+  "iso3": "FRA",
+  "tld": ".fr",
+  "dial": "33",
+  "currency": {
+    "code": "EUR",
+    "symbol": "€",
+    "original": "€",
+    "name": "Euro"
+  }
+}</code></pre></div><div><h3 id="getIso">Fn: <b>getIso</b></h3><p>in order to expand the language iso code of the country, you need to specify "country-geo" as third parameter</p><p><b>Example: </b><code>getIso('Switzerland', "country", ['country-geo'])</code></p><p><b>Args: </b><code>{"key":"Switzerland","type":"country","field":["country-geo"]}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>{
+  "iso2": "CH",
+  "languages": [
+    "de",
+    "fr",
+    "it"
+  ],
+  "name": "Switzerland",
+  "original": "Schweiz",
+  "iso3": "CHE",
+  "capital": "Bern",
+  "region": "Europe",
+  "continent": "EU",
+  "subRegion": "Western Europe",
+  "nameFormal": "the Swiss Confederation"
+}</code></pre></div><div><h3 id="getGroupedBy">Fn: <b>getGroupedBy</b></h3><p>You can group the results by continent or region or subRegion</p><p><b>Example: </b><code>getGroupedBy( 'continent' )</code></p><p><b>Args: </b><code>{"type":"continent"}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>{
+  "EU": {
+    "AX": {
+      "languages": [
+        "sv"
+      ],
+      "name": "Aland",
+      "original": "Åland",
+      "iso3": "ALA",
+      "capital": "Mariehamn",
+      "region": "Europe",
+      "continent": "EU",
+      "subRegion": "Northern Europe"
+    },
+    "AL": {
+      "languages": [
+        "sq"
+      ],
+      "name": "Albania",
+      "original": "Shqipëria",
+      "iso3": "ALB",
+      "capital": "Tirana",
+      "region": "Europe",
+      "continent": "EU",
+      "subRegion": "Southern Europe",
+      "nameFormal": "the Republic of Albania"
+    },
+    "AD": {
+      "languages": [
+        "ca"
+      ],
+      "name": "Andorra",
+      "original": "Andorra",
+      "iso3": "AND",
+      "capital": "Andorra la Vella",
+      "region": "Europe",
+      "continent": "EU",
+      "subRegion": "Southern Europe",
+      "nameFormal": "the Principality of Andorra"
+    },
+    "AT": {
+      "languages": [
+        "de"
+      ],
+      "name": "Austria",
+      "original": "Österreich",
+      "iso3
+(...)</code></pre></div><div><h3 id="getGroupedBy">Fn: <b>getGroupedBy</b></h3><p>You can group the results by continent or region or subRegion and return only the requested key</p><p><b>Example: </b><code>getGroupedBy( 'region', "Antarctica" )</code></p><p><b>Args: </b><code>{"type":"region","key":"Antarctica"}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>{
+  "Antarctica": {
+    "AQ": {
+      "languages": [],
+      "name": "Antarctica",
+      "original": "Antarctica",
+      "iso3": "ATA",
+      "region": "Antarctica",
+      "continent": "AN",
+      "subRegion": "Antarctica"
+    }
+  }
+}</code></pre></div><div><h3 id="getGroupedBy">Fn: <b>getGroupedBy</b></h3><p>With this function it is possible to prepare the array of objects needed for the selects html charts</p><p><b>Example: </b><code>getKeyValue( 'original', 'languages' )</code></p><p><b>Args: </b><code>{"value1":"original","value2":"languages"}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>[
+  {
+    "value": "ca_AD",
+    "label": "Andorra"
+  },
+  {
+    "value": "ar_AE",
+    "label": "دولة الإمارات العربية المتحدة"
+  },
+  {
+    "value": "ps_AF",
+    "label": "افغانستان (ps_AF)"
+  },
+  {
+    "value": "uz_AF",
+    "label": "افغانستان (uz_AF)"
+  },
+  {
+    "value": "tk_AF",
+    "label": "افغانستان (tk_AF)"
+  },
+  {
+    "value": "en_AG",
+    "label": "Antigua and Barbuda"
+  },
+  {
+    "value": "en_AI",
+    "label": "Anguilla"
+  },
+  {
+    "value": "sq_AL",
+    "label": "Shqipëria"
+  },
+  {
+    "value": "hy_AM",
+    "label": "Հայաստան (hy_AM)"
+  },
+  {
+    "value": "ru_AM",
+    "label": "Հայաստան (ru_AM)"
+  },
+  {
+    "value": "pt_AO",
+    "label": "Angola"
+  },
+  {
+    "value": "es_AR",
+    "label": "Argentina (es_AR)"
+  },
+  {
+    "value": "gn_AR",
+    "label": "Argentina (gn_AR)"
+  },
+  {
+    "value": "en_AS",
+    "label": "American Samoa (en_AS)"
+  },
+  {
+    "value": "sm_AS",
+    "label": "American Samoa (sm_AS)"
+  },
+  {
+    "value": "de_AT",
+    "label": "Österreich"
+
+(...)</code></pre></div><div><h3 id="getKeyValue">Fn: <b>getKeyValue</b></h3><p>You can even choose which key you want to return, this can be useful for charts</p><p><b>Example: </b><code>getKeyValue( 'locale', 'name', "one", "two" )</code></p><p><b>Args: </b><code>{"value1":"locale","value2":"name","key1":"one","key2":"two"}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>[
+  {
+    "two": "ca_AD",
+    "one": "Andorra"
+  },
+  {
+    "two": "ar_AE",
+    "one": "United Arab Emirates"
+  },
+  {
+    "two": "ps_AF",
+    "one": "Afghanistan (ps_AF)"
+  },
+  {
+    "two": "uz_AF",
+    "one": "Afghanistan (uz_AF)"
+  },
+  {
+    "two": "tk_AF",
+    "one": "Afghanistan (tk_AF)"
+  },
+  {
+    "two": "en_AG",
+    "one": "Antigua and Barbuda"
+  },
+  {
+    "two": "en_AI",
+    "one": "Anguilla"
+  },
+  {
+    "two": "sq_AL",
+    "one": "Albania"
+  },
+  {
+    "two": "hy_AM",
+    "one": "Armenia (hy_AM)"
+  },
+  {
+    "two": "ru_AM",
+    "one": "Armenia (ru_AM)"
+  },
+  {
+    "two": "pt_AO",
+    "one": "Angola"
+  },
+  {
+    "two": "es_AR",
+    "one": "Argentina (es_AR)"
+  },
+  {
+    "two": "gn_AR",
+    "one": "Argentina (gn_AR)"
+  },
+  {
+    "two": "en_AS",
+    "one": "American Samoa (en_AS)"
+  },
+  {
+    "two": "sm_AS",
+    "one": "American Samoa (sm_AS)"
+  },
+  {
+    "two": "de_AT",
+    "one": "Austria"
+  },
+  {
+    "two": "en_AU",
+    "one": "Australia"
+  },
+  {
+    "two": "nl_
+(...)</code></pre></div><div><h3 id="getAll">Fn: <b>getAll</b></h3><p>Get all will return an object with all ISO codes and their respective country data</p><p><b>Example: </b><code>getAll()</code></p><p><b>Args: </b><code>{}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>{
   "AD": {
     "languages": [
       "ca"
     ],
     "name": "Andorra",
-    "original": "Andorra"
+    "original": "Andorra",
+    "iso3": "AND"
   },
   "AE": {
     "languages": [
       "ar"
     ],
     "name": "United Arab Emirates",
-    "original": "دولة الإمارات العربية المتحدة"
+    "original": "دولة الإمارات العربية المتحدة",
+    "iso3": "ARE"
   },
   "AF": {
     "languages": [
@@ -115,233 +477,316 @@
       "tk"
     ],
     "name": "Afghanistan",
-    "original": "افغانستان"
+    "original": "افغانستان",
+    "iso3": "AFG"
   },
   "AG": {
     "languages": [
       "en"
     ],
     "name": "Antigua and Barbuda",
-    "original": "Antigua and Barbuda"
+    "original": "Antigua and Barbuda",
+    "iso3": "ATG"
   },
-  "AI
-(...)</code></pre></div><div><h3 id="getAll">Fn: <b>getAll</b></h3><p>Get all iso codes for all countries</p><p><b>Example: </b><code>getAll('iso')</code></p><p><b>Args: </b><code>{"type":"iso"}</code></p><pre><code>["AD","AE","AF","AG","AI","AL","AM","AO","AQ","AR","AS","AT","AU","AW","AX","AZ","BA","BB","BD","BE","BF","BG","BH","BI","BJ","BL","BM","BN","BO","BQ","BR","BS","BT","BV","BW","BY","BZ","CA","CC","CD","CF","CG","CH","CI","CK","CL","CM","CN","CO","CR","CU","CV","CW","CX","CY","CZ","DE","DJ","DK","DM","DO","DZ","EC","EE","EG","EH","ER","ES","ET","FI","FJ","FK","FM","FO","FR","GA","GB","GD","GE","GF","GG","GH","GI","GL","GM","GN","GP","GQ","GR","GS","GT","GU","GW","GY","HK","HM","HN","HR","HT","HU"
-(...)</code></pre></div><div><h3 id="getAll('original')">Fn: <b>getAll('original')</b></h3><p>Get all names of all countries</p><p><b>Example: </b><code>getAll('original')</code></p><p><b>Args: </b><code>{"type":"original"}</code></p><pre><code>["Andorra","دولة الإمارات العربية المتحدة","افغانستان","Antigua and Barbuda","Anguilla","Shqipëria","Հայաստան","Angola","Antarctica","Argentina","American Samoa","Österreich","Australia","Aruba","Åland","Azərbaycan","Bosna i Hercegovina","Barbados","Bangladesh","België","Burkina Faso","България","&rlm;البحرين","Burundi","Bénin","Saint-Barthélemy","Bermuda","Negara Brunei Darussalam","Bolivia","Bonaire","Brasil","Bahamas","ʼbrug-yul","Bouvetøya","Botswana","Белару́сь","Belize","Canada","Cocos (Keelin
-(...)</code></pre></div><div><h3 id="getAll('language-codes')">Fn: <b>getAll('language-codes')</b></h3><p>as a second argument you can specify 'iso' | 'languages' | 'name' | 'original' | 'language-code' | 'locale' </p><p><b>Example: </b><code>getAll('language-codes')</code></p><p><b>Args: </b><code>{"type":"language-codes"}</code></p><pre><code>{
+  "AI": {
+    "languages": [
+      "en"
+    ],
+    "name": "Anguilla",
+    "original": "Anguilla",
+    "iso3": "AIA"
+  },
+  "AL": {
+    "languages": [
+      "sq"
+    ],
+    "name": "Albania",
+    "original": "Shqipëria",
+    "iso3": "ALB"
+  },
+  "AM": {
+    "languages": [
+      "hy",
+      "ru"
+    ],
+    "name": "Armenia",
+    "original": "Հայաստան",
+    "iso3": "ARM"
+  },
+  "AO": {
+    "languages": [
+      "pt"
+    ],
+    "
+(...)</code></pre></div><div><h3 id="getAll">Fn: <b>getAll</b></h3><p>You can specify the field you want to return</p><p><b>Example: </b><code>getAll('iso2')</code></p><p><b>Args: </b><code>{"field":"iso2"}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>["AD","AE","AF","AG","AI","AL","AM","AO","AQ","AR","AS","AT","AU","AW","AX","AZ","BA","BB","BD","BE","BF","BG","BH","BI","BJ","BL","BM","BN","BO","BQ","BR","BS","BT","BV","BW","BY","BZ","CA","CC","CD","CF","CG","CH","CI","CK","CL","CM","CN","CO","CR","CU","CV","CW","CX","CY","CZ","DE","DJ","DK","DM","DO","DZ","EC","EE","EG","EH","ER","ES","ET","FI","FJ","FK","FM","FO","FR","GA","GB","GD","GE","GF","GG","GH","GI","GL","GM","GN","GP","GQ","GR","GS","GT","GU","GW","GY","HK","HM","HN","HR","HT","HU","ID","IE","IL","IM","IN","IO","IQ","IR","IS","IT","JE","JM","JO","JP","KE","KG","KH","KI","KM","KN","KP","KR","KW","KY","KZ","LA","LB","LC","LI","LK","LR","LS","LT","LU","LV","LY","MA","MC","MD","ME","MF","MG","MH","MK","ML","MM","MN","MO","MP","MQ","MR","MS","MT","MU","MV","MW","MX","MY","MZ","NA","NC","NE","NF","NG","NI","NL","NO","NP","NR","NU","NZ","OM","PA","PE","PF","PG","PH","PK","PL","PM","PN","PR","PS","PT","PW","PY","QA","RE","RO","RS","RU","RW","SA","SB","SC","SD","SE","SG","SH","SI"
+(...)</code></pre></div><div><h3 id="getAll">Fn: <b>getAll</b></h3><p>You can choose the field you want to return and from which type (language|country) you want to return the data</p><p><b>Example: </b><code>getAll('iso2', 'language')</code></p><p><b>Args: </b><code>{"field":"iso2","from":"language"}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>["AD","AE","AF","AG","AI","AL","AM","AO","AQ","AR","AS","AT","AU","AW","AX","AZ","BA","BB","BD","BE","BF","BG","BH","BI","BJ","BL","BM","BN","BO","BQ","BR","BS","BT","BV","BW","BY","BZ","CA","CC","CD","CF","CG","CH","CI","CK","CL","CM","CN","CO","CR","CU","CV","CW","CX","CY","CZ","DE","DJ","DK","DM","DO","DZ","EC","EE","EG","EH","ER","ES","ET","FI","FJ","FK","FM","FO","FR","GA","GB","GD","GE","GF","GG","GH","GI","GL","GM","GN","GP","GQ","GR","GS","GT","GU","GW","GY","HK","HM","HN","HR","HT","HU","ID","IE","IL","IM","IN","IO","IQ","IR","IS","IT","JE","JM","JO","JP","KE","KG","KH","KI","KM","KN","KP","KR","KW","KY","KZ","LA","LB","LC","LI","LK","LR","LS","LT","LU","LV","LY","MA","MC","MD","ME","MF","MG","MH","MK","ML","MM","MN","MO","MP","MQ","MR","MS","MT","MU","MV","MW","MX","MY","MZ","NA","NC","NE","NF","NG","NI","NL","NO","NP","NR","NU","NZ","OM","PA","PE","PF","PG","PH","PK","PL","PM","PN","PR","PS","PT","PW","PY","QA","RE","RO","RS","RU","RW","SA","SB","SC","SD","SE","SG","SH","SI"
+(...)</code></pre></div><div><h3 id="getAll">Fn: <b>getAll</b></h3><p>All the same as above but for iso3</p><p><b>Example: </b><code>getAll('iso3')</code></p><p><b>Args: </b><code>{"field":"iso3"}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>["AND","ARE","AFG","ATG","AIA","ALB","ARM","AGO","ATA","ARG","ASM","AUT","AUS","ABW","ALA","AZE","BIH","BRB","BGD","BEL","BFA","BGR","BHR","BDI","BEN","BLM","BMU","BRN","BOL","BES","BRA","BHS","BTN","BVT","BWA","BLR","BLZ","CAN","CCK","COD","CAF","COG","CHE","CIV","COK","CHL","CMR","CHN","COL","CRI","CUB","CPV","CUW","CXR","CYP","CZE","DEU","DJI","DNK","DMA","DOM","DZA","ECU","EST","EGY","ESH","ERI","ESP","ETH","FIN","FJI","FLK","FSM","FRO","FRA","GAB","GBR","GRD","GEO","GUF","GGY","GHA","GIB","GRL","GMB","GIN","GLP","GNQ","GRC","SGS","GTM","GUM","GNB","GUY","HKG","HMD","HND","HRV","HTI","HUN","IDN","IRL","ISR","IMN","IND","IOT","IRQ","IRN","ISL","ITA","JEY","JAM","JOR","JPN","KEN","KGZ","KHM","KIR","COM","KNA","PRK","KOR","KWT","CYM","KAZ","LAO","LBN","LCA","LIE","LKA","LBR","LSO","LTU","LUX","LVA","LBY","MAR","MCO","MDA","MNE","MAF","MDG","MHL","MKD","MLI","MMR","MNG","MAC","MNP","MTQ","MRT","MSR","MLT","MUS","MDV","MWI","MEX","MYS","MOZ","NAM","NCL","NER","NFK","NGA","NIC","NLD","NO
+(...)</code></pre></div><div><h3 id="getAll">Fn: <b>getAll</b></h3><p>All the same as above but for iso3 and from which type (language|country) you want to return the data</p><p><b>Example: </b><code>getAll('iso3', 'language')</code></p><p><b>Args: </b><code>{"field":"iso3","from":"language"}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>["aar","abk","ace","ach","ada","ady","afa","afh","afr","ain","aka","akk","alb","ale","alg","alt","amh","ang","anp","apa","ara","arc","arg","arm","arn","arp","art","arw","asm","ast","ath","aus","ava","ave","awa","aym","aze","bad","bai","bak","bal","bam","ban","baq","bas","bat","bej","bel","bem","ben","ber","bho","bih","bik","bin","bis","bla","bnt","bos","bra","bre","btk","bua","bug","bul","bur","byn","cad","cai","car","cat","cau","ceb","cel","cha","chb","che","chg","chi","chk","chm","chn","cho","chp","chr","chu","chv","chy","cmc","cnr","cop","cor","cos","cpe","cpf","cpp","cre","crh","crp","csb","cus","cze","dak","dan","dar","day","del","den","dgr","din","div","doi","dra","dsb","dua","dum","dut","dyu","dzo","efi","egy","eka","elx","eng","enm","epo","est","ewe","ewo","fan","fao","fat","fij","fil","fin","fiu","fon","fre","frm","fro","frr","frs","fry","ful","fur","gaa","gay","gba","gem","geo","ger","gez","gil","gla","gle","glg","glv","gmh","goh","gon","gor","got","grb","grc","gre","grn","gs
+(...)</code></pre></div><div><h3 id="getAll">Fn: <b>getAll</b></h3><p>the same as above but for locale</p><p><b>Example: </b><code>getAll('locale')</code></p><p><b>Args: </b><code>{"field":"locale"}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>["af_NA","af_ZA","am_ET","ar_AE","ar_BH","ar_DJ","ar_DZ","ar_EG","ar_ER","ar_IL","ar_IQ","ar_JO","ar_KM","ar_KW","ar_LB","ar_LY","ar_MA","ar_MR","ar_OM","ar_PS","ar_QA","ar_SA","ar_SD","ar_SO","ar_SY","ar_TD","ar_TN","ar_YE","ay_BO","az_AZ","be_BY","bg_BG","bi_VU","bn_BD","bs_BA","bs_ME","ca_AD","ca_ES","ch_GU","ch_MP","cs_CZ","da_DK","de_AT","de_BE","de_CH","de_DE","de_LI","de_LU","dv_MV","el_CY","el_GR","en_AG","en_AI","en_AS","en_AU","en_BB","en_BM","en_BS","en_BW","en_BZ","en_CA","en_CC","en_CK","en_CM","en_CW","en_CX","en_DM","en_ER","en_FJ","en_FK","en_FM","en_GB","en_GD","en_GG","en_GH","en_GI","en_GM","en_GS","en_GU","en_GY","en_HK","en_HM","en_IE","en_IM","en_IN","en_IO","en_JE","en_JM","en_KE","en_KI","en_KN","en_KY","en_LC","en_LR","en_LS","en_MF","en_MH","en_MP","en_MS","en_MT","en_MU","en_MW","en_NA","en_NF","en_NG","en_NR","en_NU","en_NZ","en_PG","en_PH","en_PK","en_PN","en_PR","en_PW","en_RW","en_SB","en_SC","en_SD","en_SG","en_SH","en_SL","en_SS","en_SX","en_SZ","en_TC"
+(...)</code></pre></div><div><h3 id="getAll">Fn: <b>getAll</b></h3><p>the same as above but for language-code</p><p><b>Example: </b><code>getAll('language-code')</code></p><p><b>Args: </b><code>{"field":"language-code"}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>["af-NA","af-ZA","am-ET","ar-AE","ar-BH","ar-DJ","ar-DZ","ar-EG","ar-ER","ar-IL","ar-IQ","ar-JO","ar-KM","ar-KW","ar-LB","ar-LY","ar-MA","ar-MR","ar-OM","ar-PS","ar-QA","ar-SA","ar-SD","ar-SO","ar-SY","ar-TD","ar-TN","ar-YE","ay-BO","az-AZ","be-BY","bg-BG","bi-VU","bn-BD","bs-BA","bs-ME","ca-AD","ca-ES","ch-GU","ch-MP","cs-CZ","da-DK","de-AT","de-BE","de-CH","de-DE","de-LI","de-LU","dv-MV","el-CY","el-GR","en-AG","en-AI","en-AS","en-AU","en-BB","en-BM","en-BS","en-BW","en-BZ","en-CA","en-CC","en-CK","en-CM","en-CW","en-CX","en-DM","en-ER","en-FJ","en-FK","en-FM","en-GB","en-GD","en-GG","en-GH","en-GI","en-GM","en-GS","en-GU","en-GY","en-HK","en-HM","en-IE","en-IM","en-IN","en-IO","en-JE","en-JM","en-KE","en-KI","en-KN","en-KY","en-LC","en-LR","en-LS","en-MF","en-MH","en-MP","en-MS","en-MT","en-MU","en-MW","en-NA","en-NF","en-NG","en-NR","en-NU","en-NZ","en-PG","en-PH","en-PK","en-PN","en-PR","en-PW","en-RW","en-SB","en-SC","en-SD","en-SG","en-SH","en-SL","en-SS","en-SX","en-SZ","en-TC"
+(...)</code></pre></div><div><h3 id="getAll">Fn: <b>getAll</b></h3><p>All the names of the countries</p><p><b>Example: </b><code>getAll('name')</code></p><p><b>Args: </b><code>{"field":"name"}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>["Afghanistan","Aland","Albania","Algeria","American Samoa","Andorra","Angola","Anguilla","Antarctica","Antigua and Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bonaire","Bosnia and Herzegovina","Botswana","Bouvet Island","Brazil","British Indian Ocean Territory","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central African Republic","Chad","Chile","China","Christmas Island","Cocos (Keeling) Islands","Colombia","Comoros","Cook Islands","Costa Rica","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Democratic Republic of the Congo","Denmark","Djibouti","Dominica","Dominican Republic","East Timor","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Eswatini","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Guia
+(...)</code></pre></div><div><h3 id="getAll">Fn: <b>getAll</b></h3><p>All the available names from type (language|country) for which you want to return the data</p><p><b>Example: </b><code>getAll('name', 'language')</code></p><p><b>Args: </b><code>{"field":"name","from":"language"}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>["Abkhaz","Afar","Afrikaans","Akan","Albanian","Amharic","Arabic","Aragonese","Armenian","Assamese","Avaric","Avestan","Aymara","Azerbaijani","Bambara","Bashkir","Basque","Belarusian","Bengali","Bihari","Bislama","Bosnian","Breton","Bulgarian","Burmese","Catalan; Valencian","Chamorro","Chechen","Chichewa; Chewa; Nyanja","Chinese","Chuvash","Cornish","Corsican","Cree","Croatian","Czech","Danish","Divehi; Dhivehi; Maldivian;","Dutch","English","Esperanto","Estonian","Ewe","Faroese","Fijian","Finnish","French","Fula; Fulah; Pulaar; Pular","Galician","Georgian","German","Greek, Modern","Guaraní","Gujarati","Haitian; Haitian Creole","Hausa","Hebrew (modern)","Herero","Hindi","Hiri Motu","Hungarian","Icelandic","Ido","Igbo","Indonesian","Interlingua","Interlingue","Inuktitut","Inupiaq","Irish","Italian","Japanese","Javanese","Kalaallisut, Greenlandic","Kannada","Kanuri","Kashmiri","Kazakh","Khmer","Kikuyu, Gikuyu","Kinyarwanda","Kirghiz, Kyrgyz","Kirundi","Komi","Kongo","Korean","Kurdish","K
+(...)</code></pre></div><div><h3 id="getAll">Fn: <b>getAll</b></h3><p>Special case to return all the data available for all fields</p><p><b>Example: </b><code>getAll('all')</code></p><p><b>Args: </b><code>{"field":"all"}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>{
   "AD": {
+    "iso2": "AD",
+    "languages": [
+      {
+        "name": "Catalan; Valencian",
+        "original": "Català",
+        "iso3": "cat",
+        "iso2": "ca"
+      }
+    ],
+    "name": "Andorra",
+    "original": "Andorra",
+    "iso3": "AND",
+    "capital": "Andorra la Vella",
+    "region": "Europe",
+    "continent": "EU",
+    "subRegion": "Southern Europe",
+    "nameFormal": "the Principality of Andorra",
+    "tld": ".ad",
+    "dial": "376",
+    "currency": {
+      "code": "EUR",
+      "symbol": "€",
+      "original": "€",
+      "name": "Euro"
+    },
+    "locale": [
+      "ca_AD"
+    ],
+    "language-code": [
+      "ca-AD"
+    ]
+  },
+  "AE": {
+    "iso2": "AE",
+    "languages": [
+      {
+        "name": "Arabic",
+        "original": "العربية",
+        "iso3": "ara",
+        "iso2": "ar"
+      }
+    ],
+    "name": "United Arab Emirates",
+    "original": "دولة الإمارات العربية المتحدة",
+    "iso3": "ARE",
+    "capital": "Abu Dhabi",
+    "region": "Asia",
+    "continent": "AS",
+(...)</code></pre></div><div><h3 id="getAll">Fn: <b>getAll</b></h3><p>Returns additional informations as the tld, dialing code, currency and currency code</p><p><b>Example: </b><code>getAll('country-geo')</code></p><p><b>Args: </b><code>{"field":"country-geo"}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>{
+  "AD": {
+    "iso2": "AD",
     "languages": [
       "ca"
     ],
     "name": "Andorra",
-    "original": "Andorra"
+    "original": "Andorra",
+    "iso3": "AND",
+    "capital": "Andorra la Vella",
+    "region": "Europe",
+    "continent": "EU",
+    "subRegion": "Southern Europe",
+    "nameFormal": "the Principality of Andorra"
   },
   "AE": {
+    "iso2": "AE",
     "languages": [
       "ar"
     ],
     "name": "United Arab Emirates",
-    "original": "دولة الإمارات العربية المتحدة"
+    "original": "دولة الإمارات العربية المتحدة",
+    "iso3": "ARE",
+    "capital": "Abu Dhabi",
+    "region": "Asia",
+    "continent": "AS",
+    "subRegion": "Western Asia",
+    "nameFormal": "the United Arab Emirates"
   },
   "AF": {
+    "iso2": "AF",
     "languages": [
       "ps",
       "uz",
       "tk"
     ],
     "name": "Afghanistan",
-    "original": "افغانستان"
+    "original": "افغانستان",
+    "iso3": "AFG",
+    "capital": "Kabul",
+    "region": "Asia",
+    "continent": "AS",
+    "subRegion": "Southern Asia",
+    "nameFormal": "the Islamic Republic of Afghanistan"
   },
   "AG": {
+    "iso2": "AG",
+    "languag
+(...)</code></pre></div><div><h3 id="getAll">Fn: <b>getAll</b></h3><p>Returns additional informations as the tld, dialing code, currency and currency</p><p><b>Example: </b><code>getAll('country-extra')</code></p><p><b>Args: </b><code>{"field":"country-extra"}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>{
+  "AD": {
+    "iso2": "AD",
     "languages": [
-      "en"
+      "ca"
     ],
-    "name": "Antigua and Barbuda",
-    "original": "Antigua and Barbuda"
+    "name": "Andorra",
+    "original": "Andorra",
+    "iso3": "AND",
+    "tld": ".ad",
+    "dial": "376",
+    "currency": {
+      "code": "EUR",
+      "symbol": "€",
+      "original": "€",
+      "name": "Euro"
+    }
   },
-  "AI
-(...)</code></pre></div><div><h3 id="getLanguageData">Fn: <b>getLanguageData</b></h3><p>Retrieves the language data for the specified language code. As getCountryData, accepts 2 digit language code (e.g. "it") or 5 (e.g. "it-IT")</p><p><b>Example: </b><code>getLanguageData( 'it-IT')</code></p><p><b>Args: </b><code>{"languageCode":"it-IT"}</code></p><pre><code>{
-  "name": "Italian",
-  "original": "Italiano"
-}</code></pre></div><div><h3 id="getCountriesByISO">Fn: <b>getCountriesByISO</b></h3><p>Get the languages from the given array of countries.</p><p><b>Example: </b><code>getCountriesByISO(['US', 'IT', 'GB', 'FR'])</code></p><p><b>Args: </b><code>{"isos":["US","IT","GB","FR"]}</code></p><pre><code>{
-  "US": {
+  "AE": {
+    "iso2": "AE",
     "languages": [
-      "en"
+      "ar"
     ],
-    "name": "United States",
-    "original": "United States"
+    "name": "United Arab Emirates",
+    "original": "دولة الإمارات العربية المتحدة",
+    "iso3": "ARE",
+    "tld": ".ae",
+    "dial": "971",
+    "currency": {
+      "code": "AED",
+      "symbol": "AED",
+      "original": "د.إ.‏",
+      "name": "United Arab Emirates Dirham"
+    }
+  },
+  "AF": {
+    "iso2": "AF",
+    "languages": [
+      "ps",
+      "uz",
+      "tk"
+    ],
+    "name": "Afghanistan",
+    "original": "افغانستان",
+    "iso3": "AFG",
+    "tld": ".af",
+    "dial": "93",
+    "currency": {
+      "code": "AFN",
+      "symbol": "Af",
+      "original": "؋",
+      "name": "Afghan Afghani"
+    }
+  },
+  "AG": {
+    "iso2": "AG",
+    "lan
+(...)</code></pre></div><div><h3 id="getAll">Fn: <b>getAll</b></h3><p>Returns iso3 codes for all languages</p><p><b>Example: </b><code>getAll('language-iso3', 'language')</code></p><p><b>Args: </b><code>{"field":"iso3","type":"language"}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>{
+  "aar": {
+    "iso2": "aa",
+    "name": "Afar"
+  },
+  "abk": {
+    "iso2": "ab",
+    "name": "Abkhazian"
+  },
+  "ace": {
+    "name": "Achinese"
+  },
+  "ach": {
+    "name": "Acoli"
+  },
+  "ada": {
+    "name": "Adangme"
+  },
+  "ady": {
+    "name": [
+      "Adyghe",
+      "Adygei"
+    ]
+  },
+  "afa": {
+    "hierarchy": [
+      "Afro-Asiatic languages"
+    ],
+    "name": "Afro-Asiatic languages"
+  },
+  "afh": {
+    "name": "Afrihili"
+  },
+  "afr": {
+    "iso2": "af",
+    "name": "Afrikaans"
+  },
+  "ain": {
+    "name": "Ainu"
+  },
+  "aka": {
+    "iso2": "ak",
+    "name": "Akan"
+  },
+  "akk": {
+    "name": "Akkadian"
+  },
+  "alb": {
+    "iso2": "sq",
+    "name": "Albanian"
+  },
+  "ale": {
+    "name": "Aleut"
+  },
+  "alg": {
+    "hierarchy": [
+      "North American Indian languages",
+      "aql",
+      "Algonquian languages"
+    ],
+    "name": "Algonquian languages"
+  },
+  "alt": {
+    "name": "Southern Altai"
+  },
+  "amh": {
+    "iso2": "am",
+    "name": "Amharic"
+  },
+  "ang": {
+    "nam
+(...)</code></pre></div><div><h3 id="getCountriesByLanguage">Fn: <b>getCountriesByLanguage</b></h3><p></p><p><b>Example: </b><code>getCountriesByLanguage('it')</code></p><p><b>Args: </b><code>{}</code></p><pre class="code-container"><button class="expand-button button button-outline">Expand</button><code>{
+  "CH": {
+    "languages": [
+      "de",
+      "fr",
+      "it"
+    ],
+    "name": "Switzerland",
+    "original": "Schweiz",
+    "iso3": "CHE"
   },
   "IT": {
     "languages": [
       "it"
     ],
     "name": "Italy",
-    "original": "Italia"
+    "original": "Italia",
+    "iso3": "ITA"
   },
-  "GB": {
+  "SM": {
     "languages": [
-      "en"
+      "it"
     ],
-    "name": "United Kingdom",
-    "original": "United Kingdom"
+    "name": "San Marino",
+    "original": "San Marino",
+    "iso3": "SMR"
   },
-  "FR": {
+  "VA": {
     "languages": [
-      "fr"
+      "it",
+      "la"
     ],
-    "name": "France",
-    "original": "France"
+    "name": "Vatican City",
+    "original": "Vaticano",
+    "iso3": "VAT"
   }
-}</code></pre></div><div><h3 id="getLanguagesByISO">Fn: <b>getLanguagesByISO</b></h3><p>This function takes an array of ISO codes and returns a dictionary of languages corresponding to those codes. It iterates over each ISO code and checks if it is a valid language. If it is, the language is added to the result dictionary.</p><p><b>Example: </b><code>getLanguagesByISO(['en', 'it', 'es'])</code></p><p><b>Args: </b><code>{"isos":["en","it","es"]}</code></p><pre><code>{
-  "en": {
-    "name": "English",
-    "original": "English"
-  },
-  "it": {
-    "name": "Italian",
-    "original": "Italiano"
-  },
-  "es": {
-    "name": "Spanish; Castilian",
-    "original": "español, castellano"
-  }
-}</code></pre></div><div><h3 id="getAllLanguagesByISO">Fn: <b>getAllLanguagesByISO</b></h3><p>Get all the languages that speak the given array of ISO codes</p><p><b>Example: </b><code>getAllLanguagesByISO(['CD', 'ES', 'FR'])</code></p><p><b>Args: </b><code>{"isos":["CD","ES","FR"]}</code></p><pre><code>["fr","ln","kg","sw","lu","es","eu","ca","gl","oc"]</code></pre></div><div><h3 id="getAllLanguageCodesByISO">Fn: <b>getAllLanguageCodesByISO</b></h3><p>Return an array of country data for the given ISO codes</p><p><b>Example: </b><code>getAllLanguageCodesByISO(['US', 'IT', 'ES'])</code></p><p><b>Args: </b><code>{"isos":["US","IT","ES"]}</code></p><pre><code>["en-US","it-IT","es-ES","eu-ES","ca-ES","gl-ES","oc-ES"]</code></pre></div><div><h3 id="getCountriesByLanguage">Fn: <b>getCountriesByLanguage</b></h3><p>Get all the countries that speak the given languages</p><p><b>Example: </b><code>getCountriesByLanguage(['gb', 'fr'])</code></p><p><b>Args: </b><code>{"languages":["gb","fr"]}</code></p><pre><code>{
-  "BE": {
-    "languages": [
-      "nl",
-      "fr",
-      "de"
-    ],
-    "name": "Belgium",
-    "original": "België"
-  },
-  "BF": {
-    "languages": [
-      "fr",
-      "ff"
-    ],
-    "name": "Burkina Faso",
-    "original": "Burkina Faso"
-  },
-  "BI": {
-    "languages": [
-      "fr",
-      "rn"
-    ],
-    "name": "Burundi",
-    "original": "Burundi"
-  },
-  "BJ": {
-    "languages": [
-      "fr"
-    ],
-    "name": "Benin",
-    "original": "Bénin"
-  },
-  "BL": {
-    "languages": [
-      "fr"
-
-(...)</code></pre></div><div><h3 id="getAsKey">Fn: <b>getAsKey</b></h3><p>Returns the iso countries list using as a key the given field. Using the language as key will return an array of languages for each country</p><p><b>Example: </b><code>getAsKey('languages')</code></p><p><b>Args: </b><code>{"field":"languages"}</code></p><pre><code>{
-  "ca": {
-    "languages": [
-      "ca"
-    ],
-    "name": "Andorra",
-    "original": "Andorra",
-    "code": "AD"
-  },
-  "ar": {
-    "languages": [
-      "ar"
-    ],
-    "name": "Yemen",
-    "original": "اليَمَن",
-    "code": "YE"
-  },
-  "ps,uz,tk": {
-    "languages": [
-      "ps",
-      "uz",
-      "tk"
-    ],
-    "name": "Afghanistan",
-    "original": "افغانستان",
-    "code": "AF"
-  },
-  "en": {
-    "languages": [
-      "en"
-    ],
-    "name": "Zambia",
-    "original": "Zambia",
-    "code":
-(...)</code></pre></div><div><h3 id="getAsKey">Fn: <b>getAsKey</b></h3><p>Returns the iso countries list using as a key the given field</p><p><b>Example: </b><code>getAsKey('original')</code></p><p><b>Args: </b><code>{"field":"original"}</code></p><pre><code>{
-  "Andorra": {
-    "languages": [
-      "ca"
-    ],
-    "name": "Andorra",
-    "original": "Andorra",
-    "code": "AD"
-  },
-  "دولة الإمارات العربية المتحدة": {
-    "languages": [
-      "ar"
-    ],
-    "name": "United Arab Emirates",
-    "original": "دولة الإمارات العربية المتحدة",
-    "code": "AE"
-  },
-  "افغانستان": {
-    "languages": [
-      "ps",
-      "uz",
-      "tk"
-    ],
-    "name": "Afghanistan",
-    "original": "افغانستان",
-    "code": "AF"
-  },
-  "Antigua and Barbuda": {
-    "langu
-(...)</code></pre></div><div><h3 id="getAsKey">Fn: <b>getAsKey</b></h3><p>Returns the iso countries list using as a key the given field</p><p><b>Example: </b><code>getAsKey('original')</code></p><p><b>Args: </b><code>{"field":"language-name"}</code></p><pre><code>{
-  "Catalan; Valencian": {
-    "languages": [
-      "es",
-      "eu",
-      "ca",
-      "gl",
-      "oc"
-    ],
-    "name": "Spain",
-    "original": "España",
-    "code": "ES"
-  },
-  "Arabic": {
-    "languages": [
-      "ar"
-    ],
-    "name": "Yemen",
-    "original": "اليَمَن",
-    "code": "YE"
-  },
-  "Pashto, Pushto": {
-    "languages": [
-      "ps",
-      "uz",
-      "tk"
-    ],
-    "name": "Afghanistan",
-    "original": "افغانستان",
-    "code": "AF"
-  },
-  "Uzbek": {
-    "languages": [
-
-(...)</code></pre></div><div><h3 id="getKeyValue">Fn: <b>getKeyValue</b></h3><p>Returns an Array with the combination of the given key / value</p><p><b>Example: </b><code>getKeyValue('language', 'original')</code></p><p><b>Args: </b><code>{"key":"language","value":"original"}</code></p><pre><code>[{"value":"ca","label":"Andorra"},{"value":"ar","label":"دولة الإمارات العربية المتحدة"},{"value":"ps","label":"افغانستان"},{"value":"uz","label":"افغانستان"},{"value":"tk","label":"افغانستان"},{"value":"en","label":"Antigua and Barbuda"},{"value":"en","label":"Anguilla"},{"value":"sq","label":"Shqipëria"},{"value":"hy","label":"Հայաստան"},{"value":"ru","label":"Հայաստան"},{"value":"pt","label":"Angola"},{"value":"es","label":"Argentina"},{"value":"gn","label":"Argentina"},{"value":"en","label":
-(...)</code></pre></div><div><h3 id="getKeyValue">Fn: <b>getKeyValue</b></h3><p>Returns an Array with the combination of the given key / value</p><p><b>Example: </b><code>getKeyValue('language', 'original')</code></p><p><b>Args: </b><code>{"key":"language","value":"original"}</code></p><pre><code>[{"value":"Catalan; Valencian","label":"Català"},{"value":"Arabic","label":"العربية"},{"value":"Pashto, Pushto","label":"پښتو,zbek, Ўзбек, أۇزبېك&lrm;,Türkmen, Түркмен"},{"value":"Uzbek","label":"پښتو,zbek, Ўзбек, أۇزبېك&lrm;,Türkmen, Түркмен"},{"value":"Turkmen","label":"پښتو,zbek, Ўзбек, أۇزبېك&lrm;,Türkmen, Түркмен"},{"value":"English","label":"English"},{"value":"English","label":"English"},{"value":"Albanian","label":"Shqip"},{"value":"Armenian","label":"Հայերեն,русский язык"},{"value":"Russian","label
-(...)</code></pre></div></div></div>
-</div>
-
-
-</body></html>
+}</code></pre></div></div></div>
+</div></body></html>
