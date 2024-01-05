@@ -15,7 +15,7 @@ export function getKeyValue(
     key: CountryDataFields,
     value: CountryDataFields,
     labelKey: string = 'label',
-    valueKey: string = 'value',
+    valueKey: string = 'value'
 ) {
     const unpackData = (data: unknown, field?: string): string[] => {
         if (typeof data === 'string') {
@@ -39,11 +39,12 @@ export function getKeyValue(
         const unpackedFieldValues = unpackData(fieldValue, value)
 
         if (unpackedKeyValues || unpackedFieldValues) {
-            return unpackedKeyValues?.flatMap((k: string) =>
-                unpackedFieldValues?.map((f: string) => ({
-                    [valueKey]: unpackedFieldValues.length > 1 ? `${k}-${f}` : k,
-                    [labelKey]: unpackedKeyValues.length > 1 ? `${f} (${k})` : f,
-                }))
+            return unpackedKeyValues?.flatMap(
+                (k: string) =>
+                    unpackedFieldValues?.map((f: string) => ({
+                        [valueKey]: unpackedFieldValues.length > 1 ? `${k}-${f}` : k,
+                        [labelKey]: unpackedKeyValues.length > 1 ? `${f} (${k})` : f,
+                    }))
             )
         }
     })

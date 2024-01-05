@@ -31,7 +31,7 @@ export function getLanguage(
         for (const lang of Object.entries(langIso)) {
             const [k, l] = lang as [ISOLangCode, Language]
             // if the name matches the iso, then return the language
-            if (l.name === k ||l.original === k || l.iso3 === k) {
+            if (l.name === k || l.original === k || l.iso3 === k) {
                 language = l as Language
                 isoCode = k as ISOLangCode
                 break

@@ -80,28 +80,23 @@ export function getCountry(
             }
 
             if (fields.includes('locale')) {
-                const localeCode =
-                    country.languages.map(
-                        (langIso) =>
-                            formatIso(
-                                langIso as ISOLangCode,
-                                countryIso as ISOCountryCode,
-                                'locale'
-                            ) ?? countryIso
-                    ) as string[]
+                const localeCode = country.languages.map(
+                    (langIso) =>
+                        formatIso(langIso as ISOLangCode, countryIso as ISOCountryCode, 'locale') ??
+                        countryIso
+                ) as string[]
                 countryData.locale = localeCode
             }
 
             if (fields.includes('language-code')) {
-                const isoCodes =
-                    country.languages?.map(
-                        (langIso) =>
-                            formatIso(
-                                langIso as ISOLangCode,
-                                countryIso as ISOCountryCode,
-                                'language-code'
-                            ) ?? countryIso
-                    ) as string[]
+                const isoCodes = country.languages?.map(
+                    (langIso) =>
+                        formatIso(
+                            langIso as ISOLangCode,
+                            countryIso as ISOCountryCode,
+                            'language-code'
+                        ) ?? countryIso
+                ) as string[]
                 countryData['language-code'] = isoCodes
             }
 
