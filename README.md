@@ -79,71 +79,63 @@ import { getCountry, getAll } from 'ISOToLanguage';
 
 ## Functions
 
-1. **[isValidCountry](#isValidCountry)**
-    Validates ISO codes for countries.
+1. **[validateISO](#validateISO)**
+   Validates ISO codes for countries.
 
-2. **[isValidLanguage](#isValidLanguage)**
-    Validates ISO codes for languages.
+2. **[isoInfo](#isoInfo)**
+   Decrypts an iso code of type language, country, local, or language-code
 
 3. **[formatIso](#isoFormat)**
     Formats language and country into a single string.
 
-4. **[parseIsoCodes](#getCountryData)**
-    Retrieves country data by locale formatIso or language code.
-
-5. **[isoTL](#isoTL)**
+4. **[getIso](#getIso)**
     Retrieves data by ISO code and a specific type.
 
-8. **[getAll](#getAll)**
+5. **[getAll](#getAll)**
    Retrieves data based on a specified type.
 
-6. **[getCountry](#getCountry)**
-    Retrieves country data by name.
+6. **[getGroupedBy](#getGroupedBy)**
+   Builds an object of country data grouped by a custom field
 
-7. **[getCountriesByLanguages](#getCountriesByLanguage)**
-    Returns countries that speak any of the given languages.
+7. **[getKeyValue](#getKeyValue)**
+   Generates an array with the given key value combination.
 
-9. **[getCountriesByISO](#getCountriesByISO)**
-   Gets the country data from the given array of ISO codes.
-
-10. **[getLanguagesByIso](#getLanguagesByIso)**
-    Retrieves all language codes associated with an array of ISO codes.
-
-11. **[getAsKey](#getAsKey)**
-    Generates a new object with keys derived from specified fields.
-
-12. **[getKeyValue](#getKeyValue)**
-    Generates an array with the given key value combination.
+8. **[getCountriesByLanguage](#getCountriesByLanguage)**
+   Returns countries that speak any of the given languages.
 
 ---
 
-## `isValidCountry`
+## `isoInfo`
 
-A function that checks if the provided ISO code is valid.
+A function that formats the language and country into a single string.
 
-**Args**: `{ "iso": "EN" }`
-
-```javascript
-const enIsValid = isValidCountry('EN');
-console.log(enIsValid); // false
-
-const gbIsValid = isValidCountry('GB');
-console.log(gbIsValid); // true
-```
-
-## `isValidLanguage`
-
-A function that checks if the provided language is valid.
-
-**Args**: `{ "iso": "en" }`
+**Args**: `{ "codeType": "language-iso2" | "language-iso3" | "country-iso" | "locale" | "language-code" }`
 
 ```javascript
-const enIsValid = isValidLanguage('en');
-console.log(enIsValid); // true
-
-const gbIsValid = isValidLanguage('gb');
-console.log(gbIsValid); // false
+const result = isoInfo('it');
+console.log(result); // { "name": "Italian", "original": "Italiano", "iso3": "ita", "iso2": "it" }
 ```
+
+```javascript
+const result = isoInfo('IT');
+console.log(result); // { "iso2": "IT", "languages": [ "it" ], "name": "Italy", "original": "Italia", "iso3": "ITA" }
+```
+
+```javascript
+const result = isoInfo('ITA');
+console.log(result); // { "languages": [ "it" ], "name": "Italy", "original": "Italia", "iso3": "ITA" }
+```
+
+```javascript
+const result = isoInfo('it_IT');
+console.log(result); // { "type": "locale", "country": {...}, "language": {...} }
+```
+
+```javascript
+const result = isoInfo('it-IT');
+console.log(result); // { "type": "language-code", "country": {...}, "language": {...} }
+```
+
 
 ## `formatIso`
 
@@ -171,202 +163,82 @@ const result = formatIso('en', 'US', { type: 'locale' });
 console.log(result); // en_US
 ```
 
-## `isoTL`
+## `getIso`
 
-A function that returns the ISO data for a given ISO code.
+Returns the information about the iso code
 
-**Args**: `{ "iso": ISO, "type?": IsoDataType }`
+**Args**: `{ "key": iso2 | iso3 | country | country name | original country name, "type?": country | language, "field": [arrayOfFields] }`
 
 ```javascript
-const isoData = isoTL('US');
-console.log(isoData);
+const isoArray = getIso('GB');
+console.log(isoArray);
+
+/*
+  { "iso2": "GB", "languages": [ "en" ], "name": "United Kingdom", "original": "United Kingdom", "iso3": "GBR" }
+*/
+```
+```javascript
+const isoArray = getIso('Italiano', 'language');
+console.log(isoArray);
+
+/*
+  { "name": "Italian", "original": "Italiano", "iso3": "ita", "iso2": "it" }
+*/
+```
+```javascript
+const isoArray = getIso('Italiano', 'language', 'iso2');
+console.log(isoArray);
+
+/* it */
+```
+```javascript
+const isoArray = getIso('Italia', 'country', 'flag');
+console.log(isoArray);
+
+/* https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg */
+```
+```javascript
+const isoArray = getIso('Tunisia', "country", ['capital', 'currency']);
+console.log(isoArray);
 
 /*
 {
-  "languages": ["en"],
-  "name": "United States",
-  "original": "United States"
+  "capital": "Tunis",
+  "currency": {
+    "code": "TND",
+    "symbol": "DT",
+    "original": "د.ت.‏",
+    "name": "Tunisian Dinar"
+  }
 }
 */
 ```
 ```javascript
-const languages = isoTL('BE', 'languages');
-console.log(languages);
-
-/*
-["nl", "fr", "de"]
-*/
-```
-
-## `getCountry`
-
-Get country data by a given the country name (e.g. "Italy") or country original name (e.g. "Italia")
-
-**Args**: `{ "name" : string }`
-
-```javascript
-const data = getCountry('Italia');
-console.log(data);
+const isoArray = getIso('Spain', undefined, ['name', 'locale', 'language-code']);
+console.log(isoArray);
 
 /*
 {
-  "languages": [ "it" ],
-  "name": "Italy",
-  "original": "Italia",
-  "code": "IT"
+  "name": "Spain",
+  "locale": [
+    "es_ES",
+    "eu_ES",
+    "ca_ES",
+    "gl_ES",
+    "oc_ES"
+  ],
+  "language-code": [
+    "es-ES",
+    "eu-ES",
+    "ca-ES",
+    "gl-ES",
+    "oc-ES"
+  ]
 }
 */
 ```
 
-## `getLanguage`
 
-Retrieve the ISO language object based on the provided language code.
-
-**Args**: `{ "languageCode" : string }`
-
-```javascript
-const data = getCountry('Italia');
-console.log(data);
-
-/*
-{
-  "name": "Italian",
-  "original": "Italiano"
-}
-*/
-```
-
-## `parseIsoCodes`
-
-Get country data by a given locale formatIso (e.g., "en_US").
-
-**Args**: `{ "languageCode": string }`
-
-```javascript
-const data = parseIsoCodes('de_BE');
-console.log(data);
-
-/*
-{
-  "languages": ["nl", "fr", "de"],
-  "name": "Belgium",
-  "original": "België"
-}
-*/
-```
-
-## `getLanguageData`
-
-Retrieve the language data for the specified language code. As parseIsoCodes, accepts two digit language code (e.g. "it") or five (e.g. "it-IT" or "it_IT")
-
-**Args**: `{ "languageCode": string }`
-
-```javascript
-const data = getLanguageData( 'it-IT');
-console.log(data);
-
-/*
-{
-  "name": "Italian",
-  "original": "Italiano"
-}
-*/
-```
-
-## `getCountriesByLanguages`
-
-Get all the countries that speak the given languages
-
-**Args**: `{ "languages": [Array of ISO] }`
-
-```javascript
-const countriesByLanguage = getCountriesByLanguages(['gb', 'fr']);
-console.log(countriesByLanguage);
-
-/*
-{
-  "BE": {
-    "languages": ["nl", "fr", "de"],
-    "name": "Belgium",
-    "original": "België"
-  },
-  "BF": {
-    "languages": ["fr", "ff"],
-    ...
-}
-*/
-```
-
-## `getAsKey`
-
-Returns the iso countries list using as a key the given field.
-Using the language as "key" will return an array of languages for each country
-
-**Args**: `{ "field": IsoDataType }`
-
-```javascript
-const dataAsKey = getAsKey('languages');
-console.log(dataAsKey);
-
-/*
-{
-  "ca": {
-    "languages": [
-      "ca"
-    ],
-    "name": "Andorra",
-    "original": "Andorra",
-    "code": "AD"
-  },
-  "ar": {
-    "languages": [
-      "ar"
-    ],
-    "name": "Yemen",
-(...)
-*/
-```
-```javascript
-const dataAsKeyOriginal = getAsKey('original');
-console.log(dataAsKeyOriginal);
-
-/*
-{
-  "Andorra": {
-    "languages": [
-      "ca"
-    ],
-    "name": "Andorra",
-    "original": "Andorra",
-    "code": "AD"
-  },
-  "دولة الإمارات العربية المتحدة": {
-    "languages": [
-      "ar"
-    ],
-*/
-```
-
-## `getKeyValue`
-
-Returns an Array with the combination of the given key / value
-
-**Args**: `{ "key" : IsoDataType, "value" : IsoDataType }`
-
-```javascript
-const dataAsKey = getKeyValue('language', 'original');
-console.log(dataAsKey);
-
-/*
-[
-    {"value":"ca","label":"Andorra"},
-    {"value":"ar","label":"دولة الإمارات العربية المتحدة"},
-    {"value":"ps","label":"افغانستان"},
-    {"value":"uz","label":"افغانستان"},
-    {"value":"tk","label":"افغانستان"}
-(...)
-*/
-```
 
 ## `getAll`
 
@@ -411,83 +283,149 @@ console.log(languageCodesArray);
 */
 ```
 
-## `getCountriesByISO`
 
-Get the country data from the given array of ISO codes
+## `getGroupedBy`
 
-**Args**: `{ "isos": [Array of ISO] }`
+You can group the results by continent or region or subRegion. Pass a second argument to filter by that term.
+
+**Args**: `{ "type?": "continent" | "region" | "subRegion" }`
 
 ```javascript
-const countriesData = getCountriesByISO(['US', 'IT', 'GB', 'FR']);
-console.log(countriesData);
-
+const allData = getGroupedBy( 'continent' );
+console.log(allData);
 /*
 {
-  "US": {
-    "languages": ["en"],
-    "name": "United States",
-    "original": "United States"
+  "EU": {
+    "AX": {
+      "name": "Aland",
+      (...)
+    },
+    "AL": {
+      "name": "Albania",
+      (...)
+    },
+    (...)
   },
-  "IT": {
-    "languages": ["it"],
-    "name": "Italy",
-    "original": "Italia"
-  },
- (...)
+  "AN": {
+    "AQ": {
+      "name": "Antarctica",
+  (...)
+}
 */
 ```
-
-## `extractLanguages`
-
-This function takes an array of ISO codes and returns a dictionary of languages corresponding to those codes. It iterates over each ISO code and checks if it is a valid language. If it is, the language is added to the result dictionary.
-
-**Args**: `{ "isos": [Array of ISO] }`
-
 ```javascript
-const countriesData = extractLanguages(['en', 'it', 'es']);
-console.log(countriesData);
-
+const allData = getGroupedBy( 'continent', 'Antarctica' );
+console.log(allData);
 /*
 {
-  "en": {
-    "name": "English",
-    "original": "English"
-  },
-  "it": {
-    "name": "Italian",
-    "original": "Italiano"
-  },
-  "es": {
-    "name": "Spanish; Castilian",
-    "original": "español, castellano"
+  "Antarctica": {
+    "AQ": {
+      "languages": [],
+      "name": "Antarctica",
+      "original": "Antarctica",
+      "iso3": "ATA",
+      "region": "Antarctica",
+      "continent": "AN",
+      "subRegion": "Antarctica"
+    }
   }
 }
 */
 ```
 
-## `getLanguagesByIso`
+## `getKeyValue`
 
-Return an array of language code for the given array of ISO codes
+Returns an Array with the combination of the given key / value
 
-
-**Args**: `{ "isos": [Array of ISO], "type?": 'locale' | 'language-code' }`
+**Args**: `{ "key" : IsoDataType, "value" : IsoDataType }`
 
 ```javascript
-const languagesByISO = getLanguagesByIso(['CD', 'ES', 'FR']);
-console.log(languagesByISO);
+const dataAsKey = getKeyValue('language', 'original');
+console.log(dataAsKey);
 
 /*
-  ["fr", "ln", "kg", "sw", "lu", "es", "eu", "ca", "gl", "oc"]
+[
+  {
+    "label": "ca_AD",
+    "value": "Andorra"
+  },
+  {
+    "label": "ar_AE",
+    "value": "دولة الإمارات العربية المتحدة"
+  },
+  {
+    "label": "ps_AF",
+    "value": "افغانستان (ps_AF)"
+  },
+  {
+    "label": "uz_AF",
+    "value": "افغانستان (uz_AF)"
+  },
+  {
+    "label": "tk_AF",
+    "value": "افغانستان (tk_AF)"
+  },
+(...)
 */
 ```
+
 ```javascript
-const languageCodesByISO = getLanguagesByIso(['US', 'IT', 'ES'], 'language-code');
-console.log(languageCodesByISO);
+const data = getKeyValue( 'locale', 'flag', "the language locale", "flag" );
+console.log(data);
 
 /*
-  ["en-US","it-IT","es-ES","eu-ES","ca-ES","gl-ES","oc-ES"]
+[
+  {
+    "the language locale": "ca_AD",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/1/19/Flag_of_Andorra.svg"
+  },
+  {
+    "the language locale": "ar_AE",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Flag_of_the_United_Arab_Emirates.svg"
+  },
+  {
+    "the language locale": "ps_AF",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_the_Taliban.svg (ps_AF)"
+  },
+(...)
 */
 ```
+
+## `getCountriesByLanguage`
+
+Returns all the countries of the specified languages
+
+**Args**: `{ "languages" : [arrayOfLanguages] }`
+
+```javascript
+const dataAsKey = getCountriesByLanguage(['it', 'es']);
+console.log(dataAsKey);
+/*
+{
+  "AR": {
+    "languages": [
+      "es",
+      "gn"
+    ],
+    "name": "Argentina",
+    "original": "Argentina",
+    "iso3": "ARG"
+  },
+  (...)
+  "CH": {
+    "languages": [
+      "de",
+      "fr",
+      "it"
+    ],
+    "name": "Switzerland",
+    "original": "Schweiz",
+    "iso3": "CHE"
+  },
+(...)
+*/
+```
+
 
 ## A brief recap
 
