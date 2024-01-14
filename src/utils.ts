@@ -1,19 +1,17 @@
 import {
-    CountryDataExtended,
     CountryExtraFields,
     CountryFields,
     CountryGeoFields,
     IsoCodeFormat,
     LanguageFields,
 } from './types'
-import { validateISO } from './validation'
 
 export function isExtraField(fields: string[]): fields is CountryExtraFields[] {
     return (
         fields.includes('tld') ||
         fields.includes('dial') ||
-        fields.includes('currency_code') ||
-        fields.includes('currency')
+        fields.includes('currency') ||
+        fields.includes('flag')
     )
 }
 
@@ -38,19 +36,6 @@ export function isLanguageFormat(value: string): value is LanguageFields {
     return value === 'iso3' || value === 'name' || value === 'original'
 }
 
-export function findMatchingFields(
-    countryData: Partial<CountryDataExtended>,
-    fields: string[] | string
-): Partial<keyof CountryDataExtended>[] {
-    const fieldsCollected: Partial<keyof CountryDataExtended>[] = []
-    for (const field of fields) {
-        if (field in countryData) {
-            fieldsCollected.push(field as keyof CountryDataExtended)
-        }
-    }
-    return fieldsCollected
-}
-
 /**
  * Returns a separator based on the given type.
  *
@@ -63,49 +48,6 @@ export function getSeparator(type?: string | IsoCodeFormat): string {
         return type === 'locale' ? '_' : '-'
     }
     return type ?? '-'
-}
-
-export function isCountryOrLanguage(input: string): 'country' | 'language' | false {
-    if (input.length <= 3) {
-        if (input === input.toUpperCase()) {
-            return 'country'
-        } else if (input === input.toLowerCase()) {
-            return 'language'
-        }
-    }
-    return false
-}
-
-/**
- * Get country data by a given a locale formatIso (e.g. "en_US") or a language code (e.g. "en-US").
- *
- * @param {string} isoCode - A language code in the form of "Locale_Format"
- * @return {Country | false} Returns CountryData if a match is found, null otherwise
- */
-export function parseIsoCodes(
-    isoCode: string
-):
-    | { language: string | undefined; separator: string | undefined; country: string | undefined }
-    | false {
-    const codeLength = isoCode.length
-    if (codeLength === 2 || codeLength === 3) {
-        if (isoCode.toUpperCase() === isoCode) {
-            return {
-                language: undefined,
-                separator: undefined,
-                country: validateISO(isoCode as string, 'country') ? isoCode : undefined,
-            }
-        } else if (isoCode.toLowerCase() === isoCode) {
-            return {
-                language: validateISO(isoCode as string, 'language') ? isoCode : undefined,
-                separator: undefined,
-                country: undefined,
-            }
-        }
-    } else if (codeLength === 5) {
-        return parseIso5Code(isoCode)
-    }
-    return false
 }
 
 export function parseIso5Code(isoCode: string) {
