@@ -76,6 +76,68 @@ describe('ISO', () => {
         expect(result).toEqual(expectedOriginal)
     })
 
+    it('should return the language data for the provided ISO code', () => {
+        const isoCode = 'it'
+        const result = getIso(isoCode, 'language')
+        const expectedOriginal = { ...langIso[isoCode], iso2: isoCode }
+
+        expect(result).toEqual(expectedOriginal)
+    })
+
+    it('should return all the language data for the provided ISO code', () => {
+        const isoCode = 'it'
+        const result = getIso(isoCode, 'language', 'all')
+        const expectedOriginal = { ...langIso[isoCode], iso2: isoCode }
+
+        expect(result).toEqual(expectedOriginal)
+    })
+
+    it('should return a field for the provided ISO2 code', () => {
+        const isoCode = 'it'
+        const result = getIso(isoCode, 'language', 'name')
+        const expectedOriginal = langIso[isoCode].name
+
+        expect(result).toEqual(expectedOriginal)
+    })
+
+    it('should return a field for the provided original name', () => {
+        const isoCode = 'Italia'
+        const result = getIso(isoCode, 'country', 'name')
+        const expectedOriginal = countriesIso['IT'].name
+
+        expect(result).toEqual(expectedOriginal)
+    })
+
+    it('should return a field for the provided language ISO3 code', () => {
+        const isoCode = 'ita'
+        const result = getIso(isoCode, 'language', 'iso2')
+        const expectedOriginal = 'it'
+
+        expect(result).toEqual(expectedOriginal)
+    })
+
+    it('should return a field for the provided country ISO3 code', () => {
+        const isoCode = 'ITA'
+        const result = getIso(isoCode, 'country', 'iso2')
+        const expectedOriginal = 'IT'
+
+        expect(result).toEqual(expectedOriginal)
+    })
+
+    it('should return the array of fields for the provided ISO code and type "extra fields" and "geo fields"', () => {
+        const isoCode = 'IT'
+        const result = getIso(isoCode, 'country', ['capital', 'currency'])
+        const expectedOriginal = {
+            capital: 'Rome',
+            currency: {
+                symbol: '€',
+                name: 'Euro',
+            },
+        }
+
+        expect(result).toMatchObject(expectedOriginal)
+    })
+
     it('should return ISO data for the provided ISO code and no type', () => {
         const isoCode = 'ca'
         const result = getIso(isoCode)

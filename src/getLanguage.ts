@@ -11,7 +11,7 @@ import { langIso } from './data/lang-iso'
  */
 export function getLanguage(
     key: string,
-    fields?: string | string[] | LanguageDataFields | LanguageData
+    fields?: string | string[] | LanguageDataFields[] | LanguageData[]
 ): LanguageData | string | string[] | false {
     let language: Language | false = false
     let isoCode: ISOLangCode | false = false
@@ -41,16 +41,21 @@ export function getLanguage(
             } else if (fields === 'all') {
                 fields = ['iso2', 'name', 'original', 'iso3']
             } else if (typeof fields === 'string') {
-                fields = [fields]
+                fields = [fields as LanguageDataFields]
             }
 
             // if the fields are not an iso, return the fields
-            const collected = [] as Partial<LanguageData>
+            const collected: Partial<LanguageData> = {}
             if (Object.keys(fields).length === 1) {
                 return language[Object.values(fields)[0] as LanguageFields]
             } else {
-                for (const field in fields) {
-                    collected[field as LanguageFields] = language[field as LanguageFields]
+                for (const field of fields) {
+                    const key = field
+                    if (key === 'iso2') {
+                        collected['iso2'] = isoCode as ISOLangCode
+                    } else {
+                        collected[key as LanguageFields] = language[key as LanguageFields]
+                    }
                 }
             }
 

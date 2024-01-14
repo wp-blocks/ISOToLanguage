@@ -4,13 +4,13 @@ import { CountryDataFields } from '../src/types'
 
 describe('getKeyValue', () => {
     test.each([
-        ['iso2', 'name', undefined, undefined, [{ value: 'AD', label: 'Andorra' } /* ... */]],
+        ['iso2', 'name', undefined, undefined, [{ value: 'Andorra', label: 'AD' }]],
         [
             'original',
             'language',
             undefined,
             undefined,
-            [{ value: 'Nederland-nl', label: 'nl' } /* ... */],
+            [{ value: 'AND', label: 'Andorra-AND' } /* ... */],
         ],
     ])(
         'should return the expected array for key "%s" and value "%s"',

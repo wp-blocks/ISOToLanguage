@@ -42,8 +42,8 @@ export function getKeyValue(
             return unpackedKeyValues?.flatMap(
                 (k: string) =>
                     unpackedFieldValues?.map((f: string) => ({
-                        [valueKey]: unpackedFieldValues.length > 1 ? `${k}-${f}` : k,
-                        [labelKey]: unpackedKeyValues.length > 1 ? `${f} (${k})` : f,
+                        [labelKey]: unpackedFieldValues.length > 1 ? `${k}-${f}` : k,
+                        [valueKey]: unpackedKeyValues.length > 1 ? `${f} (${k})` : f,
                     }))
             )
         }

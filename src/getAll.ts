@@ -126,6 +126,7 @@ export function getAll(
                                 }
                                 if (newTermList[iso3 as ISO3LangCode].hierarchy) {
                                     const newHierarchy: string[] = []
+                                    // for each language in the hierarchy add the name of the language
                                     newTermList[iso3 as ISO3LangCode].hierarchy?.forEach((iso) => {
                                         if (
                                             typeof LangIso3[iso as ISO3LangCode]?.name === 'object'
@@ -181,13 +182,9 @@ export function getAll(
                         isGeoField([field]) ||
                         isExtraField([field])
                     ) {
-                        if (field === 'languages')
-                            return Object.values(termList)
-                                .flat()
-                                .sort((a, b) => (a as string).localeCompare(b as string))
-                        return Object.values(termList).sort((a, b) =>
-                            (a as string).localeCompare(b as string)
-                        )
+                        return Object.values(termList)
+                            .flat()
+                            .sort((a, b) => (a as string).localeCompare(b as string))
                     }
                     // otherwise, return an object with as a key the iso code
                     return termList

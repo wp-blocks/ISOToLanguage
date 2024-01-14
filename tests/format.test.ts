@@ -1,5 +1,5 @@
 import { describe, expect, test } from '@jest/globals'
-import { formatIso } from '../src/formatIso'
+import { formatIso } from '../src/'
 
 describe('format', () => {
     it('should formatIso the language and country into a single string with default options', () => {

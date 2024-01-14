@@ -3,6 +3,7 @@ import {
     CountryData,
     CountryDataExtended,
     CountryDataFields,
+    GenericCountryData,
     ISOCountryCode,
     ISOLangCode,
     LanguageData,
@@ -14,6 +15,8 @@ import { countriesExtra } from './data/countries-extra'
 import { countriesGeo } from './data/countries-geo'
 import { formatIso } from './formatIso'
 import { getIso } from './getIso'
+
+const wikiMediaUrl = 'https://upload.wikimedia.org/wikipedia/commons/'
 
 /**
  * This function retrieves country data by its name.
@@ -56,7 +59,7 @@ export function getCountry(
             }
 
             // Start to collect the country data
-            let countryData: Partial<CountryDataExtended> = {}
+            let countryData: GenericCountryData = {}
 
             if (fields.includes('all')) {
                 fields = [
@@ -69,14 +72,36 @@ export function getCountry(
                 ]
             }
 
-            if (fields.includes('country-geo') || isExtraField(fields)) {
+            if (fields.includes('country-geo')) {
                 // merge the country geo data
                 countryData = { ...countryData, ...countriesGeo[countryIso] }
+            } else if (isGeoField(fields)) {
+                // merge the country geo data
+                fields.forEach((field) => {
+                    // add the geo field to the country data if it exists
+                    if (field in countriesGeo[countryIso as ISOCountryCode]) {
+                        countryData[field] = countriesGeo[countryIso as ISOCountryCode][field]
+                    }
+                })
             }
 
-            if (fields.includes('country-extra') || isGeoField(fields)) {
+            if (fields.includes('country-extra')) {
                 // merge the country extra data
                 countryData = { ...countryData, ...countriesExtra[countryIso] }
+                countryData.flag = wikiMediaUrl + countryData.flag
+            } else if (isExtraField(fields)) {
+                // merge the country extra data
+                fields.forEach((field) => {
+                    // add the extra field to the country data if it exists
+                    if (field in countriesExtra[countryIso as ISOCountryCode]) {
+                        countryData[field] = countriesExtra[countryIso as ISOCountryCode][
+                            field
+                        ] as string
+                    }
+                })
+                if (fields.includes('flag')) {
+                    countryData.flag = wikiMediaUrl + countryData.flag
+                }
             }
 
             if (fields.includes('locale')) {
@@ -143,13 +168,13 @@ export function getCountry(
                     return newCountryData
                 }
             } else {
-                // just return the country data
+                // Return the country data
                 newCountryData = countryData
             }
 
             if (fields.length === 1 && fields[0] in newCountryData) {
                 // Return the new country data
-                return Object.values(countryData)[1]
+                return Object.values(countryData)[1] as CountryData
             } else if (Object.keys(newCountryData).length === fields.length) {
                 return newCountryData
             }

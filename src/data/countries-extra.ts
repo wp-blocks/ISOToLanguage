@@ -10,6 +10,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: '1/19/Flag_of_Andorra.svg',
     },
     AE: {
         tld: '.ae',
@@ -20,6 +21,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'د.إ.‏',
             name: 'United Arab Emirates Dirham',
         },
+        flag: 'c/cb/Flag_of_the_United_Arab_Emirates.svg',
     },
     AF: {
         tld: '.af',
@@ -30,6 +32,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '؋',
             name: 'Afghan Afghani',
         },
+        flag: '5/5c/Flag_of_the_Taliban.svg',
     },
     AG: {
         tld: '.ag',
@@ -38,6 +41,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'XCD',
             name: 'East Caribbean Dollar',
         },
+        flag: '8/89/Flag_of_Antigua_and_Barbuda.svg',
     },
     AI: {
         tld: '.ai',
@@ -46,6 +50,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'XCD',
             name: 'East Caribbean Dollar',
         },
+        flag: 'b/b4/Flag_of_Anguilla.svg',
     },
     AL: {
         tld: '.al',
@@ -56,6 +61,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'Lek',
             name: 'Albanian Lek',
         },
+        flag: '3/36/Flag_of_Albania.svg',
     },
     AM: {
         tld: '.am',
@@ -66,6 +72,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'դր.',
             name: 'Armenian Dram',
         },
+        flag: '2/2f/Flag_of_Armenia.svg',
     },
     AO: {
         tld: '.ao',
@@ -74,6 +81,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'AOA',
             name: 'Kwanza',
         },
+        flag: '9/9d/Flag_of_Angola.svg',
     },
     AQ: {
         tld: '.aq',
@@ -81,6 +89,7 @@ export const countriesExtra: ISOCountryExtra = {
         currency: {
             name: 'No universal currency',
         },
+        flag: 'f/f8/True_South_Antarctic_Flag.svg',
     },
     AR: {
         tld: '.ar',
@@ -91,6 +100,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'Argentine Peso',
         },
+        flag: '1/1a/Flag_of_Argentina.svg',
     },
     AS: {
         tld: '.as',
@@ -101,6 +111,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'US Dollar',
         },
+        flag: '8/87/Flag_of_American_Samoa.svg',
     },
     AT: {
         tld: '.at',
@@ -111,6 +122,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: '4/41/Flag_of_Austria.svg',
     },
     AU: {
         tld: '.au',
@@ -121,6 +133,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'Australian Dollar',
         },
+        flag: '8/88/Flag_of_Australia_(converted).svg',
     },
     AW: {
         tld: '.aw',
@@ -129,6 +142,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'AWG',
             name: 'Aruban Florin',
         },
+        flag: 'f/f6/Flag_of_Aruba.svg',
     },
     AX: {
         tld: '.ax',
@@ -139,6 +153,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: '5/52/Flag_of_%C3%85land.svg',
     },
     AZ: {
         tld: '.az',
@@ -149,6 +164,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'ман.',
             name: 'Azerbaijani Manat',
         },
+        flag: 'd/dd/Flag_of_Azerbaijan.svg',
     },
     BA: {
         tld: '.ba',
@@ -159,6 +175,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'KM',
             name: 'Bosnia-Herzegovina Convertible Mark',
         },
+        flag: 'b/bf/Flag_of_Bosnia_and_Herzegovina.svg',
     },
     BB: {
         tld: '.bb',
@@ -167,6 +184,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'BBD',
             name: 'Barbados Dollar',
         },
+        flag: 'e/ef/Flag_of_Barbados.svg',
     },
     BD: {
         tld: '.bd',
@@ -177,6 +195,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '৳',
             name: 'Bangladeshi Taka',
         },
+        flag: 'f/f9/Flag_of_Bangladesh.svg',
     },
     BE: {
         tld: '.be',
@@ -187,6 +206,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: '6/65/Flag_of_Belgium.svg',
     },
     BF: {
         tld: '.bf',
@@ -197,6 +217,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'CFA',
             name: 'CFA Franc BCEAO',
         },
+        flag: '3/31/Flag_of_Burkina_Faso.svg',
     },
     BG: {
         tld: '.bg',
@@ -207,6 +228,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'лв.',
             name: 'Bulgarian Lev',
         },
+        flag: '9/9a/Flag_of_Bulgaria.svg',
     },
     BH: {
         tld: '.bh',
@@ -217,6 +239,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'د.ب.‏',
             name: 'Bahraini Dinar',
         },
+        flag: '2/2c/Flag_of_Bahrain.svg',
     },
     BI: {
         tld: '.bi',
@@ -227,6 +250,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'FBu',
             name: 'Burundian Franc',
         },
+        flag: '5/50/Flag_of_Burundi.svg',
     },
     BJ: {
         tld: '.bj',
@@ -237,6 +261,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'CFA',
             name: 'CFA Franc BCEAO',
         },
+        flag: '0/0a/Flag_of_Benin.svg',
     },
     BL: {
         tld: '.gp',
@@ -247,6 +272,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: '0/03/Saint-Barthelémy_Icône.svg',
     },
     BM: {
         tld: '.bm',
@@ -255,6 +281,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'BMD',
             name: 'Bermudian Dollar',
         },
+        flag: 'b/bf/Flag_of_Bermuda.svg',
     },
     BN: {
         tld: '.bn',
@@ -265,6 +292,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'Brunei Dollar',
         },
+        flag: '9/9c/Flag_of_Brunei.svg',
     },
     BO: {
         tld: '.bo',
@@ -275,6 +303,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'Bs',
             name: 'Bolivian Boliviano',
         },
+        flag: '5/5b/Bolivia_Flag.svg',
     },
     BQ: {
         tld: '.bq',
@@ -285,6 +314,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'US Dollar',
         },
+        flag: '2/20/Flag_of_the_Netherlands.svg',
     },
     BR: {
         tld: '.br',
@@ -295,6 +325,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'R$',
             name: 'Brazilian Real',
         },
+        flag: '0/05/Flag_of_Brazil.svg',
     },
     BS: {
         tld: '.bs',
@@ -303,6 +334,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'BSD',
             name: 'Bahamian Dollar',
         },
+        flag: '9/93/Flag_of_the_Bahamas.svg',
     },
     BT: {
         tld: '.bt',
@@ -311,6 +343,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'INR,BTN',
             name: 'Indian Rupee,Ngultrum',
         },
+        flag: '9/91/Flag_of_Bhutan.svg',
     },
     BV: {
         tld: '.bv',
@@ -321,6 +354,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'kr',
             name: 'Norwegian Krone',
         },
+        flag: 'd/d9/Flag_of_Norway.svg',
     },
     BW: {
         tld: '.bw',
@@ -331,6 +365,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'P',
             name: 'Botswanan Pula',
         },
+        flag: 'f/fa/Flag_of_Botswana.svg',
     },
     BY: {
         tld: '.by',
@@ -341,6 +376,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'руб.',
             name: 'Belarusian Ruble',
         },
+        flag: '8/85/Flag_of_Belarus.svg',
     },
     BZ: {
         tld: '.bz',
@@ -351,6 +387,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'Belize Dollar',
         },
+        flag: 'e/e7/Flag_of_Belize.svg',
     },
     CA: {
         tld: '.ca',
@@ -361,6 +398,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'Canadian Dollar',
         },
+        flag: 'd/d9/Flag_of_Canada_(Pantone).svg',
     },
     CC: {
         tld: '.cc',
@@ -371,6 +409,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'Australian Dollar',
         },
+        flag: '7/74/Flag_of_the_Cocos_(Keeling)_Islands.svg',
     },
     CD: {
         tld: '.cd',
@@ -381,6 +420,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'FrCD',
             name: 'Congolese Franc',
         },
+        flag: '1/11/Flag_of_the_Democratic_Republic_of_the_Congo_(3-2).svg',
     },
     CF: {
         tld: '.cf',
@@ -391,6 +431,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'FCFA',
             name: 'CFA Franc BEAC',
         },
+        flag: '6/6f/Flag_of_the_Central_African_Republic.svg',
     },
     CG: {
         tld: '.cg',
@@ -401,6 +442,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'FCFA',
             name: 'CFA Franc BEAC',
         },
+        flag: '9/92/Flag_of_the_Republic_of_the_Congo.svg',
     },
     CH: {
         tld: '.ch',
@@ -411,6 +453,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'CHF',
             name: 'Swiss Franc',
         },
+        flag: 'f/f3/Flag_of_Switzerland.svg',
     },
     CI: {
         tld: '.ci',
@@ -421,6 +464,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'CFA',
             name: 'CFA Franc BCEAO',
         },
+        flag: 'f/fe/Flag_of_Côte_d%27Ivoire.svg',
     },
     CK: {
         tld: '.ck',
@@ -431,6 +475,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'New Zealand Dollar',
         },
+        flag: '3/35/Flag_of_the_Cook_Islands.svg',
     },
     CL: {
         tld: '.cl',
@@ -441,6 +486,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'Chilean Peso',
         },
+        flag: '7/78/Flag_of_Chile.svg',
     },
     CM: {
         tld: '.cm',
@@ -451,6 +497,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'FCFA',
             name: 'CFA Franc BEAC',
         },
+        flag: '4/4f/Flag_of_Cameroon.svg',
     },
     CN: {
         tld: '.cn',
@@ -461,6 +508,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'CN¥',
             name: 'Chinese Yuan',
         },
+        flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
     },
     CO: {
         tld: '.co',
@@ -471,6 +519,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'Colombian Peso',
         },
+        flag: '2/21/Flag_of_Colombia.svg',
     },
     CR: {
         tld: '.cr',
@@ -481,6 +530,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '₡',
             name: 'Costa Rican Colón',
         },
+        flag: 'b/bc/Flag_of_Costa_Rica_(state).svg',
     },
     CU: {
         tld: '.cu',
@@ -489,6 +539,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'CUP,CUC',
             name: 'Cuban Peso,Peso Convertible',
         },
+        flag: 'b/bd/Flag_of_Cuba.svg',
     },
     CV: {
         tld: '.cv',
@@ -499,6 +550,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'CV$',
             name: 'Cape Verdean Escudo',
         },
+        flag: '3/38/Flag_of_Cape_Verde.svg',
     },
     CW: {
         tld: '.cw',
@@ -507,6 +559,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'ANG',
             name: 'Netherlands Antillean Guilder',
         },
+        flag: 'b/b1/Flag_of_Curaçao.svg',
     },
     CX: {
         tld: '.cx',
@@ -517,6 +570,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'Australian Dollar',
         },
+        flag: '6/67/Flag_of_Christmas_Island.svg',
     },
     CY: {
         tld: '.cy',
@@ -527,6 +581,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: 'd/d4/Flag_of_Cyprus.svg',
     },
     CZ: {
         tld: '.cz',
@@ -537,6 +592,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'Kč',
             name: 'Czech Republic Koruna',
         },
+        flag: 'c/cb/Flag_of_the_Czech_Republic.svg',
     },
     DE: {
         tld: '.de',
@@ -547,6 +603,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: 'b/ba/Flag_of_Germany.svg',
     },
     DJ: {
         tld: '.dj',
@@ -557,6 +614,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'Fdj',
             name: 'Djiboutian Franc',
         },
+        flag: '3/34/Flag_of_Djibouti.svg',
     },
     DK: {
         tld: '.dk',
@@ -567,6 +625,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'kr',
             name: 'Danish Krone',
         },
+        flag: '9/9c/Flag_of_Denmark.svg',
     },
     DM: {
         tld: '.dm',
@@ -575,6 +634,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'XCD',
             name: 'East Caribbean Dollar',
         },
+        flag: 'c/c4/Flag_of_Dominica.svg',
     },
     DO: {
         tld: '.do',
@@ -585,6 +645,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'RD$',
             name: 'Dominican Peso',
         },
+        flag: '9/9f/Flag_of_the_Dominican_Republic.svg',
     },
     DZ: {
         tld: '.dz',
@@ -595,6 +656,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'د.ج.‏',
             name: 'Algerian Dinar',
         },
+        flag: '7/77/Flag_of_Algeria.svg',
     },
     EC: {
         tld: '.ec',
@@ -605,6 +667,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'US Dollar',
         },
+        flag: 'e/e8/Flag_of_Ecuador.svg',
     },
     EE: {
         tld: '.ee',
@@ -615,6 +678,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: '8/8f/Flag_of_Estonia.svg',
     },
     EG: {
         tld: '.eg',
@@ -625,6 +689,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'ج.م.‏',
             name: 'Egyptian Pound',
         },
+        flag: 'f/fe/Flag_of_Egypt.svg',
     },
     EH: {
         tld: '.eh',
@@ -635,6 +700,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'د.م.‏',
             name: 'Moroccan Dirham',
         },
+        flag: '2/26/Flag_of_the_Sahrawi_Arab_Democratic_Republic.svg',
     },
     ER: {
         tld: '.er',
@@ -645,6 +711,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'Nfk',
             name: 'Eritrean Nakfa',
         },
+        flag: '2/29/Flag_of_Eritrea.svg',
     },
     ES: {
         tld: '.es',
@@ -655,6 +722,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: '9/9a/Flag_of_Spain.svg',
     },
     ET: {
         tld: '.et',
@@ -665,6 +733,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'Br',
             name: 'Ethiopian Birr',
         },
+        flag: '7/71/Flag_of_Ethiopia.svg',
     },
     FI: {
         tld: '.fi',
@@ -675,6 +744,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: 'b/bc/Flag_of_Finland.svg',
     },
     FJ: {
         tld: '.fj',
@@ -683,10 +753,12 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'FJD',
             name: 'Fiji Dollar',
         },
+        flag: 'b/ba/Flag_of_Fiji.svg',
     },
     FK: {
         tld: '.fk',
         dial: '500',
+        flag: '8/83/Flag_of_the_Falkland_Islands.svg',
     },
     FM: {
         tld: '.fm',
@@ -697,6 +769,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'US Dollar',
         },
+        flag: 'e/e4/Flag_of_the_Federated_States_of_Micronesia.svg',
     },
     FO: {
         tld: '.fo',
@@ -707,6 +780,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'kr',
             name: 'Danish Krone',
         },
+        flag: '3/3c/Flag_of_the_Faroe_Islands.svg',
     },
     FR: {
         tld: '.fr',
@@ -717,6 +791,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: 'c/c3/Flag_of_France.svg',
     },
     GA: {
         tld: '.ga',
@@ -727,6 +802,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'FCFA',
             name: 'CFA Franc BEAC',
         },
+        flag: '0/04/Flag_of_Gabon.svg',
     },
     GB: {
         tld: '.uk',
@@ -737,6 +813,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '£',
             name: 'British Pound Sterling',
         },
+        flag: '8/83/Flag_of_the_United_Kingdom_%283-5%29.svg',
     },
     GD: {
         tld: '.gd',
@@ -745,6 +822,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'XCD',
             name: 'East Caribbean Dollar',
         },
+        flag: 'b/bc/Flag_of_Grenada.svg',
     },
     GE: {
         tld: '.ge',
@@ -755,6 +833,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'GEL',
             name: 'Georgian Lari',
         },
+        flag: '0/0f/Flag_of_Georgia.svg',
     },
     GF: {
         tld: '.gf',
@@ -765,6 +844,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: 'e/ed/Flag_of_France_%28Pantone%29.svg',
     },
     GG: {
         tld: '.gg',
@@ -775,6 +855,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '£',
             name: 'British Pound Sterling',
         },
+        flag: 'f/fa/Flag_of_Guernsey.svg',
     },
     GH: {
         tld: '.gh',
@@ -785,6 +866,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'GH₵',
             name: 'Ghanaian Cedi',
         },
+        flag: '1/19/Flag_of_Ghana.svg',
     },
     GI: {
         tld: '.gi',
@@ -793,6 +875,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'GIP',
             name: 'Gibraltar Pound',
         },
+        flag: '0/02/Flag_of_Gibraltar.svg',
     },
     GL: {
         tld: '.gl',
@@ -803,6 +886,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'kr',
             name: 'Danish Krone',
         },
+        flag: '0/09/Flag_of_Greenland.svg',
     },
     GM: {
         tld: '.gm',
@@ -811,6 +895,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'GMD',
             name: 'Dalasi',
         },
+        flag: '7/77/Flag_of_The_Gambia.svg',
     },
     GN: {
         tld: '.gn',
@@ -821,6 +906,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'FG',
             name: 'Guinean Franc',
         },
+        flag: 'e/ed/Flag_of_Guinea.svg',
     },
     GP: {
         tld: '.gp',
@@ -831,6 +917,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: '9/9f/Flag_of_France_%287x10%29.svg',
     },
     GQ: {
         tld: '.gq',
@@ -841,6 +928,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'FCFA',
             name: 'CFA Franc BEAC',
         },
+        flag: '3/31/Flag_of_Equatorial_Guinea.svg',
     },
     GR: {
         tld: '.gr',
@@ -851,6 +939,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: '5/5c/Flag_of_Greece.svg',
     },
     GS: {
         tld: '.gs',
@@ -858,6 +947,7 @@ export const countriesExtra: ISOCountryExtra = {
         currency: {
             name: 'No universal currency',
         },
+        flag: 'e/ed/Flag_of_South_Georgia_and_the_South_Sandwich_Islands.svg',
     },
     GT: {
         tld: '.gt',
@@ -868,6 +958,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'Q',
             name: 'Guatemalan Quetzal',
         },
+        flag: 'e/ec/Flag_of_Guatemala.svg',
     },
     GU: {
         tld: '.gu',
@@ -878,6 +969,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'US Dollar',
         },
+        flag: '0/07/Flag_of_Guam.svg',
     },
     GW: {
         tld: '.gw',
@@ -888,6 +980,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'CFA',
             name: 'CFA Franc BCEAO',
         },
+        flag: '0/01/Flag_of_Guinea-Bissau.svg',
     },
     GY: {
         tld: '.gy',
@@ -896,6 +989,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'GYD',
             name: 'Guyana Dollar',
         },
+        flag: '9/99/Flag_of_Guyana.svg',
     },
     HK: {
         tld: '.hk',
@@ -906,6 +1000,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'Hong Kong Dollar',
         },
+        flag: '5/5b/Flag_of_Hong_Kong.svg',
     },
     HM: {
         tld: '.hm',
@@ -916,6 +1011,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'Australian Dollar',
         },
+        flag: '8/88/Flag_of_Australia_(converted).svg',
     },
     HN: {
         tld: '.hn',
@@ -926,6 +1022,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'L',
             name: 'Honduran Lempira',
         },
+        flag: '8/82/Flag_of_Honduras.svg',
     },
     HR: {
         tld: '.hr',
@@ -936,6 +1033,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'kn',
             name: 'Croatian Kuna',
         },
+        flag: '1/1b/Flag_of_Croatia.svg',
     },
     HT: {
         tld: '.ht',
@@ -944,6 +1042,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'HTG,USD',
             name: 'Gourde,US Dollar',
         },
+        flag: '5/56/Flag_of_Haiti.svg',
     },
     HU: {
         tld: '.hu',
@@ -954,6 +1053,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'Ft',
             name: 'Hungarian Forint',
         },
+        flag: 'c/c1/Flag_of_Hungary.svg',
     },
     ID: {
         tld: '.id',
@@ -964,6 +1064,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'Rp',
             name: 'Indonesian Rupiah',
         },
+        flag: '9/9f/Flag_of_Indonesia.svg',
     },
     IE: {
         tld: '.ie',
@@ -974,6 +1075,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: 'c/c0/Republic_of_Ireland_Flag.svg',
     },
     IL: {
         tld: '.il',
@@ -984,6 +1086,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '₪',
             name: 'Israeli New Sheqel',
         },
+        flag: 'd/d4/Flag_of_Israel.svg',
     },
     IM: {
         tld: '.im',
@@ -994,6 +1097,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '£',
             name: 'British Pound Sterling',
         },
+        flag: 'b/bc/Flag_of_the_Isle_of_Man.svg',
     },
     IN: {
         tld: '.in',
@@ -1004,6 +1108,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'টকা',
             name: 'Indian Rupee',
         },
+        flag: '4/41/Flag_of_India.svg',
     },
     IO: {
         tld: '.io',
@@ -1014,6 +1119,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'US Dollar',
         },
+        flag: '6/65/Flag_of_the_Commissioner_of_the_British_Indian_Ocean_Territory.svg',
     },
     IQ: {
         tld: '.iq',
@@ -1024,6 +1130,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'د.ع.‏',
             name: 'Iraqi Dinar',
         },
+        flag: 'f/f6/Flag_of_Iraq.svg',
     },
     IR: {
         tld: '.ir',
@@ -1034,6 +1141,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '﷼',
             name: 'Iranian Rial',
         },
+        flag: 'c/ca/Flag_of_Iran.svg',
     },
     IS: {
         tld: '.is',
@@ -1044,6 +1152,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'kr',
             name: 'Icelandic Króna',
         },
+        flag: 'c/ce/Flag_of_Iceland.svg',
     },
     IT: {
         tld: '.it',
@@ -1054,6 +1163,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: '0/03/Flag_of_Italy.svg',
     },
     JE: {
         tld: '.je',
@@ -1064,6 +1174,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '£',
             name: 'British Pound Sterling',
         },
+        flag: '1/1c/Flag_of_Jersey.svg',
     },
     JM: {
         tld: '.jm',
@@ -1074,6 +1185,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'Jamaican Dollar',
         },
+        flag: '0/0a/Flag_of_Jamaica.svg',
     },
     JO: {
         tld: '.jo',
@@ -1084,6 +1196,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'د.أ.‏',
             name: 'Jordanian Dinar',
         },
+        flag: 'c/c0/Flag_of_Jordan.svg',
     },
     JP: {
         tld: '.jp',
@@ -1094,6 +1207,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '￥',
             name: 'Japanese Yen',
         },
+        flag: 'b/bc/Flag_of_Japan%28bordered%29.svg',
     },
     KE: {
         tld: '.ke',
@@ -1104,6 +1218,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'Ksh',
             name: 'Kenyan Shilling',
         },
+        flag: '4/49/Flag_of_Kenya.svg',
     },
     KG: {
         tld: '.kg',
@@ -1112,6 +1227,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'KGS',
             name: 'Som',
         },
+        flag: 'c/c7/Flag_of_Kyrgyzstan.svg',
     },
     KH: {
         tld: '.kh',
@@ -1122,6 +1238,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '៛',
             name: 'Cambodian Riel',
         },
+        flag: '8/83/Flag_of_Cambodia.svg',
     },
     KI: {
         tld: '.ki',
@@ -1132,6 +1249,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'Australian Dollar',
         },
+        flag: 'd/d3/Flag_of_Kiribati.svg',
     },
     KM: {
         tld: '.km',
@@ -1142,6 +1260,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'FC',
             name: 'Comorian Franc',
         },
+        flag: 'd/df/Flag_of_the_Comoros_(3-2).svg',
     },
     KN: {
         tld: '.kn',
@@ -1150,6 +1269,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'XCD',
             name: 'East Caribbean Dollar',
         },
+        flag: 'f/fe/Flag_of_Saint_Kitts_and_Nevis.svg',
     },
     KP: {
         tld: '.kp',
@@ -1158,6 +1278,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'KPW',
             name: 'North Korean Won',
         },
+        flag: '5/51/Flag_of_North_Korea.svg',
     },
     KR: {
         tld: '.kr',
@@ -1168,6 +1289,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '₩',
             name: 'South Korean Won',
         },
+        flag: '0/09/Flag_of_South_Korea.svg',
     },
     KW: {
         tld: '.kw',
@@ -1178,6 +1300,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'د.ك.‏',
             name: 'Kuwaiti Dinar',
         },
+        flag: 'a/aa/Flag_of_Kuwait.svg',
     },
     KY: {
         tld: '.ky',
@@ -1186,6 +1309,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'KYD',
             name: 'Cayman Islands Dollar',
         },
+        flag: '0/0f/Flag_of_the_Cayman_Islands.svg',
     },
     KZ: {
         tld: '.kz',
@@ -1196,6 +1320,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'тңг.',
             name: 'Kazakhstani Tenge',
         },
+        flag: 'd/d3/Flag_of_Kazakhstan.svg',
     },
     LA: {
         tld: '.la',
@@ -1204,6 +1329,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'LAK',
             name: 'Lao Kip',
         },
+        flag: '5/56/Flag_of_Laos.svg',
     },
     LB: {
         tld: '.lb',
@@ -1214,6 +1340,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'ل.ل.‏',
             name: 'Lebanese Pound',
         },
+        flag: '5/59/Flag_of_Lebanon.svg',
     },
     LC: {
         tld: '.lc',
@@ -1222,6 +1349,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'XCD',
             name: 'East Caribbean Dollar',
         },
+        flag: '9/9f/Flag_of_Saint_Lucia.svg',
     },
     LI: {
         tld: '.li',
@@ -1232,6 +1360,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'CHF',
             name: 'Swiss Franc',
         },
+        flag: '4/47/Flag_of_Liechtenstein.svg',
     },
     LK: {
         tld: '.lk',
@@ -1242,6 +1371,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'SL Re',
             name: 'Sri Lankan Rupee',
         },
+        flag: '1/11/Flag_of_Sri_Lanka.svg',
     },
     LR: {
         tld: '.lr',
@@ -1250,6 +1380,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'LRD',
             name: 'Liberian Dollar',
         },
+        flag: 'b/b8/Flag_of_Liberia.svg',
     },
     LS: {
         tld: '.ls',
@@ -1258,6 +1389,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'LSL,ZAR',
             name: 'Loti,Rand',
         },
+        flag: '4/4a/Flag_of_Lesotho.svg',
     },
     LT: {
         tld: '.lt',
@@ -1268,6 +1400,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: '1/11/Flag_of_Lithuania.svg',
     },
     LU: {
         tld: '.lu',
@@ -1278,6 +1411,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: 'd/da/Flag_of_Luxembourg.svg',
     },
     LV: {
         tld: '.lv',
@@ -1288,6 +1422,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: '8/84/Flag_of_Latvia.svg',
     },
     LY: {
         tld: '.ly',
@@ -1298,6 +1433,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'د.ل.‏',
             name: 'Libyan Dinar',
         },
+        flag: '0/05/Flag_of_Libya.svg',
     },
     MA: {
         tld: '.ma',
@@ -1308,6 +1444,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'د.م.‏',
             name: 'Moroccan Dirham',
         },
+        flag: '2/2c/Flag_of_Morocco.svg',
     },
     MC: {
         tld: '.mc',
@@ -1318,6 +1455,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: 'e/ea/Flag_of_Monaco.svg',
     },
     MD: {
         tld: '.md',
@@ -1328,6 +1466,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'MDL',
             name: 'Moldovan Leu',
         },
+        flag: '2/27/Flag_of_Moldova.svg',
     },
     ME: {
         tld: '.me',
@@ -1338,6 +1477,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: '6/64/Flag_of_Montenegro.svg',
     },
     MF: {
         tld: '.gp',
@@ -1348,6 +1488,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: 'd/dd/Flag_of_Saint-Martin_%28fictional%29.svg',
     },
     MG: {
         tld: '.mg',
@@ -1358,6 +1499,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'MGA',
             name: 'Malagasy Ariary',
         },
+        flag: 'b/bc/Flag_of_Madagascar.svg',
     },
     MH: {
         tld: '.mh',
@@ -1368,6 +1510,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'US Dollar',
         },
+        flag: '2/2e/Flag_of_the_Marshall_Islands.svg',
     },
     MK: {
         tld: '.mk',
@@ -1378,6 +1521,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'MKD',
             name: 'Macedonian Denar',
         },
+        flag: '7/79/Flag_of_North_Macedonia.svg',
     },
     ML: {
         tld: '.ml',
@@ -1388,6 +1532,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'CFA',
             name: 'CFA Franc BCEAO',
         },
+        flag: '9/92/Flag_of_Mali.svg',
     },
     MM: {
         tld: '.mm',
@@ -1398,6 +1543,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'K',
             name: 'Myanma Kyat',
         },
+        flag: '8/8c/Flag_of_Myanmar.svg',
     },
     MN: {
         tld: '.mn',
@@ -1406,6 +1552,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'MNT',
             name: 'Tugrik',
         },
+        flag: '4/4c/Flag_of_Mongolia.svg',
     },
     MO: {
         tld: '.mo',
@@ -1416,6 +1563,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'MOP$',
             name: 'Macanese Pataca',
         },
+        flag: '6/63/Flag_of_Macau.svg',
     },
     MP: {
         tld: '.mp',
@@ -1426,6 +1574,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'US Dollar',
         },
+        flag: 'e/e0/Flag_of_the_Northern_Mariana_Islands.svg',
     },
     MQ: {
         tld: '.mq',
@@ -1436,6 +1585,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: '2/21/Flag_of_the_Territorial_Collectivity_of_Martinique.svg',
     },
     MR: {
         tld: '.mr',
@@ -1444,6 +1594,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'MRU',
             name: 'Ouguiya',
         },
+        flag: '4/43/Flag_of_Mauritania.svg',
     },
     MS: {
         tld: '.ms',
@@ -1452,6 +1603,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'XCD',
             name: 'East Caribbean Dollar',
         },
+        flag: 'd/d0/Flag_of_Montserrat.svg',
     },
     MT: {
         tld: '.mt',
@@ -1462,6 +1614,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: '7/73/Flag_of_Malta.svg',
     },
     MU: {
         tld: '.mu',
@@ -1472,6 +1625,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'MURs',
             name: 'Mauritian Rupee',
         },
+        flag: '7/77/Flag_of_Mauritius.svg',
     },
     MV: {
         tld: '.mv',
@@ -1480,6 +1634,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'MVR',
             name: 'Rufiyaa',
         },
+        flag: '0/0f/Flag_of_Maldives.svg',
     },
     MW: {
         tld: '.mw',
@@ -1488,6 +1643,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'MWK',
             name: 'Malawi Kwacha',
         },
+        flag: 'd/d1/Flag_of_Malawi.svg',
     },
     MX: {
         tld: '.mx',
@@ -1498,6 +1654,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'Mexican Peso',
         },
+        flag: 'f/fc/Flag_of_Mexico.svg',
     },
     MY: {
         tld: '.my',
@@ -1508,6 +1665,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'RM',
             name: 'Malaysian Ringgit',
         },
+        flag: '6/66/Flag_of_Malaysia.svg',
     },
     MZ: {
         tld: '.mz',
@@ -1518,6 +1676,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'MTn',
             name: 'Mozambican Metical',
         },
+        flag: 'd/d0/Flag_of_Mozambique.svg',
     },
     NA: {
         tld: '.na',
@@ -1526,6 +1685,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'NAD,ZAR',
             name: 'Namibia Dollar,Rand',
         },
+        flag: '0/00/Flag_of_Namibia.svg',
     },
     NC: {
         tld: '.nc',
@@ -1534,6 +1694,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'XPF',
             name: 'CFP Franc',
         },
+        flag: '6/66/Flag_of_FLNKS.svg',
     },
     NE: {
         tld: '.ne',
@@ -1544,6 +1705,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'CFA',
             name: 'CFA Franc BCEAO',
         },
+        flag: 'f/f4/Flag_of_Niger.svg',
     },
     NF: {
         tld: '.nf',
@@ -1554,6 +1716,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'Australian Dollar',
         },
+        flag: '4/48/Flag_of_Norfolk_Island.svg',
     },
     NG: {
         tld: '.ng',
@@ -1564,6 +1727,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '₦',
             name: 'Nigerian Naira',
         },
+        flag: '7/79/Flag_of_Nigeria.svg',
     },
     NI: {
         tld: '.ni',
@@ -1574,6 +1738,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'C$',
             name: 'Nicaraguan Córdoba',
         },
+        flag: '1/19/Flag_of_Nicaragua.svg',
     },
     NL: {
         tld: '.nl',
@@ -1584,6 +1749,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: '2/20/Flag_of_the_Netherlands.svg',
     },
     NO: {
         tld: '.no',
@@ -1594,6 +1760,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'kr',
             name: 'Norwegian Krone',
         },
+        flag: 'd/d9/Flag_of_Norway.svg',
     },
     NP: {
         tld: '.np',
@@ -1604,6 +1771,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'नेरू',
             name: 'Nepalese Rupee',
         },
+        flag: '9/9b/Flag_of_Nepal.svg',
     },
     NR: {
         tld: '.nr',
@@ -1614,6 +1782,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'Australian Dollar',
         },
+        flag: '3/30/Flag_of_Nauru.svg',
     },
     NU: {
         tld: '.nu',
@@ -1624,6 +1793,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'New Zealand Dollar',
         },
+        flag: '0/01/Flag_of_Niue.svg',
     },
     NZ: {
         tld: '.nz',
@@ -1634,6 +1804,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'New Zealand Dollar',
         },
+        flag: '3/3e/Flag_of_New_Zealand.svg',
     },
     OM: {
         tld: '.om',
@@ -1644,6 +1815,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'ر.ع.‏',
             name: 'Omani Rial',
         },
+        flag: 'd/dd/Flag_of_Oman.svg',
     },
     PA: {
         tld: '.pa',
@@ -1652,6 +1824,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'PAB,USD',
             name: 'Balboa,US Dollar',
         },
+        flag: 'a/ab/Flag_of_Panama.svg',
     },
     PE: {
         tld: '.pe',
@@ -1662,6 +1835,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'S/.',
             name: 'Peruvian Nuevo Sol',
         },
+        flag: 'c/cf/Flag_of_Peru.svg',
     },
     PF: {
         tld: '.pf',
@@ -1670,6 +1844,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'XPF',
             name: 'CFP Franc',
         },
+        flag: 'd/db/Flag_of_French_Polynesia.svg',
     },
     PG: {
         tld: '.pg',
@@ -1678,6 +1853,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'PGK',
             name: 'Kina',
         },
+        flag: 'e/e3/Flag_of_Papua_New_Guinea.svg',
     },
     PH: {
         tld: '.ph',
@@ -1688,6 +1864,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '₱',
             name: 'Philippine Peso',
         },
+        flag: '9/99/Flag_of_the_Philippines.svg',
     },
     PK: {
         tld: '.pk',
@@ -1698,6 +1875,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '₨',
             name: 'Pakistani Rupee',
         },
+        flag: '3/32/Flag_of_Pakistan.svg',
     },
     PL: {
         tld: '.pl',
@@ -1708,6 +1886,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'zł',
             name: 'Polish Zloty',
         },
+        flag: '1/12/Flag_of_Poland.svg',
     },
     PM: {
         tld: '.pm',
@@ -1718,6 +1897,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: '7/74/Flag_of_Saint-Pierre_and_Miquelon.svg',
     },
     PN: {
         tld: '.pn',
@@ -1728,6 +1908,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'New Zealand Dollar',
         },
+        flag: '8/88/Flag_of_the_Pitcairn_Islands.svg',
     },
     PR: {
         tld: '.pr',
@@ -1738,6 +1919,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'US Dollar',
         },
+        flag: '2/28/Flag_of_Puerto_Rico.svg',
     },
     PS: {
         tld: '.ps',
@@ -1745,6 +1927,7 @@ export const countriesExtra: ISOCountryExtra = {
         currency: {
             name: 'No universal currency',
         },
+        flag: 'f/f4/Palestine_Flag.svg',
     },
     PT: {
         tld: '.pt',
@@ -1755,6 +1938,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: '5/5c/Flag_of_Portugal.svg',
     },
     PW: {
         tld: '.pw',
@@ -1765,6 +1949,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'US Dollar',
         },
+        flag: '4/48/Flag_of_Palau.svg',
     },
     PY: {
         tld: '.py',
@@ -1775,6 +1960,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '₲',
             name: 'Paraguayan Guarani',
         },
+        flag: '2/27/Flag_of_Paraguay.svg',
     },
     QA: {
         tld: '.qa',
@@ -1785,6 +1971,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'ر.ق.‏',
             name: 'Qatari Rial',
         },
+        flag: '6/65/Flag_of_Qatar.svg',
     },
     RE: {
         tld: '.re',
@@ -1795,6 +1982,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: '5/5a/Flag_of_Réunion.svg',
     },
     RO: {
         tld: '.ro',
@@ -1805,6 +1993,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'RON',
             name: 'Romanian Leu',
         },
+        flag: '7/73/Flag_of_Romania.svg',
     },
     RS: {
         tld: '.rs',
@@ -1815,6 +2004,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'дин.',
             name: 'Serbian Dinar',
         },
+        flag: 'f/ff/Flag_of_Serbia.svg',
     },
     RU: {
         tld: '.ru',
@@ -1825,6 +2015,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '₽.',
             name: 'Russian Ruble',
         },
+        flag: 'f/f3/Flag_of_Russia.svg',
     },
     RW: {
         tld: '.rw',
@@ -1835,6 +2026,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'FR',
             name: 'Rwandan Franc',
         },
+        flag: '1/17/Flag_of_Rwanda.svg',
     },
     SA: {
         tld: '.sa',
@@ -1845,6 +2037,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'ر.س.‏',
             name: 'Saudi Riyal',
         },
+        flag: '0/0d/Flag_of_Saudi_Arabia.svg',
     },
     SB: {
         tld: '.sb',
@@ -1853,6 +2046,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'SBD',
             name: 'Solomon Islands Dollar',
         },
+        flag: '7/74/Flag_of_the_Solomon_Islands.svg',
     },
     SC: {
         tld: '.sc',
@@ -1861,6 +2055,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'SCR',
             name: 'Seychelles Rupee',
         },
+        flag: 'f/fc/Flag_of_Seychelles.svg',
     },
     SD: {
         tld: '.sd',
@@ -1871,6 +2066,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'SDG',
             name: 'Sudanese Pound',
         },
+        flag: '0/01/Flag_of_Sudan.svg',
     },
     SE: {
         tld: '.se',
@@ -1881,6 +2077,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'kr',
             name: 'Swedish Krona',
         },
+        flag: '4/4c/Flag_of_Sweden.svg',
     },
     SG: {
         tld: '.sg',
@@ -1891,6 +2088,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'Singapore Dollar',
         },
+        flag: '4/48/Flag_of_Singapore.svg',
     },
     SH: {
         tld: '.sh',
@@ -1899,6 +2097,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'SHP',
             name: 'Saint Helena Pound',
         },
+        flag: '0/00/Flag_of_Saint_Helena.svg',
     },
     SI: {
         tld: '.si',
@@ -1909,6 +2108,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: 'f/f0/Flag_of_Slovenia.svg',
     },
     SJ: {
         tld: '.sj',
@@ -1919,6 +2119,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'kr',
             name: 'Norwegian Krone',
         },
+        flag: 'd/d9/Flag_of_Norway.svg',
     },
     SK: {
         tld: '.sk',
@@ -1929,6 +2130,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: 'e/e6/Flag_of_Slovakia.svg',
     },
     SL: {
         tld: '.sl',
@@ -1937,6 +2139,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'SLL',
             name: 'Leone',
         },
+        flag: '1/17/Flag_of_Sierra_Leone.svg',
     },
     SM: {
         tld: '.sm',
@@ -1947,6 +2150,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: 'b/b1/Flag_of_San_Marino.svg',
     },
     SN: {
         tld: '.sn',
@@ -1957,6 +2161,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'CFA',
             name: 'CFA Franc BCEAO',
         },
+        flag: 'f/fd/Flag_of_Senegal.svg',
     },
     SO: {
         tld: '.so',
@@ -1967,6 +2172,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'Ssh',
             name: 'Somali Shilling',
         },
+        flag: 'a/a0/Flag_of_Somalia.svg',
     },
     SR: {
         tld: '.sr',
@@ -1975,6 +2181,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'SRD',
             name: 'Surinam Dollar',
         },
+        flag: '6/60/Flag_of_Suriname.svg',
     },
     SS: {
         dial: '211',
@@ -1982,6 +2189,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'SSP',
             name: 'South Sudanese Pound',
         },
+        flag: '7/7a/Flag_of_South_Sudan.svg',
     },
     ST: {
         tld: '.st',
@@ -1990,6 +2198,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'STN',
             name: 'Dobra',
         },
+        flag: '4/4f/Flag_of_Sao_Tome_and_Principe.svg',
     },
     SV: {
         tld: '.sv',
@@ -1998,6 +2207,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'SVC,USD',
             name: 'El Salvador Colon,US Dollar',
         },
+        flag: '3/34/Flag_of_El_Salvador.svg',
     },
     SX: {
         tld: '.sx',
@@ -2006,6 +2216,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'ANG',
             name: 'Netherlands Antillean Guilder',
         },
+        flag: 'd/d3/Flag_of_Sint_Maarten.svg',
     },
     SY: {
         tld: '.sy',
@@ -2016,6 +2227,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'ل.س.‏',
             name: 'Syrian Pound',
         },
+        flag: '5/53/Flag_of_Syria.svg',
     },
     SZ: {
         tld: '.sz',
@@ -2024,6 +2236,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'SZL',
             name: 'Lilangeni',
         },
+        flag: 'f/fb/Flag_of_Eswatini.svg',
     },
     TC: {
         tld: '.tc',
@@ -2034,6 +2247,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'US Dollar',
         },
+        flag: 'a/a0/Flag_of_the_Turks_and_Caicos_Islands.svg',
     },
     TD: {
         tld: '.td',
@@ -2044,6 +2258,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'FCFA',
             name: 'CFA Franc BEAC',
         },
+        flag: '4/4b/Flag_of_Chad.svg',
     },
     TF: {
         tld: '.tf',
@@ -2054,6 +2269,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: 'd/d8/Flag_of_the_Senior_Administrator_of_the_French_Southern_and_Antarctic_Lands.svg',
     },
     TG: {
         tld: '.tg',
@@ -2064,6 +2280,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'CFA',
             name: 'CFA Franc BCEAO',
         },
+        flag: '6/68/Flag_of_Togo.svg',
     },
     TH: {
         tld: '.th',
@@ -2074,6 +2291,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '฿',
             name: 'Thai Baht',
         },
+        flag: 'a/a9/Flag_of_Thailand.svg',
     },
     TJ: {
         tld: '.tj',
@@ -2082,6 +2300,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'TJS',
             name: 'Somoni',
         },
+        flag: 'd/d0/Flag_of_Tajikistan.svg',
     },
     TK: {
         tld: '.tk',
@@ -2092,6 +2311,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'New Zealand Dollar',
         },
+        flag: '8/8e/Flag_of_Tokelau.svg',
     },
     TL: {
         tld: '.tl',
@@ -2102,6 +2322,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'US Dollar',
         },
+        flag: '2/26/Flag_of_East_Timor.svg',
     },
     TM: {
         tld: '.tm',
@@ -2110,6 +2331,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'TMT',
             name: 'Turkmenistan New Manat',
         },
+        flag: '1/1b/Flag_of_Turkmenistan.svg',
     },
     TN: {
         tld: '.tn',
@@ -2120,6 +2342,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'د.ت.‏',
             name: 'Tunisian Dinar',
         },
+        flag: 'c/ce/Flag_of_Tunisia.svg',
     },
     TO: {
         tld: '.to',
@@ -2130,6 +2353,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'T$',
             name: 'Tongan Paʻanga',
         },
+        flag: '9/9a/Flag_of_Tonga.svg',
     },
     TR: {
         tld: '.tr',
@@ -2140,6 +2364,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'TL',
             name: 'Turkish Lira',
         },
+        flag: 'b/b4/Flag_of_Turkey.svg',
     },
     TT: {
         tld: '.tt',
@@ -2150,6 +2375,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'Trinidad and Tobago Dollar',
         },
+        flag: '6/64/Flag_of_Trinidad_and_Tobago.svg',
     },
     TV: {
         tld: '.tv',
@@ -2160,10 +2386,18 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'Australian Dollar',
         },
+        flag: '3/38/Flag_of_Tuvalu.svg',
     },
     TW: {
         tld: '.tw',
         dial: '886',
+        flag: '7/72/Flag_of_the_Republic_of_China.svg',
+        currency: {
+            code: 'TWD',
+            symbol: 'NT$',
+            original: '元',
+            name: 'New Taiwan dollar',
+        },
     },
     TZ: {
         tld: '.tz',
@@ -2174,6 +2408,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'TSh',
             name: 'Tanzanian Shilling',
         },
+        flag: '3/38/Flag_of_Tanzania.svg',
     },
     UA: {
         tld: '.ua',
@@ -2184,6 +2419,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '₴',
             name: 'Ukrainian Hryvnia',
         },
+        flag: '4/49/Flag_of_Ukraine.svg',
     },
     UG: {
         tld: '.ug',
@@ -2194,6 +2430,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'USh',
             name: 'Ugandan Shilling',
         },
+        flag: '4/4e/Flag_of_Uganda.svg',
     },
     UM: {
         tld: '.um',
@@ -2203,6 +2440,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'US Dollar',
         },
+        flag: '0/05/Flag_of_the_U.S..svg',
     },
     US: {
         tld: '.us',
@@ -2213,6 +2451,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'US Dollar',
         },
+        flag: 'a/a4/Flag_of_the_United_States.svg',
     },
     UY: {
         tld: '.uy',
@@ -2223,6 +2462,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'Uruguayan Peso',
         },
+        flag: 'f/fe/Flag_of_Uruguay.svg',
     },
     UZ: {
         tld: '.uz',
@@ -2233,6 +2473,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'UZS',
             name: 'Uzbekistan Som',
         },
+        flag: '8/84/Flag_of_Uzbekistan.svg',
     },
     VA: {
         tld: '.va',
@@ -2243,6 +2484,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: '0/00/Flag_of_the_Vatican_City.svg',
     },
     VC: {
         tld: '.vc',
@@ -2251,6 +2493,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'XCD',
             name: 'East Caribbean Dollar',
         },
+        flag: '6/6d/Flag_of_Saint_Vincent_and_the_Grenadines.svg',
     },
     VE: {
         tld: '.ve',
@@ -2259,6 +2502,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'VES',
             name: 'Bol\\u00edvar',
         },
+        flag: '7/7b/Flag_of_Venezuela_(state).svg',
     },
     VG: {
         tld: '.vg',
@@ -2269,6 +2513,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'US Dollar',
         },
+        flag: '4/42/Flag_of_the_British_Virgin_Islands.svg',
     },
     VI: {
         tld: '.vi',
@@ -2279,6 +2524,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '$',
             name: 'US Dollar',
         },
+        flag: 'f/f8/Flag_of_the_United_States_Virgin_Islands.svg',
     },
     VN: {
         tld: '.vn',
@@ -2289,6 +2535,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '₫',
             name: 'Vietnamese Dong',
         },
+        flag: '2/21/Flag_of_Vietnam.svg',
     },
     VU: {
         tld: '.vu',
@@ -2297,6 +2544,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'VUV',
             name: 'Vatu',
         },
+        flag: '6/6e/Flag_of_Vanuatu_(official).svg',
     },
     WF: {
         tld: '.wf',
@@ -2305,6 +2553,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'XPF',
             name: 'CFP Franc',
         },
+        flag: 'd/d2/Flag_of_Wallis_and_Futuna.svg',
     },
     WS: {
         tld: '.ws',
@@ -2313,6 +2562,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'WST',
             name: 'Tala',
         },
+        flag: '3/31/Flag_of_Samoa.svg',
     },
     XK: {
         tld: '.xk',
@@ -2323,6 +2573,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: '1/1f/Flag_of_Kosovo.svg',
     },
     YE: {
         tld: '.ye',
@@ -2333,6 +2584,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'ر.ي.‏',
             name: 'Yemeni Rial',
         },
+        flag: '8/89/Flag_of_Yemen.svg',
     },
     YT: {
         tld: '.yt',
@@ -2343,6 +2595,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: '€',
             name: 'Euro',
         },
+        flag: 'c/c3/Flag_of_France.svg',
     },
     ZA: {
         tld: '.za',
@@ -2353,6 +2606,7 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'R',
             name: 'South African Rand',
         },
+        flag: 'a/af/Flag_of_South_Africa.svg',
     },
     ZM: {
         tld: '.zm',
@@ -2361,6 +2615,7 @@ export const countriesExtra: ISOCountryExtra = {
             code: 'ZMW',
             name: 'Zambian Kwacha',
         },
+        flag: '0/06/Flag_of_Zambia.svg',
     },
     ZW: {
         tld: '.zw',
@@ -2371,5 +2626,6 @@ export const countriesExtra: ISOCountryExtra = {
             original: 'ZWL$',
             name: 'Zimbabwean Dollar',
         },
+        flag: '6/6a/Flag_of_Zimbabwe.svg',
     },
 }
