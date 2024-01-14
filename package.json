@@ -58,10 +58,10 @@
   "author": "Erik Golinelli <https://github.com/erikyo>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/erikyo/isotolanguage.git"
+    "url": "https://github.com/wp-blocks/isotolanguage.git"
   },
   "bugs": {
-    "url": "https://github.com/erikyo/isotolanguage/issues"
+    "url": "https://github.com/wp-blocks/isotolanguage/issues"
   },
   "devDependencies": {
     "@babel/core": "^7.23.7",

@@ -4,14 +4,14 @@
   <a href="https://www.npmjs.com/package/isotolanguage">
     <img alt="version" src="https://img.shields.io/npm/v/isotolanguage.svg?label=npm%20version" />
   </a>
-  <a href="https://github.com/erikyo/isotolanguage/blob/master/LICENSE">
+  <a href="https://github.com/wp-blocks/isotolanguage/blob/master/LICENSE">
     <img alt="version" src="https://img.shields.io/npm/l/isotolanguage" />
   </a>
-  <a href="https://github.com/erikyo/ISOToLanguage/actions">
-    <img alt="build" src="https://img.shields.io/github/actions/workflow/status/erikyo/ISOToLanguage/pnpm.yml" />
+  <a href="https://github.com/wp-blocks/ISOToLanguage/actions">
+    <img alt="build" src="https://img.shields.io/github/actions/workflow/status/wp-blocks/ISOToLanguage/pnpm.yml" />
   </a>
-  <a href="https://github.com/erikyo/ISOToLanguage/actions">
-    <img alt="workflows" src="https://github.com/erikyo/ISOToLanguage/actions/workflows/pnpm.yml/badge.svg" />
+  <a href="https://github.com/wp-blocks/ISOToLanguage/actions">
+    <img alt="workflows" src="https://github.com/wp-blocks/ISOToLanguage/actions/workflows/pnpm.yml/badge.svg" />
   </a>
 </div>
 
