@@ -107,7 +107,7 @@ export function getCountry(
                     }
                 })
                 if (fields.includes('flag')) {
-                    countryData.flag = wikiMediaUrl + countryData.flag + ".svg"
+                    countryData.flag = wikiMediaUrl + countryData.flag + '.svg'
                 }
             }
 
