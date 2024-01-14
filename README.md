@@ -18,6 +18,9 @@
 Unlock the power of ISO codes with our lightweight and high-performance ISO-to-language converter module. This meticulously crafted package seamlessly transforms ISO country and language codes into meaningful country names, ensuring you
 have all the essentials without unnecessary bloat.
 
+Get information for each iso code, our dataset is one of the most complete we have original and international name, iso2 and 3, flags, tld, currency, dial, continent, sub-region and more take a look below, you will be amazed at the amount of data available
+
+
 ## Key Features:
 
 - **🚀 Performance-Driven:** Engineered with speed in mind, the package boasts swift execution for seamless integration into your projects.
