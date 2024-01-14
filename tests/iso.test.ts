@@ -108,10 +108,18 @@ describe('ISO', () => {
         expect(result).toEqual(expectedOriginal)
     })
 
-    it('should return a field for the provided ISO3 code', () => {
+    it('should return a field for the provided language ISO3 code', () => {
         const isoCode = 'ita'
         const result = getIso(isoCode, 'language', 'iso2')
         const expectedOriginal = 'it'
+
+        expect(result).toEqual(expectedOriginal)
+    })
+
+    it('should return a field for the provided country ISO3 code', () => {
+        const isoCode = 'ITA'
+        const result = getIso(isoCode, 'country', 'iso2')
+        const expectedOriginal = 'IT'
 
         expect(result).toEqual(expectedOriginal)
     })
