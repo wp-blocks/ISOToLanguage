@@ -908,4 +908,4 @@ export const langIso = {
         original: 'Saɯ cueŋƅ, Saw cuengh',
         iso3: 'zha',
     },
-}
+} as const

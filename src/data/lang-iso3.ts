@@ -1715,4 +1715,4 @@ export const LangIso3 = {
     zza: {
         name: ['Zaza', 'Dimili', 'Dimli', 'Kirdki', 'Kirmanjki', 'Zazaki'],
     },
-}
+} as const

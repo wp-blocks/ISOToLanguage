@@ -1499,4 +1499,4 @@ export const countriesIso = {
         original: 'Zimbabwe',
         iso3: 'ZWE',
     },
-}
+} as const
