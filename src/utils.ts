@@ -11,7 +11,10 @@ export function isExtraField(fields: string[]): fields is CountryExtraFields[] {
         fields.includes('tld') ||
         fields.includes('dial') ||
         fields.includes('currency') ||
-        fields.includes('flag')
+        fields.includes('flag') ||
+        fields.includes('emoji') ||
+        fields.includes('emojiU') ||
+        fields.includes('coordinates')
     )
 }
 

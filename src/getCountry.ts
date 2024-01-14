@@ -29,7 +29,14 @@ const wikiMediaUrl = 'https://upload.wikimedia.org/wikipedia/commons/'
 export function getCountry(
     key: string,
     fields?: string | string[] | CountryDataFields | CountryDataFields[]
-): ISOLangCode[] | Partial<CountryDataExtended> | LanguageData[] | string | string[] | false {
+):
+    | ISOLangCode[]
+    | Partial<CountryDataExtended>
+    | LanguageData[]
+    | string
+    | string[]
+    | number[]
+    | false {
     let country: Country | false = false
     let countryIso: ISOCountryCode | false = false
 

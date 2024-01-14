@@ -78,6 +78,9 @@ export interface CountryExtra {
         name: string
     }
     flag: string
+    emoji: string
+    emojiU: string
+    coordinates?: number[]
 }
 
 export type CountryExtraFields = keyof CountryExtra

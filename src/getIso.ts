@@ -32,6 +32,7 @@ export function getIso(
 ):
     | string
     | string[]
+    | number[]
     | LanguageData
     | LanguageData[]
     | CountryExtendedFields
