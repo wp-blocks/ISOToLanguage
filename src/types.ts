@@ -77,6 +77,7 @@ export interface CountryExtra {
         original?: string
         name: string
     }
+    flag: string
 }
 
 export type CountryExtraFields = keyof CountryExtra
@@ -94,6 +95,13 @@ export type CountryDataCustomFields =
 export type CountryDataExtraFields = CountryExtendedFields | CountryExtraFields | CountryGeoFields
 export type CountryDataFields = CountryDataExtraFields | CountryDataCustomFields | IsoCodeFormat
 export type CountryDataExtended = CountryGeo & CountryExtra & CountryData & CountryLocaleData
+
+export type GenericCountryData = Partial<
+    Record<
+        string | CountryDataFields,
+        string | string[] | number | boolean | object | LanguageData[]
+    >
+>
 
 /**
  * The Language code
@@ -117,11 +125,11 @@ export interface LanguageIso3 {
     name: string | string[]
 }
 
-export type ISO3LangCode = keyof typeof LangIso3
+export type ISO3LangCode = keyof typeof LangIso3 & string
 export type ISO3Language = Record<ISO3LangCode, LanguageIso3>
 
 // The Language code type e.g. 'en' 'fr'
-export type ISOLangCode = keyof typeof langIso
+export type ISOLangCode = keyof typeof langIso & string
 export type ISOLanguage = Record<ISOLangCode, Language>
 
 /**
