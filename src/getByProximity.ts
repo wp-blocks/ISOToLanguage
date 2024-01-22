@@ -9,10 +9,7 @@ import { CountryExtra } from './types'
  * @param {Array<number>} coordinates2 - The second set of coordinates [latitude, longitude]
  * @return {number} The distance between the two sets of coordinates in kilometers
  */
-function getDistance(
-    coordinates: [number,number],
-    coordinates2: [number,number]
-) {
+function getDistance(coordinates: [number, number], coordinates2: [number, number]) {
     const lat1 = coordinates[0]
     const lon1 = coordinates[1]
     const lat2 = coordinates2[0]
@@ -25,9 +22,9 @@ function getDistance(
     const a =
         Math.sin(dLat / 2) * Math.sin(dLat / 2) +
         Math.cos((lat1 * Math.PI) / 180) *
-        Math.cos((lat2 * Math.PI) / 180) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2)
+            Math.cos((lat2 * Math.PI) / 180) *
+            Math.sin(dLon / 2) *
+            Math.sin(dLon / 2)
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
     const d = R * c
     return d
@@ -40,19 +37,24 @@ function getDistance(
  * @param {number} maxDistance - the maximum distance in kilometers
  * @return {Record<string, any> | undefined} a record of countries within the specified proximity
  */
-export function getByProximity(country: string, maxDistance: number): Record<string, CountryExtra>[] | undefined {
-    const countryCoordinates = getIso(country, 'country', 'coordinates') as [number,number] | null;
+export function getByProximity(
+    country: string,
+    maxDistance: number
+): Record<string, CountryExtra>[] | undefined {
+    const countryCoordinates = getIso(country, 'country', 'coordinates') as [number, number] | null
     if (countryCoordinates !== null) {
-        const countriesbyDistance: { iso: string, coordinates: number[] | undefined, distance: number }[] = [];
+        const countriesbyDistance: {
+            iso: string
+            coordinates: number[] | undefined
+            distance: number
+        }[] = []
         Object.entries(countriesExtra).forEach(([iso, extras]) => {
-            const distance = getDistance(countryCoordinates, extras.coordinates as [number,number]);
+            const distance = getDistance(countryCoordinates, extras.coordinates as [number, number])
             if (distance <= maxDistance) {
-                countriesbyDistance.push({ iso, coordinates: extras.coordinates, distance });
+                countriesbyDistance.push({ iso, coordinates: extras.coordinates, distance })
             }
-        });
+        })
         // return the countries sorted by distance
-        return countriesbyDistance.sort(
-            (a, b) => a.distance - b.distance
-        );
+        return countriesbyDistance.sort((a, b) => a.distance - b.distance)
     }
 }

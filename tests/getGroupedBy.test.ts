@@ -1,5 +1,6 @@
 import { describe, expect } from '@jest/globals'
 import { getGroupedBy, getCountriesByLanguage } from '../src/'
+import { ISOLangCode } from '../lib/@types/types'
 
 describe('getGroupedBy', () => {
     test('groups by region', () => {
@@ -34,7 +35,7 @@ describe('getGroupedBy', () => {
 
 describe('getCountriesByLanguage', () => {
     test('returns countries that speak a given language', () => {
-        const languages = ['en', 'fr'] // Example languages
+        const languages = ['en', 'fr'] as ISOLangCode[]
         const result = getCountriesByLanguage(languages)
 
         // Check if the result is an object

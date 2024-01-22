@@ -134,7 +134,7 @@ describe('getAll', () => {
             } else {
                 // For other types, test objects
                 expect(result).toMatchObject(
-                    expected as Record<string, unknown> | Record<string, unknown>[]
+                    expected as unknown as Record<string, unknown> | Record<string, unknown>[]
                 )
             }
         })
