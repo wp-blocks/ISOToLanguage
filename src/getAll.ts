@@ -1,4 +1,18 @@
-import { CountryData, CountryDataExtended, CountryDataFields, ISO3LangCode, ISO3Language, IsoCode, IsoCodeFormat, ISOCountryCode, IsoFormat, ISOLangCode, IsoType, LanguageData, LanguageDataFields } from './types'
+import {
+    CountryData,
+    CountryDataExtended,
+    CountryDataFields,
+    ISO3LangCode,
+    ISO3Language,
+    IsoCode,
+    IsoCodeFormat,
+    ISOCountryCode,
+    IsoFormat,
+    ISOLangCode,
+    IsoType,
+    LanguageData,
+    LanguageDataFields,
+} from './types'
 
 import { countriesIso } from './data/countries-iso'
 import { formatIso } from './formatIso'
@@ -117,7 +131,7 @@ export function getAll(
                                         if (
                                             typeof LangIso3[iso as ISO3LangCode]?.name === 'object'
                                         ) {
-                                            (
+                                            ;(
                                                 LangIso3[iso as ISO3LangCode]?.name as string[]
                                             ).forEach((name) => {
                                                 newHierarchy.push(name ?? iso)
