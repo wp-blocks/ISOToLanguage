@@ -1,6 +1,5 @@
 import { getIso } from './getIso'
 import { countriesExtra } from './data/countries-extra'
-import { CountryExtra } from './types'
 
 /**
  * Calculate the distance between two sets of coordinates using the Haversine formula.
@@ -40,14 +39,14 @@ function getDistance(coordinates: [number, number], coordinates2: [number, numbe
 export function getByProximity(
     country: string,
     maxDistance: number
-): Record<string, CountryExtra>[] | undefined {
+): { iso: string; coordinates: number[] | undefined; distance: number }[] {
     const countryCoordinates = getIso(country, 'country', 'coordinates') as [number, number] | null
+    const countriesbyDistance: {
+        iso: string
+        coordinates: number[] | undefined
+        distance: number
+    }[] = []
     if (countryCoordinates !== null) {
-        const countriesbyDistance: {
-            iso: string
-            coordinates: number[] | undefined
-            distance: number
-        }[] = []
         Object.entries(countriesExtra).forEach(([iso, extras]) => {
             const distance = getDistance(countryCoordinates, extras.coordinates as [number, number])
             if (distance <= maxDistance) {
@@ -55,6 +54,7 @@ export function getByProximity(
             }
         })
         // return the countries sorted by distance
-        return countriesbyDistance.sort((a, b) => a.distance - b.distance)
+        countriesbyDistance.sort((a, b) => a.distance - b.distance)
     }
+    return countriesbyDistance
 }

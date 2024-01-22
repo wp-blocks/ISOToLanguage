@@ -46,12 +46,13 @@ export function getCountriesByLanguage(languages: string[]): {
     const result: { [K in IsoCode]?: Country } = {}
 
     for (const iso in countriesIso) {
-        const isoData = countriesIso[iso as ISOCountryCode] as Country
+        const currentIso = iso as ISOCountryCode
+        const isoData = countriesIso[currentIso]
 
         for (const language of languages) {
             // Check if the iso code is valid and the language matches
             if ((isoData.languages as string[]).includes(language)) {
-                result[iso as IsoCode] = isoData
+                result[currentIso] = isoData as Country
             }
         }
     }

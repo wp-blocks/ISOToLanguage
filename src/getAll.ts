@@ -1,18 +1,4 @@
-import {
-    CountryData,
-    CountryDataExtended,
-    CountryDataFields,
-    ISO3LangCode,
-    ISO3Language,
-    IsoCode,
-    IsoCodeFormat,
-    ISOCountryCode,
-    IsoFormat,
-    ISOLangCode,
-    IsoType,
-    LanguageData,
-    LanguageDataFields,
-} from './types'
+import { CountryData, CountryDataExtended, CountryDataFields, ISO3LangCode, ISO3Language, IsoCode, IsoCodeFormat, ISOCountryCode, IsoFormat, ISOLangCode, IsoType, LanguageData, LanguageDataFields } from './types'
 
 import { countriesIso } from './data/countries-iso'
 import { formatIso } from './formatIso'
@@ -52,7 +38,7 @@ function getIso5Code(type: IsoCodeFormat = 'locale'): string[] {
  * @param from
  * @param {string} field - Type of items to retrieve. It Can be "iso", "languages",
  * "names", "original", "language-codes", or "locale". If no type is provided, return the isoCountries.
- * @param asKey
+ * @param asKey - Whether to return the items as keys of the object.
  * @return Depending on the type parameter, either a list of ISOs, languages,
  * names, original names, or the isoCountries.
  */
@@ -131,7 +117,7 @@ export function getAll(
                                         if (
                                             typeof LangIso3[iso as ISO3LangCode]?.name === 'object'
                                         ) {
-                                            ;(
+                                            (
                                                 LangIso3[iso as ISO3LangCode]?.name as string[]
                                             ).forEach((name) => {
                                                 newHierarchy.push(name ?? iso)

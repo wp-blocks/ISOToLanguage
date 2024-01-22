@@ -1799,4 +1799,4 @@ export const countriesGeo: ISOCountryGeo = {
         intermediateRegion: 'Eastern Africa',
         nameFormal: 'the Republic of Zimbabwe',
     },
-} as const
+}

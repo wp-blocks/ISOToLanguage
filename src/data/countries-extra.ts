@@ -3378,4 +3378,4 @@ export const countriesExtra: ISOCountryExtra = {
         emojiU: 'U+1F1FF U+1F1FC',
         coordinates: [-19.0154, 29.1549],
     },
-} as const
+}

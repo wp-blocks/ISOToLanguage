@@ -1,6 +1,7 @@
 import { describe, expect } from '@jest/globals'
-import { getGroupedBy, getCountriesByLanguage } from '../src/'
-import { ISOLangCode } from '../lib/@types/types'
+import { getCountriesByLanguage, getGroupedBy } from '../src/'
+import { ISOLangCode, ISOLanguage } from '../src/types'
+import { Country, ISOCountryCode } from '../lib/@types/types'
 
 describe('getGroupedBy', () => {
     test('groups by region', () => {
@@ -43,7 +44,7 @@ describe('getCountriesByLanguage', () => {
 
         // Loop through the result and check if the countries speak at least one of the languages
         for (const countryIso in result) {
-            const country = result[countryIso]
+            const country: Country = result[countryIso as ISOCountryCode]
             expect(country).toHaveProperty('languages')
             expect(languages.some((language) => country.languages.includes(language))).toBeTruthy()
         }

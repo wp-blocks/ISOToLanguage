@@ -41,7 +41,7 @@ export function getCountry(
     let countryIso: ISOCountryCode | false = false
 
     if (validateISO(key, 'country')) {
-        country = countriesIso[key as ISOCountryCode] as Country
+        country = countriesIso[key as keyof typeof countriesIso] as Country
         countryIso = key as ISOCountryCode
     } else {
         // loop for each langIso item and find if the name matches the iso
