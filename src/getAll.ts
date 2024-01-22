@@ -131,7 +131,7 @@ export function getAll(
                                         if (
                                             typeof LangIso3[iso as ISO3LangCode]?.name === 'object'
                                         ) {
-                                            ;(
+                                            (
                                                 LangIso3[iso as ISO3LangCode]?.name as string[]
                                             ).forEach((name) => {
                                                 newHierarchy.push(name ?? iso)
