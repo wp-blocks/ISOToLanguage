@@ -5,6 +5,7 @@
 /bin/
 /example/
 /src/
+/tests/coverage/
 
 .github
 .src
