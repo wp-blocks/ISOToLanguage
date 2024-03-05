@@ -27,7 +27,7 @@
         "types": "./lib/cjs/@types/index.d.ts"
       },
       "import": {
-        "default": "./lib/esm/index.js",
+        "default": "./lib/esm/index.mjs",
         "types": "./lib/@types/index.d.ts"
       },
       "browser": "./lib/browser/ISOToLanguage.js",
