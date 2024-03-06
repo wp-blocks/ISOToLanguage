@@ -23,7 +23,7 @@
     ".": {
       "types": "./lib/cjs/@types/index.d.ts",
       "require": {
-        "default": "./lib/cjs/index.js",
+        "default": "./lib/cjs/index.cjs",
         "types": "./lib/cjs/@types/index.d.ts"
       },
       "import": {
