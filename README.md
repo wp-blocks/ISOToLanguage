@@ -25,7 +25,7 @@ Get information for each iso code, our dataset is one of the most complete we ha
 
 - **🚀 Performance-Driven:** Engineered with speed in mind, the package boasts swift execution for seamless integration into your projects.
 
-- **📦 Minimal Footprint:** Weighing less than 10kb gzipped, no dependencies, it keeps your project light without compromising on functionality.
+- **📦 Minimal Footprint:** Weighing less than 40kb gzipped, no dependencies, it keeps your project light without compromising on functionality.
 
 - **🎯 Focused Functionality:** From validating ISO codes to formatting languages and countries, our module provides a suite of versatile utility functions for your language-related tasks.
 
