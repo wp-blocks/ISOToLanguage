@@ -1,9 +1,9 @@
 import { describe, expect } from '@jest/globals'
-import { getByProximity } from '../src/getByProximity'
+import { getNearestCountries } from '../src/getByProximity'
 
-describe('getByProximity', () => {
+describe('getNearestCountries', () => {
     it('Should return the countries near the italy ', () => {
-        const nearest = getByProximity('IT', 1000)
+        const nearest = getNearestCountries('IT', 1000)
         console.log(nearest)
         expect(nearest).toMatchObject( [
             { iso: 'IT', coordinates: [ 41.8719, 12.5674 ], distance: 0 },

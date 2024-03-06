@@ -36,25 +36,33 @@ function getDistance(coordinates: [number, number], coordinates2: [number, numbe
  * @param {number} maxDistance - the maximum distance in kilometers
  * @return {Record<string, any> | undefined} a record of countries within the specified proximity
  */
-export function getByProximity(
+export function getNearestCountries(
     country: string,
     maxDistance: number
 ): { iso: string; coordinates: number[] | undefined; distance: number }[] {
     const countryCoordinates = getIso(country, 'country', 'coordinates') as [number, number] | null
+    if (!countryCoordinates) {
+        throw new Error('Country not found')
+    }
+    return getByProximity(countryCoordinates, maxDistance)
+}
+
+export function getByProximity(
+    coordinates: [number, number],
+    maxDistance: number
+): { iso: string; coordinates: number[] | undefined; distance: number }[] {
     const countriesbyDistance: {
         iso: string
         coordinates: number[] | undefined
         distance: number
     }[] = []
-    if (countryCoordinates !== null) {
-        Object.entries(countriesExtra).forEach(([iso, extras]) => {
-            const distance = getDistance(countryCoordinates, extras.coordinates as [number, number])
-            if (distance <= maxDistance) {
-                countriesbyDistance.push({ iso, coordinates: extras.coordinates, distance })
-            }
-        })
-        // return the countries sorted by distance
-        countriesbyDistance.sort((a, b) => a.distance - b.distance)
-    }
+    Object.entries(countriesExtra).forEach(([iso, extras]) => {
+        const distance = getDistance(coordinates, extras.coordinates as [number, number])
+        if (distance <= maxDistance) {
+            countriesbyDistance.push({ iso, coordinates: extras.coordinates, distance })
+        }
+    })
+    // return the countries sorted by distance
+    countriesbyDistance.sort((a, b) => a.distance - b.distance)
     return countriesbyDistance
 }
