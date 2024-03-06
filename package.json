@@ -23,11 +23,11 @@
     ".": {
       "types": "./lib/cjs/@types/index.d.ts",
       "require": {
-        "default": "./lib/cjs/index.js",
+        "default": "./lib/cjs/index.cjs",
         "types": "./lib/cjs/@types/index.d.ts"
       },
       "import": {
-        "default": "./lib/esm/index.js",
+        "default": "./lib/esm/index.mjs",
         "types": "./lib/@types/index.d.ts"
       },
       "browser": "./lib/browser/ISOToLanguage.js",
